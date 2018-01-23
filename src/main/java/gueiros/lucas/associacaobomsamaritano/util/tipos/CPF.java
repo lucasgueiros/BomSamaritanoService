@@ -5,17 +5,18 @@
  */
 package gueiros.lucas.associacaobomsamaritano.util.tipos;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author lucasgueiros
  */
-public final class CPF {
+public class CPF {
 
-    private final long numero;
+    private long numero;
 
-    private final int digitosVerificadores;
+    private int digitosVerificadores;
+
+    public CPF() {
+    }
 
     public CPF(long numero, int digitosVerificadores) {
         this.numero = numero;
@@ -77,6 +78,14 @@ public final class CPF {
         
         return (dv1*10) + dv2;
     }*/
+
+    public void setNumero(long numero) {
+        this.numero = numero;
+    }
+
+    public void setDigitosVerificadores(int digitosVerificadores) {
+        this.digitosVerificadores = digitosVerificadores;
+    }
         
 
     

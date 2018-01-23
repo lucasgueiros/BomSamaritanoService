@@ -33,7 +33,6 @@ public class EnderecoConstrutor {
         return new Endereco(cadastro.getLogradouro(),
                 cadastro.getNumero(), 
                 cadastro.getBairro(), 
-                cadastro.getComplemento(), 
-                cadastro.getCidade());
+                cadastro.getComplemento());
     }
 }

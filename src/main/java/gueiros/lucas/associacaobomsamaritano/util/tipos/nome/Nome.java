@@ -5,11 +5,19 @@
  */
 package gueiros.lucas.associacaobomsamaritano.util.tipos.nome;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 /**
  *
  * @author lucasgueiros
  */
-public final class Nome {
+@Embeddable
+public class Nome implements Serializable {
+
+    protected Nome() {
+    }
 
     public Nome(String primeiroNome, String prefixo, String sufixo, String sobrenome, String nomeDoMeio) {
         this.primeiroNome = primeiroNome==null ? "" : primeiroNome;
@@ -33,11 +41,11 @@ public final class Nome {
         this.sufixo = null;
     }
     
-    private final String primeiroNome;
-    private final String prefixo;
-    private final String sufixo;
-    private final String sobrenome;
-    private final String nomeDoMeio;
+    @Column private String primeiroNome;
+    @Column private String prefixo;
+    @Column private String sufixo;
+    @Column private String sobrenome;
+    @Column private String nomeDoMeio;
 
     public String getPrimeiroNome() {
         return primeiroNome;
@@ -57,6 +65,26 @@ public final class Nome {
 
     public String getNomeDoMeio() {
         return nomeDoMeio;
+    }
+
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
+
+    public void setPrefixo(String prefixo) {
+        this.prefixo = prefixo;
+    }
+
+    public void setSufixo(String sufixo) {
+        this.sufixo = sufixo;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setNomeDoMeio(String nomeDoMeio) {
+        this.nomeDoMeio = nomeDoMeio;
     }
     
     

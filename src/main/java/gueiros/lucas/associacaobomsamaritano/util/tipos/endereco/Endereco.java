@@ -5,28 +5,38 @@
  */
 package gueiros.lucas.associacaobomsamaritano.util.tipos.endereco;
 
+import java.io.Serializable;
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author lucasgueiros
  */
-public final class Endereco {
+@Entity
+public class Endereco implements Serializable {
     
-    private final String logradouro;
+    @Column
+    private String logradouro;
 
-    private final int numero;
+    @Column
+    private int numero;
 
-    private final String bairro;
+    @Column
+    private String bairro;
 
-    private final String cidade;
+    @Column
+    private String complemento;
+    
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    private final String complemento;
-
-    public Endereco(String logradouro, int numero, String bairro, String complemento, String cidade) {
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.complemento = complemento;
-        this.cidade = cidade;
+    protected Endereco() {
     }
     
     public Endereco(String logradouro, int numero, String bairro, String complemento) {
@@ -34,7 +44,6 @@ public final class Endereco {
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
-        this.cidade = "Garanhuns";
     }
 
     public String getLogradouro() {
@@ -49,12 +58,32 @@ public final class Endereco {
         return bairro;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
     public String getComplemento() {
         return complemento;
     }
-    
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

@@ -5,14 +5,27 @@
  */
 package gueiros.lucas.associacaobomsamaritano.util.tipos.telefone;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author lucasgueiros
  */
-public class Telefone {
+@Entity
+public class Telefone implements Serializable {
     
-    private final int ddd;
-    private final int numero;
+    @Column private int ddd;
+    @Column private int numero;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    public Telefone() {
+    }
 
     public Telefone(int ddd, int numero) {
         this.ddd = ddd;
@@ -35,6 +48,22 @@ public class Telefone {
      */
     public int getNumero() {
         return numero;
+    }
+
+    public void setDdd(int ddd) {
+        this.ddd = ddd;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

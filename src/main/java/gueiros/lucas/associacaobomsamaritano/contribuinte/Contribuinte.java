@@ -9,7 +9,10 @@ import gueiros.lucas.associacaobomsamaritano.util.tipos.telefone.Telefone;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.nome.Nome;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.endereco.Endereco;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,20 +23,19 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Contribuinte implements Serializable {
-
-    @Id
-    @Column(name="id")
-    @GeneratedValue
-    private int id;
     
-    @Column
+    @Embedded
     private Nome nome;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private Endereco endereco;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private Telefone telefone;
+    
+    @Id
+    @GeneratedValue
+    private Long id;
 
     protected Contribuinte() {
     }
@@ -44,24 +46,6 @@ public class Contribuinte implements Serializable {
         this.telefone = telefone;
     }
 
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-    
     /**
      * Get the value of telefone
      *
@@ -114,6 +98,14 @@ public class Contribuinte implements Serializable {
      */
     public void setNome(Nome nome) {
         this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
