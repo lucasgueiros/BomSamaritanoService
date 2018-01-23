@@ -10,7 +10,6 @@ import gueiros.lucas.associacaobomsamaritano.util.tipos.nome.Nome;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.endereco.Endereco;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 
 import javax.persistence.Entity;

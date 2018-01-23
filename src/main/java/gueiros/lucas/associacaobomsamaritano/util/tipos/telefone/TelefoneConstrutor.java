@@ -22,6 +22,7 @@ public class TelefoneConstrutor {
      * Set the value of cadastro
      *
      * @param cadastro new value of cadastro
+     * @return 
      */
     public TelefoneConstrutor setCadastro(TelefoneCadastro cadastro) {
         this.cadastro = cadastro;
@@ -30,6 +31,8 @@ public class TelefoneConstrutor {
     
     public Telefone construir() throws CadastroIndefinidoException {
         if(cadastro==null) throw new CadastroIndefinidoException();
-        return new Telefone(cadastro.getDDD(),cadastro.getNumero());
+        int ddd = Integer.parseInt(cadastro.getDDD().replace("(", ""));
+        int numero = Integer.parseInt(cadastro.getNumero().replace("-", ""));
+        return new Telefone(ddd,numero);
     }
 }

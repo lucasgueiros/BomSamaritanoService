@@ -6,9 +6,7 @@
 package gueiros.lucas.associacaobomsamaritano.util.tipos.endereco;
 
 import java.io.Serializable;
-import javax.annotation.Generated;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

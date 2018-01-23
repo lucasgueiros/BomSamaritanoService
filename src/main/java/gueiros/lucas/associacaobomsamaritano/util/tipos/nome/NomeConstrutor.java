@@ -31,6 +31,7 @@ public class NomeConstrutor {
      * Set the value of cadastro
      *
      * @param cadastro new value of cadastro
+     * @return 
      */
     public NomeConstrutor setCadastro(NomeCadastro cadastro) {
         this.cadastro = cadastro;

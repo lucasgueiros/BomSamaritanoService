@@ -21,7 +21,8 @@ public class EnderecoConstrutor {
     /**
      * Set the value of form
      *
-     * @param form new value of form
+     * @param cadastro
+     * @return 
      */
     public EnderecoConstrutor setCadastro(EnderecoCadastro cadastro) {
         this.cadastro = cadastro;
