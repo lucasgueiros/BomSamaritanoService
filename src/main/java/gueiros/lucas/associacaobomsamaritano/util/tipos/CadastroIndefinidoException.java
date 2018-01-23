@@ -9,9 +9,9 @@ package gueiros.lucas.associacaobomsamaritano.util.tipos;
  *
  * @author lucasgueiros
  */
-public class FormIndefinidoException extends Exception {
+public class CadastroIndefinidoException extends Exception {
 
-    public FormIndefinidoException() {
+    public CadastroIndefinidoException() {
     }
     
 }

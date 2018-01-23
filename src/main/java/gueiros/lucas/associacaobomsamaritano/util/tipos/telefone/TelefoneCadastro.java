@@ -72,11 +72,15 @@ public class TelefoneCadastro extends javax.swing.JPanel {
     }//GEN-LAST:event_numeroActionPerformed
 
     protected int getDDD(){
-        return Integer.parseInt(ddd.getText());
+        // TODO trate de caracteres espciais
+        String ddd = this.ddd.getText().replace("(", "");
+        ddd = ddd.replace(")", "");
+        return Integer.parseInt(ddd);
     }
     
     protected int getNumero(){
-        return Integer.parseInt(numero.getText());
+        // TODO trate de caracteres espciais
+        return Integer.parseInt(numero.getText().replace("-", ""));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

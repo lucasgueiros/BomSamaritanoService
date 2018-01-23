@@ -4,7 +4,7 @@
     <!-- provedor/implementacao do JPA -->
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!-- entidade mapeada -->
-    <class></class>
+    <class>gueiros.gueiros.lucas.associacaobomsamaritano.contribuinte.Contribuinte</class>
     <properties>
       <!-- dados da conexao -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

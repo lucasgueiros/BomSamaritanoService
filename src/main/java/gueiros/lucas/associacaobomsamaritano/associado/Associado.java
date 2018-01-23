@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gueiros.lucas.associacaobomsamaritano.pessoas;
+package gueiros.lucas.associacaobomsamaritano.associado;
 
+import gueiros.lucas.associacaobomsamaritano.contribuinte.Contribuinte;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.telefone.Telefone;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.endereco.Endereco;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.*;

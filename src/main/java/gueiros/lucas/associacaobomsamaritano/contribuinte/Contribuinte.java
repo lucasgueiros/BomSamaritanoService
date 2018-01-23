@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gueiros.lucas.associacaobomsamaritano.pessoas;
+package gueiros.lucas.associacaobomsamaritano.contribuinte;
 
 import gueiros.lucas.associacaobomsamaritano.util.tipos.telefone.Telefone;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.nome.Nome;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.endereco.Endereco;
-import gueiros.lucas.associacaobomsamaritano.util.tipos.*;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
