@@ -17,13 +17,13 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
  *

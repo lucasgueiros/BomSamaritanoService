@@ -17,12 +17,12 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import java.awt.GridBagConstraints;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
  *
