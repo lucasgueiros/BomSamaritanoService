@@ -17,17 +17,64 @@
  */
 package gueiros.lucas.bomsamaritano.service.contribuinte;
 
-import gueiros.lucas.bomsamaritano.service.util.tipos.CadastroIndefinidoException;
+import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
+import gueiros.lucas.bomsamaritano.service.endereco.EnderecoEditControl;
+import gueiros.lucas.bomsamaritano.service.nome.Nome;
+import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
+import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
+import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-public class ContribuinteEditControl {
+public class ContribuinteEditControl implements EditControl<Contribuinte>{
     
     private ContribuinteEditView editView;
+    private Contribuinte model;
+    
+    private NomeEditControl nomeEditControl;
+    private EnderecoEditControl enderecoEditControl;
+    private TelefoneEditControl telefoneEditControl;
 
-    public Contribuinte construir() throws CadastroIndefinidoException{
-        return null;//new Contribuinte(cadastro.getNome(), cadastro.getEndereco(), cadastro.getTelefone());
+    public ContribuinteEditControl() {
+        editView = new ContribuinteEditView();
+    }
+
+    @Override
+    public void iniciar() {
+        editView = new ContribuinteEditView();
+        nomeEditControl = new NomeEditControl();
+        enderecoEditControl = new EnderecoEditControl();
+        telefoneEditControl = new TelefoneEditControl();
+        
+        editView.nomeEditView = nomeEditControl.getEditView();
+        editView.enderecoEditView = enderecoEditControl.getEditView();
+        editView.telefoneEditView = telefoneEditControl.getEditView();
+        
+        nomeEditControl.iniciar();
+        enderecoEditControl.iniciar();
+        telefoneEditControl.iniciar();
+        
+        editView.construirView();
+    }
+
+    @Override
+    public JPanel getEditView() {
+        return editView;
+    }
+
+    @Override
+    public Contribuinte getModel() {
+        if(model == null) {
+            Nome nome = nomeEditControl.getModel();
+            Endereco endereco = enderecoEditControl.getModel();
+            Telefone telefone = telefoneEditControl.getModel();
+        
+            model = new Contribuinte(nome, endereco, telefone);
+        }
+        return model;
     }
 }

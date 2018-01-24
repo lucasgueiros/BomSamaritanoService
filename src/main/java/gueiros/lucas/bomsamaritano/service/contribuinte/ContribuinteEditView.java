@@ -17,39 +17,41 @@
  */
 package gueiros.lucas.bomsamaritano.service.contribuinte;
 
-import gueiros.lucas.bomsamaritano.service.endereco.EnderecoEditView;
-import gueiros.lucas.bomsamaritano.service.nome.NomeEditView;
-import gueiros.lucas.bomsamaritano.service.telefone.TelefoneCadastro;
-import javax.swing.JFrame;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-public class ContribuinteEditView extends JFrame {
+class ContribuinteEditView extends JPanel implements EditView {
 
-    private EnderecoEditView enderecoCadastro;
-    private NomeEditView nomeCadastro;
-    private TelefoneCadastro telefoneCadastro;
+    protected JPanel enderecoEditView;
+    protected JPanel nomeEditView;
+    protected JPanel telefoneEditView;
 
-    public ContribuinteEditView() {
-        inicializar();
-    }
-
-    public EnderecoEditView getEnderecoCadastro() {
-        return enderecoCadastro;
-    }
-
-    public NomeEditView getNomeCadastro() {
-        return nomeCadastro;
-    }
-
-    public TelefoneCadastro getTelefoneCadastro() {
-        return telefoneCadastro;
-    }
+    protected ContribuinteEditView() {}
     
-    private void inicializar() {
-        
+    @Override
+    public void construirView() {
+        if(enderecoEditView == null || nomeEditView == null || telefoneEditView == null) {
+            throw new IllegalStateException();
+        }
+        setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0; // coluna
+        constraints.gridy = 0;
+        add(nomeEditView,constraints);
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        add(telefoneEditView,constraints);
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        add(enderecoEditView,constraints);
     }
     
 }
