@@ -18,6 +18,8 @@
 package gueiros.lucas.bomsamaritano.service.endereco;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
@@ -53,5 +55,10 @@ public class EnderecoEditControl implements EditControl<Endereco>{
             model = new Endereco(logradouro, numero, bairro, complemento);
         }
         return model;
+    }
+
+    @Override
+    public Repositorio<Endereco> getRepositorio() {
+        return new RepositorioJPA<>(Endereco.class);
     }
 }

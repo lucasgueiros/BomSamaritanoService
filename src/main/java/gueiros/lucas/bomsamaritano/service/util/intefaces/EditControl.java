@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.intefaces;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import javax.swing.JPanel;
 
 /**
@@ -40,5 +41,11 @@ public interface EditControl<Tipo> {
      * @return 
      */
     public Tipo getModel();
+    
+    /**
+     * 
+     * @return 
+     */
+    public Repositorio<Tipo> getRepositorio();
     
 }

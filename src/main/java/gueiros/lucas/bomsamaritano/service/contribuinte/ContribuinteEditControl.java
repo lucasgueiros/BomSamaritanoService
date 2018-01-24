@@ -24,6 +24,8 @@ import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
@@ -76,5 +78,10 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
             model = new Contribuinte(nome, endereco, telefone);
         }
         return model;
+    }
+
+    @Override
+    public Repositorio<Contribuinte> getRepositorio() {
+        return new RepositorioJPA<>(Contribuinte.class);
     }
 }

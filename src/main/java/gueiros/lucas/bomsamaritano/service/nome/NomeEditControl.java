@@ -18,6 +18,8 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
@@ -49,6 +51,11 @@ public class NomeEditControl implements EditControl<Nome> {
             model = new Nome(editView.primeiroNome.getText(),editView.nomesDoMeio.getText(), editView.sobrenome.getText());
         }
         return model;
+    }
+
+    @Override
+    public Repositorio<Nome> getRepositorio() {
+        return new RepositorioJPA<>(Nome.class);
     }
 
 }

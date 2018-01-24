@@ -18,6 +18,8 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
@@ -51,5 +53,10 @@ public class TelefoneEditControl implements EditControl<Telefone> {
             model = new Telefone(ddd,numero);
         }
         return model;
+    }
+
+    @Override
+    public Repositorio<Telefone> getRepositorio() {
+        return new RepositorioJPA<>(Telefone.class);
     }
 }
