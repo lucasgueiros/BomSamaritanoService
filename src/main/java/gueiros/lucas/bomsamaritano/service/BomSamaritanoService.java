@@ -17,6 +17,11 @@
  */
 package gueiros.lucas.bomsamaritano.service;
 
+import gueiros.lucas.bomsamaritano.service.cadastro.CadastroControl;
+import gueiros.lucas.bomsamaritano.service.contribuinte.Contribuinte;
+import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+
 /**
  *
  * Essa é a classe que inicia o sistema todo! 
@@ -27,6 +32,7 @@ package gueiros.lucas.bomsamaritano.service;
 public class BomSamaritanoService {
     
     public static void main(String[] args) {
+        new CadastroControl<>(new ContribuinteEditControl()).iniciar();
     }
     
 }
