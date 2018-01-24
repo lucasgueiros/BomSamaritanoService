@@ -17,29 +17,40 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.Box;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
  *
  * @author lucasgueiros
  */
-public class TelefoneCadastro extends javax.swing.JPanel {
+public class TelefoneEditView extends JPanel implements EditView {
 
     /**
      * Creates new form TelefoneCadastro
      */
-    protected TelefoneCadastro() {
-        initComponents();
+    protected TelefoneEditView() {
     }
     
-    private JTextField ddd;
-    private JTextField numero;
+    protected JTextField ddd;
+    protected JTextField numero;
 
-    private void initComponents() {
+    private GridBagConstraints getDefault(){
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = 1; // linha
+        int insets = 1;
+        constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
+        constraints.anchor = GridBagConstraints.CENTER;
+        return constraints;
+    }
+
+    @Override
+    public void construirView() {
         setLayout(new java.awt.GridBagLayout());
         {
             GridBagConstraints constraints = new GridBagConstraints();
@@ -79,22 +90,5 @@ public class TelefoneCadastro extends javax.swing.JPanel {
             
             add(numero,constraints);
         }
-    }
-
-    private GridBagConstraints getDefault(){
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridy = 1; // linha
-        int insets = 1;
-        constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
-        constraints.anchor = GridBagConstraints.CENTER;
-        return constraints;
-    }
-    
-    protected String getDDD(){
-        return ddd.getText();
-    }
-    
-    protected String getNumero(){
-        return numero.getText();
     }
 }

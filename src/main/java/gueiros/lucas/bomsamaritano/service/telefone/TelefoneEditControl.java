@@ -17,34 +17,39 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
-import gueiros.lucas.bomsamaritano.service.util.tipos.CadastroIndefinidoException;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-public class TelefoneConstrutor {
+public class TelefoneEditControl implements EditControl<Telefone> {
 
-    private TelefoneCadastro cadastro;
+    private TelefoneEditView editView;
+    private Telefone model;
 
-    public TelefoneConstrutor() {
+    public TelefoneEditControl() {
     }
 
-    /**
-     * Set the value of cadastro
-     *
-     * @param cadastro new value of cadastro
-     * @return 
-     */
-    public TelefoneConstrutor setCadastro(TelefoneCadastro cadastro) {
-        this.cadastro = cadastro;
-        return this;
+    @Override
+    public void iniciarNovo() {
+        editView = new TelefoneEditView();
+        editView.construirView();
     }
-    
-    public Telefone construir() throws CadastroIndefinidoException {
-        if(cadastro==null) throw new CadastroIndefinidoException();
-        int ddd = Integer.parseInt(cadastro.getDDD().replace("(", "").replace(")", ""));
-        int numero = Integer.parseInt(cadastro.getNumero().replace("-", ""));
-        return new Telefone(ddd,numero);
+
+    @Override
+    public JPanel getEditView() {
+        return editView;
+    }
+
+    @Override
+    public Telefone getModel() {
+        if(model == null) {
+            int ddd = Integer.parseInt(editView.ddd.getText().replace("(", "").replace(")", ""));
+            int numero = Integer.parseInt(editView.numero.getText().replace("-", ""));
+            model = new Telefone(ddd,numero);
+        }
+        return model;
     }
 }
