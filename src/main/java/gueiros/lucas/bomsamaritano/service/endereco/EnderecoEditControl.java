@@ -17,35 +17,41 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import gueiros.lucas.bomsamaritano.service.util.tipos.CadastroIndefinidoException;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-public class EnderecoEditControl {
+public class EnderecoEditControl implements EditControl<Endereco>{
 
-    private EnderecoEditView cadastro;
+    private EnderecoEditView editView;
+    private Endereco model;
     
     public EnderecoEditControl() {
     }
-
-    /**
-     * Set the value of form
-     *
-     * @param cadastro
-     * @return 
-     */
-    public EnderecoEditControl setCadastro(EnderecoEditView cadastro) {
-        this.cadastro = cadastro;
-        return this;
-    }
     
-    public Endereco construir() throws CadastroIndefinidoException{
-        if(cadastro==null) throw new CadastroIndefinidoException();
-        return new Endereco(cadastro.getLogradouro(),
-                cadastro.getNumero(), 
-                cadastro.getBairro(), 
-                cadastro.getComplemento());
+    @Override
+    public void iniciarNovo() {
+        editView = new EnderecoEditView();
+        editView.construirView();
+    }
+
+    @Override
+    public JPanel getEditView() {
+        return editView;
+    }
+
+    @Override
+    public Endereco getModel() {
+        if(model == null) {
+            String logradouro = editView.logradouro.getText();
+            int numero = Integer.parseInt(editView.numero.getText());
+            String bairro = editView.bairro.getText();
+            String complemento = editView.complemento.getText();
+            model = new Endereco(logradouro, numero, bairro, complemento);
+        }
+        return model;
     }
 }
