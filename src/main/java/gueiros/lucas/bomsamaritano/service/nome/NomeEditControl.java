@@ -38,6 +38,7 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public void iniciar() {
         this.editView.construirView();
+        editView.setVisible(true);
     }
 
     @Override

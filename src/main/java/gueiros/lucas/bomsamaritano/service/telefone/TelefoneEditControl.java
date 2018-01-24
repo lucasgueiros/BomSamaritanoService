@@ -38,6 +38,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     @Override
     public void iniciar() {
         editView.construirView();
+        editView.setVisible(true);
     }
 
     @Override

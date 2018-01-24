@@ -61,6 +61,7 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
         telefoneEditControl.iniciar();
         
         editView.construirView();
+        editView.setVisible(true);
     }
 
     @Override

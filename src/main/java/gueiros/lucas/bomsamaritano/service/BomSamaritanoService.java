@@ -18,9 +18,7 @@
 package gueiros.lucas.bomsamaritano.service;
 
 import gueiros.lucas.bomsamaritano.service.cadastro.CadastroControl;
-import gueiros.lucas.bomsamaritano.service.contribuinte.Contribuinte;
 import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
 
 /**
  *

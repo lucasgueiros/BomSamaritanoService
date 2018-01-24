@@ -38,6 +38,7 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     @Override
     public void iniciar() {
         editView.construirView();
+        editView.setVisible(true);
     }
 
     @Override
