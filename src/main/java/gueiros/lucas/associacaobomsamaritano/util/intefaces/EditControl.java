@@ -15,15 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.util.intefaces;
+
+import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-class DigitosDeVerificacaoException extends IllegalArgumentException {
-
-    public DigitosDeVerificacaoException() {
-    }
+public interface EditControl<Tipo> {
+    /**
+     * Inicializa para criar um novo objeto.
+     */
+    public void iniciarNovo();
+    
+    /**
+     * 
+     * @return a editView
+     */
+    public JPanel getEditView();
+    
+    /**
+     * 
+     * @return 
+     */
+    public Tipo getModel();
     
 }

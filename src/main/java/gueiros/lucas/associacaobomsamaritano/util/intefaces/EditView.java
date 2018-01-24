@@ -15,15 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.util.intefaces;
 
 /**
  *
  * @author lucasgueiros
  */
-class DigitosDeVerificacaoException extends IllegalArgumentException {
-
-    public DigitosDeVerificacaoException() {
-    }
-    
+public interface EditView {
+    /**
+     * Constrói toda a vizualização.
+     * Deve ser chamado pelo EditControl, porque ele pode setar todos os parâme-
+     * tros antes de chamar esse método.
+     */
+    public void construirView();
 }

@@ -15,15 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.nome;
 
 /**
  *
  * @author lucasgueiros
  */
-class DigitosDeVerificacaoException extends IllegalArgumentException {
+class NomeVazioInvalidoException extends IllegalArgumentException {
 
-    public DigitosDeVerificacaoException() {
+    public NomeVazioInvalidoException() {
     }
     
 }

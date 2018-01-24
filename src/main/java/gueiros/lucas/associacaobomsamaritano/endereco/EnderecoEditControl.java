@@ -15,27 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.endereco;
+
+import gueiros.lucas.associacaobomsamaritano.util.tipos.CadastroIndefinidoException;
 
 /**
  *
  * @author lucasgueiros
  */
-public class Email {
-    
-    private final String endereco;
+public class EnderecoEditControl {
 
-    public Email(String endereco) {
-        this.endereco = endereco;
+    private EnderecoEditView cadastro;
+    
+    public EnderecoEditControl() {
     }
 
     /**
-     * Get the value of endereco
+     * Set the value of form
      *
-     * @return the value of endereco
+     * @param cadastro
+     * @return 
      */
-    public String getEndereco() {
-        return endereco;
+    public EnderecoEditControl setCadastro(EnderecoEditView cadastro) {
+        this.cadastro = cadastro;
+        return this;
     }
-
+    
+    public Endereco construir() throws CadastroIndefinidoException{
+        if(cadastro==null) throw new CadastroIndefinidoException();
+        return new Endereco(cadastro.getLogradouro(),
+                cadastro.getNumero(), 
+                cadastro.getBairro(), 
+                cadastro.getComplemento());
+    }
 }

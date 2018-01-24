@@ -1,13 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2018 Lucas Gueiros 
+ *
+ * This file is part of BomSamaritanoService.
+ * BomSamaritanoService is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package gueiros.lucas.associacaobomsamaritano.associado;
 
 import gueiros.lucas.associacaobomsamaritano.contribuinte.Contribuinte;
-import gueiros.lucas.associacaobomsamaritano.util.tipos.telefone.Telefone;
-import gueiros.lucas.associacaobomsamaritano.util.tipos.endereco.Endereco;
+import gueiros.lucas.associacaobomsamaritano.telefone.Telefone;
+import gueiros.lucas.associacaobomsamaritano.endereco.Endereco;
 import gueiros.lucas.associacaobomsamaritano.util.tipos.*;
 import java.time.LocalDate;
 

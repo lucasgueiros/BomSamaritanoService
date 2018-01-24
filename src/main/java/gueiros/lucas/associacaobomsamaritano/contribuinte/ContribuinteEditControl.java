@@ -15,15 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.contribuinte;
+
+import gueiros.lucas.associacaobomsamaritano.util.tipos.CadastroIndefinidoException;
 
 /**
  *
  * @author lucasgueiros
  */
-class DigitosDeVerificacaoException extends IllegalArgumentException {
-
-    public DigitosDeVerificacaoException() {
-    }
+public class ContribuinteEditControl {
     
+    private ContribuinteEditView editView;
+
+    public Contribuinte construir() throws CadastroIndefinidoException{
+        return null;//new Contribuinte(cadastro.getNome(), cadastro.getEndereco(), cadastro.getTelefone());
+    }
 }

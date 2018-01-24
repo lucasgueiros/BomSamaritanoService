@@ -15,33 +15,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.associacaobomsamaritano.telefone;
+
+import gueiros.lucas.associacaobomsamaritano.util.tipos.CadastroIndefinidoException;
 
 /**
  *
  * @author lucasgueiros
  */
-public class Facebook {
-    
-    private final String endereco;
+public class TelefoneConstrutor {
 
-    public Facebook(String endereco) {
-        this.endereco = endereco;
+    private TelefoneCadastro cadastro;
+
+    public TelefoneConstrutor() {
     }
 
     /**
-     * Get the value of endereco
+     * Set the value of cadastro
      *
-     * @return the value of endereco
+     * @param cadastro new value of cadastro
+     * @return 
      */
-    public String getEndereco() {
-        return endereco;
+    public TelefoneConstrutor setCadastro(TelefoneCadastro cadastro) {
+        this.cadastro = cadastro;
+        return this;
     }
-
-    @Override
-    public String toString() {
-        return "facebook.com/" + endereco + '}';
-    }
-
     
+    public Telefone construir() throws CadastroIndefinidoException {
+        if(cadastro==null) throw new CadastroIndefinidoException();
+        int ddd = Integer.parseInt(cadastro.getDDD().replace("(", "").replace(")", ""));
+        int numero = Integer.parseInt(cadastro.getNumero().replace("-", ""));
+        return new Telefone(ddd,numero);
+    }
 }
