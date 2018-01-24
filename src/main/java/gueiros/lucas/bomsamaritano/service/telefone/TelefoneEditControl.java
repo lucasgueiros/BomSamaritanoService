@@ -30,11 +30,11 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     private Telefone model;
 
     public TelefoneEditControl() {
+        editView = new TelefoneEditView();
     }
 
     @Override
     public void iniciarNovo() {
-        editView = new TelefoneEditView();
         editView.construirView();
     }
 

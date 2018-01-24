@@ -30,11 +30,11 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     private Endereco model;
     
     public EnderecoEditControl() {
+        editView = new EnderecoEditView();
     }
     
     @Override
     public void iniciarNovo() {
-        editView = new EnderecoEditView();
         editView.construirView();
     }
 

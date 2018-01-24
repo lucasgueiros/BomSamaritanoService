@@ -30,11 +30,11 @@ public class NomeEditControl implements EditControl<Nome> {
     private NomeEditView editView;
     
     public NomeEditControl() {
+        this.editView = new NomeEditView();
     }
     
     @Override
     public void iniciarNovo() {
-        this.editView = new NomeEditView();
         this.editView.construirView();
     }
 
