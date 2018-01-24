@@ -34,7 +34,7 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     }
     
     @Override
-    public void iniciarNovo() {
+    public void iniciar() {
         editView.construirView();
     }
 

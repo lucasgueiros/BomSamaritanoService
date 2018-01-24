@@ -27,7 +27,7 @@ public interface EditControl<Tipo> {
     /**
      * Inicializa para criar um novo objeto.
      */
-    public void iniciarNovo();
+    public void iniciar();
     
     /**
      * 

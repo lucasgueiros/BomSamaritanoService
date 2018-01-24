@@ -34,7 +34,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     }
 
     @Override
-    public void iniciarNovo() {
+    public void iniciar() {
         editView.construirView();
     }
 

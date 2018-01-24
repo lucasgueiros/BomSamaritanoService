@@ -34,7 +34,7 @@ public class NomeEditControl implements EditControl<Nome> {
     }
     
     @Override
-    public void iniciarNovo() {
+    public void iniciar() {
         this.editView.construirView();
     }
 
