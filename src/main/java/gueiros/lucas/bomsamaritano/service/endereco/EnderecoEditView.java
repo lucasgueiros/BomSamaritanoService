@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  *
  * @author lucasgueiros
  */
-public class EnderecoEditView extends JPanel implements EditView {
+class EnderecoEditView extends JPanel implements EditView {
     
     protected JTextField bairro;
     protected JTextField complemento;

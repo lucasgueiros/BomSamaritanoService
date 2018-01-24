@@ -29,7 +29,7 @@ import javax.swing.JPanel;
  *
  * @author lucasgueiros
  */
-public class NomeEditView extends JPanel implements EditView {
+class NomeEditView extends JPanel implements EditView {
 
     protected JTextField nomesDoMeio;
     protected JTextField primeiroNome;

@@ -18,7 +18,6 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -29,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author lucasgueiros
  */
-public class TelefoneEditView extends JPanel implements EditView {
+class TelefoneEditView extends JPanel implements EditView {
 
     /**
      * Creates new form TelefoneCadastro
