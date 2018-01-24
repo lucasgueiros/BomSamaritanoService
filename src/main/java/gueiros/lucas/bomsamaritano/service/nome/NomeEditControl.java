@@ -18,42 +18,18 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.tipos.CadastroIndefinidoException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
  */
-public class NomeEditControl implements EditControl<Nome>,ActionListener {
+public class NomeEditControl implements EditControl<Nome> {
 
     private Nome model;
-
-    public NomeEditControl() {
-    }
-
     private NomeEditView editView;
-
-    /**
-     * Get the value of cadastro
-     *
-     * @return the value of cadastro
-     */
-    public NomeEditView getCadastro() {
-        return editView;
-    }
-
-    /**
-     * Set the value of cadastro
-     *
-     * @param cadastro new value of cadastro
-     * @return 
-     */
-    public NomeEditControl setCadastro(NomeEditView cadastro) {
-        this.editView = cadastro;
-        return this;
+    
+    public NomeEditControl() {
     }
     
     @Override
@@ -69,14 +45,10 @@ public class NomeEditControl implements EditControl<Nome>,ActionListener {
 
     @Override
     public Nome getModel() {
+        if(model == null) {
+            model = new Nome(editView.primeiroNome.getText(),editView.nomesDoMeio.getText(), editView.sobrenome.getText());
+        }
         return model;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(false) ; // evento correto
-        //if(editView==null) throw new CadastroIndefinidoException();
-        model = new Nome(editView.getPrimeiroNome(), editView.getNomesDoMeio(), editView.getSobrenome());
     }
 
 }

@@ -31,9 +31,9 @@ import javax.swing.JPanel;
  */
 public class NomeEditView extends JPanel implements EditView {
 
-    private JTextField nomesDoMeio;
-    private JTextField primeiroNome;
-    private JTextField sobrenome;
+    protected JTextField nomesDoMeio;
+    protected JTextField primeiroNome;
+    protected JTextField sobrenome;
     
     /**
      * Creates new form NomeCadastro
@@ -111,18 +111,6 @@ public class NomeEditView extends JPanel implements EditView {
         constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
         constraints.anchor = GridBagConstraints.CENTER;
         return constraints;
-    }
-
-    public String getPrimeiroNome(){
-        return primeiroNome.getText();
-    }
-    
-    public String getSobrenome(){
-        return sobrenome.getText();
-    }
-    
-    public String getNomesDoMeio(){
-        return nomesDoMeio.getText();
     }
 
 }

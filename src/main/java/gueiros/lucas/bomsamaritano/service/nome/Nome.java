@@ -36,17 +36,17 @@ public class Nome implements Serializable {
         this.prefixo = prefixo==null ? "" : prefixo;
         this.sufixo = sufixo==null ? "" : sufixo;
         this.sobrenome = sobrenome==null ? "" : sobrenome;
-        this.nomeDoMeio = nomeDoMeio==null ? "" : nomeDoMeio;
+        this.nomesDoMeio = nomeDoMeio==null ? "" : nomeDoMeio;
         if(primeiroNome.equals("") && sobrenome.equals("") && nomeDoMeio.equals("")){
             throw new NomeVazioInvalidoException();
         }
     }
 
-    public Nome(String primeiroNome, String sobrenome, String nomeDoMeio) {
+    public Nome(String primeiroNome, String nomesDoMeio, String sobrenome) {
         this.primeiroNome = primeiroNome==null ? "" : primeiroNome;
         this.sobrenome = sobrenome==null ? "" : sobrenome;
-        this.nomeDoMeio = nomeDoMeio==null ? "" : nomeDoMeio;
-        if(primeiroNome.equals("") && sobrenome.equals("") && nomeDoMeio.equals("")){
+        this.nomesDoMeio = nomesDoMeio==null ? "" : nomesDoMeio;
+        if(primeiroNome.equals("") && sobrenome.equals("") && nomesDoMeio.equals("")){
             throw new NomeVazioInvalidoException();
         }
         this.prefixo = null;
@@ -57,7 +57,7 @@ public class Nome implements Serializable {
     @Column private String prefixo;
     @Column private String sufixo;
     @Column private String sobrenome;
-    @Column private String nomeDoMeio;
+    @Column private String nomesDoMeio;
 
     public String getPrimeiroNome() {
         return primeiroNome;
@@ -75,8 +75,8 @@ public class Nome implements Serializable {
         return sobrenome;
     }
 
-    public String getNomeDoMeio() {
-        return nomeDoMeio;
+    public String getNomesDoMeio() {
+        return nomesDoMeio;
     }
 
     public void setPrimeiroNome(String primeiroNome) {
@@ -95,8 +95,8 @@ public class Nome implements Serializable {
         this.sobrenome = sobrenome;
     }
 
-    public void setNomeDoMeio(String nomeDoMeio) {
-        this.nomeDoMeio = nomeDoMeio;
+    public void setNomesDoMeio(String nomesDoMeio) {
+        this.nomesDoMeio = nomesDoMeio;
     }
     
     
