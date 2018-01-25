@@ -19,6 +19,11 @@ package gueiros.lucas.bomsamaritano.service;
 
 import gueiros.lucas.bomsamaritano.service.cadastro.CadastroControl;
 import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  *
@@ -30,7 +35,26 @@ import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
 public class BomSamaritanoService {
     
     public static void main(String[] args) {
-        new CadastroControl<>(new ContribuinteEditControl()).iniciar();
+        CadastroControl control = new CadastroControl<>(new ContribuinteEditControl());
+        control.addWindowListener(new WindowListener() {
+            @Override public void windowOpened(WindowEvent e) {}
+            @Override public void windowClosing(WindowEvent e) {}
+            
+            @Override public void windowClosed(WindowEvent e) {
+                onClose();
+            }
+            
+            @Override public void windowIconified(WindowEvent e) {}
+            @Override public void windowDeiconified(WindowEvent e) {}
+            @Override public void windowActivated(WindowEvent e) {}
+            @Override public void windowDeactivated(WindowEvent e) {}
+        });
+        control.iniciar();
+        
+    }
+    
+    public static void onClose() {
+        System.exit(0);
     }
     
 }

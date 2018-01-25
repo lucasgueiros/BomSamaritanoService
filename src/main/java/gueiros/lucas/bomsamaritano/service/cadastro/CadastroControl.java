@@ -8,6 +8,8 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,14 +24,15 @@ public class CadastroControl<Tipo> {
     
     public CadastroControl(EditControl<Tipo> editControl) {
         this.editControl = editControl;
+        view = new CadastroView<>();
     }
     
     public void iniciar() {
-        view = new CadastroView<>();
         editControl.iniciar();
         view.editView = editControl.getEditView();
         view.iniciar();
         view.cadastrarButton.addActionListener((ActionEvent e) -> cadastrarAction());
+        view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         view.setVisible(true);
     }
     
@@ -37,6 +40,10 @@ public class CadastroControl<Tipo> {
         Tipo model = editControl.getModel();
         repositorio = editControl.getRepositorio();
         repositorio.adicionar(model);
+    }
+
+    public void addWindowListener(WindowListener windowListener) {
+        view.addWindowListener(windowListener);
     }
     
 }
