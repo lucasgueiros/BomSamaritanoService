@@ -110,13 +110,13 @@ class EnderecoEditView extends JPanel implements EditView {
             add(complemento,constraints);
         }
         {
-            logradouro = new JTextField();
+            bairro = new JTextField();
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 4, 1);
             constraints.ipadx = defaultIpadxTextField;
             
-            add(logradouro,constraints);
+            add(bairro,constraints);
         }
         
     }
