@@ -26,7 +26,6 @@ public class CadastroView<Tipo> extends JFrame {
     
     public void iniciar() {
         setLayout(new GridBagLayout());
-        setBounds(0, 0, 300, 300);
         {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.gridx = 0;
@@ -47,6 +46,7 @@ public class CadastroView<Tipo> extends JFrame {
             cadastrarButton = new JButton("Cadastrar");
             add(cadastrarButton,constraints);
         }
+        pack();
     }
 
     
