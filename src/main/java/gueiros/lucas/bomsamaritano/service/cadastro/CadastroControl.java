@@ -26,6 +26,7 @@ public class CadastroControl<Tipo> {
     
     public void iniciar() {
         view = new CadastroView<>();
+        editControl.iniciar();
         view.editView = editControl.getEditView();
         view.iniciar();
         view.cadastrarButton.addActionListener((ActionEvent e) -> cadastrarAction());
