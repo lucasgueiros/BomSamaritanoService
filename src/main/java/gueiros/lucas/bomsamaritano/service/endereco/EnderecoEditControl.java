@@ -37,6 +37,8 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     
     @Override
     public void iniciar() {
+        editView.defaultIpadxTextField = defaultIpadxTextField;
+        editView.defaultLabelSize = defaultLabelSize;
         editView.construirView();
         editView.setVisible(true);
     }
@@ -66,5 +68,44 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     @Override
     public String getEntidade() {
         return "Endereco";
+    }
+    
+    private int defaultLabelSize = 130;
+    private int defaultIpadxTextField = 220;
+
+    /**
+     * Get the value of defaultIpadxTextField
+     *
+     * @return the value of defaultIpadxTextField
+     */
+    public int getDefaultIpadxTextField() {
+        return defaultIpadxTextField;
+    }
+
+    /**
+     * Set the value of defaultIpadxTextField
+     *
+     * @param defaultIpadxTextField new value of defaultIpadxTextField
+     */
+    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
+        this.defaultIpadxTextField = defaultIpadxTextField;
+    }
+
+    /**
+     * Get the value of defaultLabelSize
+     *
+     * @return the value of defaultLabelSize
+     */
+    public int getDefaultLabelSize() {
+        return defaultLabelSize;
+    }
+
+    /**
+     * Set the value of defaultLabelSize
+     *
+     * @param defaultLabelSize new value of defaultLabelSize
+     */
+    public void setDefaultLabelSize(int defaultLabelSize) {
+        this.defaultLabelSize = defaultLabelSize;
     }
 }

@@ -37,6 +37,8 @@ public class NomeEditControl implements EditControl<Nome> {
     
     @Override
     public void iniciar() {
+        this.editView.defaultIpadxTextField = defaultIpadxTextField;
+        this.editView.defaultLabelSize = defaultLabelSize;
         this.editView.construirView();
         editView.setVisible(true);
     }
@@ -62,6 +64,45 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public String getEntidade() {
         return "Nome";
+    }
+
+    private int defaultLabelSize = 130;
+    private int defaultIpadxTextField = 220;
+
+    /**
+     * Get the value of defaultIpadxTextField
+     *
+     * @return the value of defaultIpadxTextField
+     */
+    public int getDefaultIpadxTextField() {
+        return defaultIpadxTextField;
+    }
+
+    /**
+     * Set the value of defaultIpadxTextField
+     *
+     * @param defaultIpadxTextField new value of defaultIpadxTextField
+     */
+    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
+        this.defaultIpadxTextField = defaultIpadxTextField;
+    }
+
+    /**
+     * Get the value of defaultLabelSize
+     *
+     * @return the value of defaultLabelSize
+     */
+    public int getDefaultLabelSize() {
+        return defaultLabelSize;
+    }
+
+    /**
+     * Set the value of defaultLabelSize
+     *
+     * @param defaultLabelSize new value of defaultLabelSize
+     */
+    public void setDefaultLabelSize(int defaultLabelSize) {
+        this.defaultLabelSize = defaultLabelSize;
     }
 
 }

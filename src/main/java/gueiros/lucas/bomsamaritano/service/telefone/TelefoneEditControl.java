@@ -37,6 +37,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 
     @Override
     public void iniciar() {
+        editView.defaultLabelSize = defaultLabelSize;
         editView.construirView();
         editView.setVisible(true);
     }
@@ -64,5 +65,25 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     @Override
     public String getEntidade() {
         return "Telefone";
+    }
+    
+    private int defaultLabelSize = 130;
+
+    /**
+     * Get the value of defaultLabelSize
+     *
+     * @return the value of defaultLabelSize
+     */
+    public int getDefaultLabelSize() {
+        return defaultLabelSize;
+    }
+
+    /**
+     * Set the value of defaultLabelSize
+     *
+     * @param defaultLabelSize new value of defaultLabelSize
+     */
+    public void setDefaultLabelSize(int defaultLabelSize) {
+        this.defaultLabelSize = defaultLabelSize;
     }
 }

@@ -34,6 +34,8 @@ class NomeEditView extends JPanel implements EditView {
     protected JTextField nomesDoMeio;
     protected JTextField primeiroNome;
     protected JTextField sobrenome;
+    protected int defaultIpadxTextField = 220;
+    protected int defaultLabelSize = 130;
     
     /**
      * Creates new form NomeCadastro
@@ -44,11 +46,10 @@ class NomeEditView extends JPanel implements EditView {
     public void construirView() {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = null;
-        int defaultIpadxTextField = 250;
-        {
-            constraints = new GridBagConstraints();
-            constraints.gridy = constraints.gridx = 0;
-            add(Box.createHorizontalStrut(130), constraints); // TODO colocar padrao
+        if(defaultLabelSize!=-1){
+                constraints = new GridBagConstraints();
+                constraints.gridy = constraints.gridx = 0;
+                add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
         }
         
         {
@@ -109,7 +110,7 @@ class NomeEditView extends JPanel implements EditView {
         GridBagConstraints constraints = new GridBagConstraints();
         int insets = 1;
         constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_START;
         return constraints;
     }
 

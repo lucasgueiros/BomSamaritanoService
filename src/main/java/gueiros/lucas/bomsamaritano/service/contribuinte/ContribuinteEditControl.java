@@ -48,9 +48,17 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     @Override
     public void iniciar() {
         editView = new ContribuinteEditView();
+        
         nomeEditControl = new NomeEditControl();
+        nomeEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
+        nomeEditControl.setDefaultLabelSize(defaultLabelSize);
+        
         enderecoEditControl = new EnderecoEditControl();
+        enderecoEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
+        enderecoEditControl.setDefaultLabelSize(defaultLabelSize);
+        
         telefoneEditControl = new TelefoneEditControl();
+        telefoneEditControl.setDefaultLabelSize(defaultLabelSize);
         
         editView.nomeEditView = nomeEditControl.getEditView();
         editView.enderecoEditView = enderecoEditControl.getEditView();
@@ -90,4 +98,44 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     public String getEntidade() {
         return "Contribuinte";
     }
+    
+    private int defaultLabelSize = 109; // TODO calcule esse valor em runtime
+    private int defaultIpadxTextField = 220;
+
+    /**
+     * Get the value of defaultIpadxTextField
+     *
+     * @return the value of defaultIpadxTextField
+     */
+    public int getDefaultIpadxTextField() {
+        return defaultIpadxTextField;
+    }
+
+    /**
+     * Set the value of defaultIpadxTextField
+     *
+     * @param defaultIpadxTextField new value of defaultIpadxTextField
+     */
+    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
+        this.defaultIpadxTextField = defaultIpadxTextField;
+    }
+
+    /**
+     * Get the value of defaultLabelSize
+     *
+     * @return the value of defaultLabelSize
+     */
+    public int getDefaultLabelSize() {
+        return defaultLabelSize;
+    }
+
+    /**
+     * Set the value of defaultLabelSize
+     *
+     * @param defaultLabelSize new value of defaultLabelSize
+     */
+    public void setDefaultLabelSize(int defaultLabelSize) {
+        this.defaultLabelSize = defaultLabelSize;
+    }
+    
 }

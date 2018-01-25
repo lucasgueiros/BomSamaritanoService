@@ -38,6 +38,7 @@ class TelefoneEditView extends JPanel implements EditView {
     
     protected JTextField ddd;
     protected JTextField numero;
+    protected int defaultLabelSize = 130;
 
     private GridBagConstraints getDefault(){
         GridBagConstraints constraints = new GridBagConstraints();
@@ -51,10 +52,10 @@ class TelefoneEditView extends JPanel implements EditView {
     @Override
     public void construirView() {
         setLayout(new java.awt.GridBagLayout());
-        {
+        if(defaultLabelSize!=-1) {
             GridBagConstraints constraints = new GridBagConstraints();
             constraints.gridy = constraints.gridx = 0;
-            add(Box.createHorizontalStrut(130), constraints); // TODO colocar padrao
+            add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
             
         }
         {
@@ -74,6 +75,7 @@ class TelefoneEditView extends JPanel implements EditView {
             
             // setando valores...
             GridBagConstraints constraints = getDefault();
+            constraints.anchor = GridBagConstraints.LINE_START;
             constraints.gridx = 1; // coluna
             
             add(ddd,constraints);
@@ -86,6 +88,7 @@ class TelefoneEditView extends JPanel implements EditView {
             constraints.gridx = 2; // coluna
             //numero.setMinimumSize(new Dimension(100, 19));
             constraints.ipadx = 92;
+            constraints.anchor = GridBagConstraints.LINE_START;
             
             add(numero,constraints);
         }

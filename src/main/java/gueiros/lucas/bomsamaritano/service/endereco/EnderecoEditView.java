@@ -35,7 +35,9 @@ class EnderecoEditView extends JPanel implements EditView {
     protected JTextField complemento;
     protected JTextField logradouro;
     protected JTextField numero;
-
+    protected int defaultIpadxTextField = -1;
+    protected int defaultLabelSize = -1;
+    
     protected EnderecoEditView() {}
 
     private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna) {
@@ -60,7 +62,7 @@ class EnderecoEditView extends JPanel implements EditView {
         GridBagConstraints constraints = new GridBagConstraints();
         int insets = 1;
         constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_START;
         return constraints;
     }
 
@@ -68,19 +70,13 @@ class EnderecoEditView extends JPanel implements EditView {
     public void construirView() {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = null;
-        int defaultIpadxTextField = 250;
-        {
-            constraints = new GridBagConstraints();
-            constraints.gridy = constraints.gridx = 0;
-            add(Box.createHorizontalStrut(130), constraints); // TODO colocar padrao
-        }
         
         {   // adicionando labels
             
-            addLabel(getDefault(), "Logradouro", 0, 1);
-            addLabel(getDefault(), "Número", 0, 2);
-            addLabel(getDefault(), "Complemento", 0, 3);
-            addLabel(getDefault(), "Bairro", 0, 4);
+            addLabel(getDefault(), "Logradouro:", 0, 1);
+            addLabel(getDefault(), "Número:", 0, 2);
+            addLabel(getDefault(), "Complemento:", 0, 3);
+            addLabel(getDefault(), "Bairro:", 0, 4);
         }
         {
             logradouro = new JTextField();
@@ -118,7 +114,14 @@ class EnderecoEditView extends JPanel implements EditView {
             
             add(bairro,constraints);
         }
-        
+        {
+            if(defaultLabelSize!=-1){
+                constraints = new GridBagConstraints();
+                constraints.gridy = constraints.gridx = 0;
+                add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
+            }
+            
+        }
     }
-    
+
 }
