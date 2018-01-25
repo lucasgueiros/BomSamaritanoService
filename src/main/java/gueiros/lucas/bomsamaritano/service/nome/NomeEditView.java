@@ -48,7 +48,7 @@ class NomeEditView extends JPanel implements EditView {
         {
             constraints = new GridBagConstraints();
             constraints.gridy = constraints.gridx = 0;
-            add(Box.createHorizontalStrut(100), constraints);
+            add(Box.createHorizontalStrut(130), constraints); // TODO colocar padrao
         }
         
         {

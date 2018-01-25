@@ -47,5 +47,11 @@ public interface EditControl<Tipo> {
      * @return 
      */
     public Repositorio<Tipo> getRepositorio();
+
+    /**
+     * Qual o nome (String) dessa entidade
+     * @return primeira letra maiúscula.
+     */
+    public String getEntidade();
     
 }

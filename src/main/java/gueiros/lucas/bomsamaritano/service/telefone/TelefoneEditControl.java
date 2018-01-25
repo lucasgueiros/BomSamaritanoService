@@ -60,4 +60,9 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     public Repositorio<Telefone> getRepositorio() {
         return new RepositorioJPA<>(Telefone.class);
     }
+
+    @Override
+    public String getEntidade() {
+        return "Telefone";
+    }
 }

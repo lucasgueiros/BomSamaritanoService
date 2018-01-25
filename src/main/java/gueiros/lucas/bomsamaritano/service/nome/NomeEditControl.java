@@ -59,4 +59,9 @@ public class NomeEditControl implements EditControl<Nome> {
         return new RepositorioJPA<>(Nome.class);
     }
 
+    @Override
+    public String getEntidade() {
+        return "Nome";
+    }
+
 }

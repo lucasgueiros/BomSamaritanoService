@@ -62,4 +62,9 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     public Repositorio<Endereco> getRepositorio() {
         return new RepositorioJPA<>(Endereco.class);
     }
+
+    @Override
+    public String getEntidade() {
+        return "Endereco";
+    }
 }

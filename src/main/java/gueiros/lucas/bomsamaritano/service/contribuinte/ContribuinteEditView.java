@@ -40,18 +40,22 @@ class ContribuinteEditView extends JPanel implements EditView {
             throw new IllegalStateException();
         }
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0; // coluna
+        GridBagConstraints constraints = getDefaultConstraints();
         constraints.gridy = 0;
         add(nomeEditView,constraints);
-        constraints = new GridBagConstraints();
-        constraints.gridx = 0;
+        constraints = getDefaultConstraints();
         constraints.gridy = 1;
         add(telefoneEditView,constraints);
-        constraints = new GridBagConstraints();
-        constraints.gridx = 0;
+        constraints = getDefaultConstraints();
         constraints.gridy = 2;
         add(enderecoEditView,constraints);
+    }
+    
+    private GridBagConstraints getDefaultConstraints() {
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0; //coluna
+        constraints.anchor = GridBagConstraints.LINE_START;
+        return constraints;
     }
     
 }

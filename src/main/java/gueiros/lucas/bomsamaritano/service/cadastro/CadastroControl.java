@@ -25,6 +25,7 @@ public class CadastroControl<Tipo> {
     public CadastroControl(EditControl<Tipo> editControl) {
         this.editControl = editControl;
         view = new CadastroView<>();
+        view.entidade = editControl.getEntidade();
     }
     
     public void iniciar() {

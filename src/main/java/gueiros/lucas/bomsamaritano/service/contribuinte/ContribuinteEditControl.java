@@ -85,4 +85,9 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     public Repositorio<Contribuinte> getRepositorio() {
         return new RepositorioJPA<>(Contribuinte.class);
     }
+
+    @Override
+    public String getEntidade() {
+        return "Contribuinte";
+    }
 }
