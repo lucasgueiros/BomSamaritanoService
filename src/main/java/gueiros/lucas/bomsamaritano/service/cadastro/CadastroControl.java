@@ -17,6 +17,8 @@
  */
 package gueiros.lucas.bomsamaritano.service.cadastro;
 
+import gueiros.lucas.bomsamaritano.service.util.events.LancadorEventos;
+import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import java.awt.event.ActionEvent;
@@ -29,13 +31,15 @@ import javax.swing.JPanel;
  */
 public class CadastroControl<Tipo> {
 
-    private CadastroView<Tipo> view;
-    private EditControl<Tipo> editControl;
-    private Repositorio<Tipo> repositorio;
+    private final CadastroView<Tipo> view;
+    private final EditControl<Tipo> editControl;
+    private final Repositorio<Tipo> repositorio;
+    public final LancadorEventos<CadastroEvento> lancador = new LancadorEventos<>();
     
     public CadastroControl(EditControl<Tipo> editControl) {
         this.editControl = editControl;
         view = new CadastroView<>();
+        repositorio = editControl.getRepositorio();
     }
     
     public void iniciar() {
@@ -48,12 +52,17 @@ public class CadastroControl<Tipo> {
     
     private void cadastrarAction() {
         Tipo model = editControl.getModel();
-        repositorio = editControl.getRepositorio();
+        
         repositorio.adicionar(model);
+        lancador.enviarEvento(new CadastroEvento("Objeto Cadastrado"));
     }
 
     public JPanel getView(){
         return view;
+    }
+
+    public void cadastrarListener(ListenerEventos<CadastroEvento> listener) {
+        lancador.cadastrarListener(listener);
     }
     
 }

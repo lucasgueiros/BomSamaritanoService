@@ -19,6 +19,8 @@ package gueiros.lucas.bomsamaritano.service;
 
 import gueiros.lucas.bomsamaritano.service.cadastro.CadastroControl;
 import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
+import gueiros.lucas.bomsamaritano.service.util.events.Evento;
+import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
 import gueiros.lucas.bomsamaritano.service.util.windows.JanelaPopup;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -38,24 +40,28 @@ public class BomSamaritanoService {
     
     public static void main(String[] args) {
         CadastroControl control = new CadastroControl<>(new ContribuinteEditControl());
-        control.iniciar();
-        new JanelaPopup(control.getView(), "Cadastrar Contribuinte", new WindowListener() {
+        
+        JanelaPopup janelaPopup = new JanelaPopup(control.getView(), "Cadastrar Contribuinte");
+        janelaPopup.addWindowListener(new WindowListener() {
+            @Override public void windowClosed(WindowEvent e) {
+                System.exit(0);
+            }
             @Override public void windowOpened(WindowEvent e) {}
             @Override public void windowClosing(WindowEvent e) {}
-            
-            @Override public void windowClosed(WindowEvent e) {
-                onClose();
-            }
-            
             @Override public void windowIconified(WindowEvent e) {}
             @Override public void windowDeiconified(WindowEvent e) {}
             @Override public void windowActivated(WindowEvent e) {}
             @Override public void windowDeactivated(WindowEvent e) {}
-        }).iniciar();
-    }
-    
-    public static void onClose() {
-        System.exit(0);
+        });
+        
+        control.cadastrarListener((Evento evento) -> {
+            janelaPopup.setVisible(false);
+            janelaPopup.dispose();
+            System.exit(0);
+        });
+        
+        control.iniciar();
+        janelaPopup.iniciar();
     }
     
 }

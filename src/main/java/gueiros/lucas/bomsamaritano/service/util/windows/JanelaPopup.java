@@ -34,9 +34,13 @@ public class JanelaPopup extends JFrame {
     private WindowListener listener;
 
     public JanelaPopup(JPanel jFrame, String titulo, WindowListener listener) {
+        this(jFrame,titulo);
+        this.listener = listener;
+    }
+    
+    public JanelaPopup(JPanel jFrame, String titulo) {
         this.jFrame = jFrame;
         this.titulo = titulo;
-        this.listener = listener;
     }
     
     public void iniciar(){

@@ -36,11 +36,16 @@ public class LancadorEventos<Tipo extends Evento> {
     
     public void enviarEvento(Tipo evento) {
         eventos.add(evento);
-        new Thread(() -> {
+        listeners.stream().forEach((listener) -> {
+            listener.occoreu(evento);
+        });
+        /*new Thread(() -> {
             listeners.stream().forEach((listener) -> {
-                listener.occoreu(evento);
+                new Thread(() -> {
+                    listener.occoreu(evento);
+                }).start();
             });
-        }).start();
+        }).start();*/
     }
     
     public void cadastrarListener(ListenerEventos<Tipo> listener) {
