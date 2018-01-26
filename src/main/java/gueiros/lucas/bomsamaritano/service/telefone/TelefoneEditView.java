@@ -33,12 +33,12 @@ class TelefoneEditView extends JPanel implements EditView {
     /**
      * Creates new form TelefoneCadastro
      */
-    protected TelefoneEditView() {
+    TelefoneEditView() {
     }
     
-    protected JTextField ddd;
-    protected JTextField numero;
-    protected int defaultLabelSize = 130;
+    JTextField ddd;
+    JTextField numero;
+    int defaultLabelSize = 130;
 
     private GridBagConstraints getDefault(){
         GridBagConstraints constraints = new GridBagConstraints();

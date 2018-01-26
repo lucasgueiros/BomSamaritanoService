@@ -27,13 +27,13 @@ import javax.swing.JPanel;
  * @author lucasgueiros
  * @param <Tipo> tipo que será cadastrado
  */
-public class CadastroView<Tipo> extends JPanel {
+class CadastroView<Tipo> extends JPanel {
     
-    protected JPanel editView;
-    protected JButton cadastrarButton;
-    protected final int insets = 10; // TODO padronizar
+    JPanel editView;
+    JButton cadastrarButton;
+    final int insets = 10; // TODO padronizar
 
-    public CadastroView() {}
+    CadastroView() {}
     
     public void iniciar() {
         setLayout(new GridBagLayout());

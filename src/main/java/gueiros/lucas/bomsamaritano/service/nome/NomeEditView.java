@@ -31,16 +31,16 @@ import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
  */
 class NomeEditView extends JPanel implements EditView {
 
-    protected JTextField nomesDoMeio;
-    protected JTextField primeiroNome;
-    protected JTextField sobrenome;
-    protected int defaultIpadxTextField = 220;
-    protected int defaultLabelSize = 130;
+    JTextField nomesDoMeio;
+    JTextField primeiroNome;
+    JTextField sobrenome;
+    int defaultIpadxTextField = 220;
+    int defaultLabelSize = 130;
     
     /**
      * Creates new form NomeCadastro
      */
-    protected NomeEditView() {}
+    NomeEditView() {}
 
     @Override
     public void construirView() {

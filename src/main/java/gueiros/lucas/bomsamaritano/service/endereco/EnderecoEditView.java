@@ -31,14 +31,14 @@ import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
  */
 class EnderecoEditView extends JPanel implements EditView {
     
-    protected JTextField bairro;
-    protected JTextField complemento;
-    protected JTextField logradouro;
-    protected JTextField numero;
-    protected int defaultIpadxTextField = -1;
-    protected int defaultLabelSize = -1;
+    JTextField bairro;
+    JTextField complemento;
+    JTextField logradouro;
+    JTextField numero;
+    int defaultIpadxTextField = -1;
+    int defaultLabelSize = -1;
     
-    protected EnderecoEditView() {}
+    EnderecoEditView() {}
 
     private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna) {
         return setPosicao(constraints, linha, coluna,1,1);

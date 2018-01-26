@@ -28,11 +28,11 @@ import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
  */
 class ContribuinteEditView extends JPanel implements EditView {
 
-    protected JPanel enderecoEditView;
-    protected JPanel nomeEditView;
-    protected JPanel telefoneEditView;
+    JPanel enderecoEditView;
+    JPanel nomeEditView;
+    JPanel telefoneEditView;
 
-    protected ContribuinteEditView() {}
+    ContribuinteEditView() {}
     
     @Override
     public void construirView() {
