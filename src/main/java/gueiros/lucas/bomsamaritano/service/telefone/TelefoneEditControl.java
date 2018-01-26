@@ -51,7 +51,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     public Telefone getModel() {
         if(model == null) {
             int ddd = Integer.parseInt(editView.ddd.getText().replace("(", "").replace(")", ""));
-            int numero = Integer.parseInt(editView.numero.getText().replace("-", ""));
+            String numero = editView.numero.getText();
             model = new Telefone(ddd,numero);
         }
         return model;

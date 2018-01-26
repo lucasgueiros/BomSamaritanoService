@@ -31,7 +31,7 @@ import javax.persistence.Id;
 public class Telefone implements Serializable {
     
     @Column private int ddd;
-    @Column private int numero;
+    @Column private String numero;
     @Id
     @GeneratedValue
     private Long id;
@@ -39,7 +39,12 @@ public class Telefone implements Serializable {
     public Telefone() {
     }
 
-    public Telefone(int ddd, int numero) {
+    public Telefone(int ddd, String numero) {
+        if(ddd>99 || ddd<11) throw new IllegalArgumentException(); // TODO melhorar exception
+        // tire tudo que não for número
+        numero = numero.replaceAll("^[0-9]", "");
+        if(numero.length()<8 || numero.length()>9) throw new IllegalArgumentException(); // TODO melhorar exception.
+        
         this.ddd = ddd;
         this.numero = numero;
     }
@@ -58,15 +63,18 @@ public class Telefone implements Serializable {
      *
      * @return the value of numero
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     public void setDdd(int ddd) {
+        if(ddd>99 || ddd<11) throw new IllegalArgumentException(); // TODO melhorar exception
         this.ddd = ddd;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
+        numero = numero.replaceAll("^[0-9]", "");
+        if(numero.length()<8) throw new IllegalArgumentException(); // TODO melhorar exception.
         this.numero = numero;
     }
 
@@ -76,6 +84,11 @@ public class Telefone implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "("+ddd+") "+(numero.substring(0,numero.length()-4))+"-"+numero.substring(5);
     }
 
 }
