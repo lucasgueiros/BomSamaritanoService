@@ -23,7 +23,7 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
- *
+ * Seguindo o padrão, ele controla um panel de cadastro ou edição de Nomes de pessoas físicas.
  * @author lucasgueiros
  */
 public class NomeEditControl implements EditControl<Nome> {
@@ -31,6 +31,9 @@ public class NomeEditControl implements EditControl<Nome> {
     private Nome model;
     private NomeEditView editView;
     
+    /**
+     * Construtor padrão.
+     */
     public NomeEditControl() {
         this.editView = new NomeEditView();
     }

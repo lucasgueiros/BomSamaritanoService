@@ -18,7 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 /**
- *
+ * Indica que primeiro nome ou sobrenome está vazio.
  * @author lucasgueiros
  */
 class NomeVazioInvalidoException extends IllegalArgumentException {
