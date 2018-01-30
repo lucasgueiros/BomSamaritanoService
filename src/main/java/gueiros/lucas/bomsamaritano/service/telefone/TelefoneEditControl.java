@@ -23,7 +23,7 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
- *
+ * Seguindo o padrão determinado, este controlador é responsável por TelefoneEditView.
  * @author lucasgueiros
  */
 public class TelefoneEditControl implements EditControl<Telefone> {
@@ -31,6 +31,9 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     private TelefoneEditView editView;
     private Telefone model;
 
+    /**
+     * Construtor padrão.
+     */
     public TelefoneEditControl() {
         editView = new TelefoneEditView();
     }
@@ -50,7 +53,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     @Override
     public Telefone getModel() {
         if(model == null) {
-            int ddd = Integer.parseInt(editView.ddd.getText().replace("(", "").replace(")", ""));
+            String ddd = editView.ddd.getText();
             String numero = editView.numero.getText();
             model = new Telefone(ddd,numero);
         }
@@ -70,8 +73,9 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     private int defaultLabelSize = 130;
 
     /**
-     * Get the value of defaultLabelSize
-     *
+     * Get the value of defaultLabelSize.
+     * Este é o tamanho padrão dos campos de textos no EditView.
+     * 
      * @return the value of defaultLabelSize
      */
     public int getDefaultLabelSize() {
@@ -79,8 +83,9 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     }
 
     /**
-     * Set the value of defaultLabelSize
-     *
+     * Set the value of defaultLabelSize.
+     * Este é o tamanho padrão dos campos de textos no EditView.
+     * 
      * @param defaultLabelSize new value of defaultLabelSize
      */
     public void setDefaultLabelSize(int defaultLabelSize) {
