@@ -26,7 +26,8 @@ import javax.swing.JPanel;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
- *
+ * Descreve um painel para criação ou edição de nomes de pessoas físicas simplificado.
+ * Nâo inclui aqui prefixo e sufixo do nome.
  * @author lucasgueiros
  */
 class NomeEditView extends JPanel implements EditView {
