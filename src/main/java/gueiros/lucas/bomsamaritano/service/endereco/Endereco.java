@@ -22,6 +22,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import static gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes.*;
 
 /**
  * Descreve um endereço.
@@ -61,10 +62,10 @@ public class Endereco implements Serializable {
      * @param complemento
      */
     public Endereco(String logradouro, int numero, String bairro, String complemento) {
-        this.logradouro = filtrarNullable(logradouro);
-        this.numero = filtrarNumero(numero);
-        this.bairro = filtrarNotNullable(bairro);
-        this.complemento = filtrarNotNullable(complemento);
+        this.logradouro = restricaoNotEmptyNullable(logradouro);
+        this.numero = restricaoNumeroPositivo(numero);
+        this.bairro = restricaoNotEmpty(bairro);
+        this.complemento = restricaoNotEmpty(complemento);
     }
 
     /**
@@ -99,28 +100,28 @@ public class Endereco implements Serializable {
      * @param logradouro nome da rua, avenida etc.
      */
     public void setLogradouro(String logradouro) {
-        this.logradouro = filtrarNotNullable(logradouro);
+        this.logradouro = restricaoNotEmpty(logradouro);
     }
 
     /**
      * @param numero numero da casa
      */
     public void setNumero(int numero) {
-        this.numero = filtrarNumero(numero);
+        this.numero = restricaoNumeroPositivo(numero);
     }
 
     /**
      * @param bairro
      */
     public void setBairro(String bairro) {
-        this.bairro = filtrarNotNullable(bairro);
+        this.bairro = restricaoNotEmpty(bairro);
     }
 
     /**
      * @param complemento apartamento, ponto de referência etc.
      */
     public void setComplemento(String complemento) {
-        this.complemento = filtrarNullable(complemento);
+        this.complemento = restricaoNotEmptyNullable(complemento);
     }
 
     /**
@@ -137,28 +138,6 @@ public class Endereco implements Serializable {
         this.id = id;
     }
     
-    private String filtrarNullable(String in) {
-        if(in != null && in.equals("")){
-            return null;
-        } else {
-            return in;
-        }
-    }
-    
-    private String filtrarNotNullable(String in) {
-        if(in==null || in.equals(""))
-            throw new IllegalArgumentException();
-        else
-            return in;
-    }
-    
-    private int filtrarNumero(int numero){
-        if(numero<=0) 
-            throw new IllegalArgumentException();
-        else
-            return numero;
-    }
-
     @Override
     public String toString() {
         return "Endereco{" + "logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + '}';

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
@@ -15,15 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.bomsamaritano.service.nome;
+package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
 /**
- * Indica que primeiro nome ou sobrenome está vazio.
+ *
  * @author lucasgueiros
  */
-class NomeVazioInvalidoException extends IllegalArgumentException {
+public class OutOfRangeException extends IllegalArgumentException {
+    
+    public final int maximo; // pode ser igual
+    public final int minimo; // pode ser igual
+    public final int valor;
+    private static final String maior = "O valor é maior que o limite máximo";  // TODO tirar string
+    private static final String menor = "O valor é menor que o limite mínimo"; // TODO tirar string
 
-    NomeVazioInvalidoException() {
+    public OutOfRangeException(int maximo, int minimo, int valor) {
+        super(valor > maximo ? maior : menor);
+        this.maximo = maximo;
+        this.minimo = minimo;
+        this.valor = valor;
     }
+
+    
     
 }

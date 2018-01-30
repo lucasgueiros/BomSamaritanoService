@@ -17,12 +17,14 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
  * Representa um nome pessoal (pessoa física).
+ *
  * @author lucasgueiros
  */
 @Embeddable
@@ -36,48 +38,53 @@ public class Nome implements Serializable {
 
     /**
      * Construtor completo.
-     * 
+     *
      * @param prefixo ex.: "Sr.", "Dom", "Frei", "Pe."
      * @param primeiroNome "Ana Vitória", "Lucas"
      * @param nomesDoMeio
      * @param sobrenome ex.: "da Silva", "Gueiros"
-     * @param sufixo ex.: "OSB"*/
+     * @param sufixo ex.: "OSB"
+     */
     public Nome(String prefixo, String primeiroNome, String nomesDoMeio, String sobrenome, String sufixo) {
-        setPrimeiroNome(primeiroNome);
-        setSobrenome(sobrenome);
-        setNomesDoMeio(nomesDoMeio);
-        setPrefixo(prefixo);
-        setSufixo(sufixo);
+        this.primeiroNome = Restricoes.restricaoNotEmpty(primeiroNome);
+        this.sobrenome = Restricoes.restricaoNotEmpty(sobrenome);
+        this.nomesDoMeio = Restricoes.restricaoNotEmptyNullable(nomesDoMeio);
+        this.prefixo = Restricoes.restricaoNotEmptyNullable(prefixo);
+        this.sufixo = Restricoes.restricaoNotEmptyNullable(sufixo);
     }
 
     /**
-     * Construtor simplificado.
-     * Prefixo e sufixo ficam vazios.
+     * Construtor simplificado. Prefixo e sufixo ficam vazios.
+     *
      * @param primeiroNome
      * @param nomesDoMeio
      * @param sobrenome
      */
     public Nome(String primeiroNome, String nomesDoMeio, String sobrenome) {
-        this(null,primeiroNome,nomesDoMeio,sobrenome,null);
+        this(null, primeiroNome, nomesDoMeio, sobrenome, null);
     }
 
     /**
      *
-     * Construtor supersimplificado.
-     * Apenas o essencial.
+     * Construtor supersimplificado. Apenas o essencial.
+     *
      * @param primeiroNome
      * @param sobrenome
      */
     public Nome(String primeiroNome, String sobrenome) {
-        this(null,primeiroNome,null,sobrenome,null);
+        this(null, primeiroNome, null, sobrenome, null);
     }
-    
 
-    @Column private String primeiroNome;
-    @Column private String prefixo;
-    @Column private String nomesDoMeio;
-    @Column private String sobrenome;
-    @Column private String sufixo;
+    @Column
+    private String primeiroNome;
+    @Column
+    private String prefixo;
+    @Column
+    private String nomesDoMeio;
+    @Column
+    private String sobrenome;
+    @Column
+    private String sufixo;
 
     /**
      * Get the value of sufixo
@@ -94,11 +101,8 @@ public class Nome implements Serializable {
      * @param sufixo new value of sufixo
      */
     public void setSufixo(String sufixo) {
-        if(sufixo != null && sufixo.equals("")){
-            this.sufixo = null;
-        } else {
-            this.sufixo = sufixo;
-        }
+        this.sufixo = Restricoes.restricaoNotEmptyNullable(sufixo);
+
     }
 
     /**
@@ -116,9 +120,7 @@ public class Nome implements Serializable {
      * @param sobrenome new value of sobrenome
      */
     public void setSobrenome(String sobrenome) {
-        if(sobrenome==null || sobrenome.equals(""))
-            throw new NomeVazioInvalidoException();
-        this.sobrenome = sobrenome;
+        this.sobrenome = Restricoes.restricaoNotEmpty(sobrenome);
     }
 
     /**
@@ -136,11 +138,7 @@ public class Nome implements Serializable {
      * @param nomesDoMeio new value of nomesDoMeio
      */
     public void setNomesDoMeio(String nomesDoMeio) {
-        if(nomesDoMeio != null && nomesDoMeio.equals("")){
-            this.nomesDoMeio = null;
-        } else {
-            this.nomesDoMeio = nomesDoMeio;
-        }
+        this.nomesDoMeio = Restricoes.restricaoNotEmptyNullable(nomesDoMeio);
     }
 
     /**
@@ -158,11 +156,7 @@ public class Nome implements Serializable {
      * @param prefixo new value of prefixo
      */
     public void setPrefixo(String prefixo) {
-        if(prefixo != null && prefixo.equals("")){
-            this.prefixo = null;
-        } else {
-            this.prefixo = prefixo;
-        }
+        this.prefixo = Restricoes.restricaoNotEmptyNullable(prefixo);
     }
 
     /**
@@ -180,24 +174,21 @@ public class Nome implements Serializable {
      * @param primeiroNome new value of primeiroNome
      */
     public void setPrimeiroNome(String primeiroNome) {
-        if(primeiroNome==null || primeiroNome.equals("")){
-            throw new NomeVazioInvalidoException();
-        }
-        this.primeiroNome = primeiroNome;
+        this.primeiroNome = Restricoes.restricaoNotEmpty(primeiroNome);
     }
 
     @Override
     public String toString() {
         String nomeCompleto = primeiroNome;
-        if(nomesDoMeio != null) {
+        if (nomesDoMeio != null) {
             nomeCompleto += " " + nomesDoMeio + " " + sobrenome;
         } else {
             nomeCompleto += " " + sobrenome;
         }
-        if(sufixo != null){
+        if (sufixo != null) {
             nomeCompleto = nomeCompleto + ", " + sufixo;
         }
-        if(prefixo != null){
+        if (prefixo != null) {
             nomeCompleto = prefixo + " " + nomeCompleto;
         }
         return nomeCompleto;

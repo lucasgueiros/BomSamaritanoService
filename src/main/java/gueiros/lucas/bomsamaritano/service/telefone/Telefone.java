@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -72,8 +73,8 @@ public class Telefone implements Serializable {
      * @param numero o número mesmo
      */
     public Telefone(String ddd, String numero) {
-        setDdd(ddd);
-        setNumero(numero);
+        this.ddd = restricoDdd(ddd);
+        this.numero = restricoesNumero(numero);
     }
     
     /**
@@ -99,9 +100,8 @@ public class Telefone implements Serializable {
      * 
      * @param ddd
      */
-    public final void setDdd(int ddd) {
-        if(ddd>99 || ddd<11) throw new IllegalArgumentException(); // TODO melhorar exception
-        this.ddd = ddd;
+    public void setDdd(int ddd) {
+        this.ddd = Restricoes.restricaoRangeInclusive(ddd, 11, 99);
     }
     
     /**
@@ -109,7 +109,7 @@ public class Telefone implements Serializable {
      * Este método permite converter o String em número.
      * @param dddAsString 
      */
-    public final void setDdd(String dddAsString) {
+    public void setDdd(String dddAsString) {
         dddAsString = dddAsString.replaceAll("[^0-9]", "");
         int ddd = Integer.parseInt(dddAsString);
         setDdd(ddd);
@@ -121,9 +121,7 @@ public class Telefone implements Serializable {
      * @param numero
      */
     public final void setNumero(String numero) {
-        numero = numero.replaceAll("[^0-9]", "");
-        if(numero.length()<6||numero.length()>9) throw new IllegalArgumentException(); // TODO melhorar exception.
-        this.numero = numero;
+        this.numero = restricoesNumero(numero);
     }
 
     /**
@@ -149,6 +147,18 @@ public class Telefone implements Serializable {
         } else {
             return "("+ddd+") "+(numero.substring(0,numero.length()-4))+"-"+numero.substring(4);
         }
+    }
+    
+    private String restricoesNumero(String numero) {
+        numero = Restricoes.restricaoApenasNumeros(numero);
+        Restricoes.restricaoRangeInclusive(this.numero.length(), 5, 9);
+        return numero;
+    }
+    
+    private int restricoDdd(String ddd) {
+        ddd = Restricoes.restricaoApenasNumeros(ddd);
+        int dddAsIntger = Integer.parseInt(ddd);
+        return dddAsIntger;
     }
 
 }
