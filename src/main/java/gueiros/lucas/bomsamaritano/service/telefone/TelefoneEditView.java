@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
- *
+ * Este View Element serve para cadastrar ou modificar Telefones.
  * @author lucasgueiros
  */
 class TelefoneEditView extends JPanel implements EditView {
