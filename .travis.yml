@@ -1,0 +1,10 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  
+services:
+- postgresql
+
+before_script:
+  - psql -c 'create database whist;' -U postgres
