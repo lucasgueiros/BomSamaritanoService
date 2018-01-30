@@ -73,8 +73,8 @@ public class NomeEditControl implements EditControl<Nome> {
     private int defaultIpadxTextField = 220;
 
     /**
-     * Get the value of defaultIpadxTextField
-     *
+     * Get the value of defaultIpadxTextField.
+     * É o tamanho do campo de texto!
      * @return the value of defaultIpadxTextField
      */
     public int getDefaultIpadxTextField() {
@@ -83,7 +83,7 @@ public class NomeEditControl implements EditControl<Nome> {
 
     /**
      * Set the value of defaultIpadxTextField
-     *
+     * É o tamanho do campo de texto!
      * @param defaultIpadxTextField new value of defaultIpadxTextField
      */
     public void setDefaultIpadxTextField(int defaultIpadxTextField) {
@@ -91,8 +91,8 @@ public class NomeEditControl implements EditControl<Nome> {
     }
 
     /**
-     * Get the value of defaultLabelSize
-     *
+     * Get the value of defaultLabelSize.
+     * É o espaço separado para a label.
      * @return the value of defaultLabelSize
      */
     public int getDefaultLabelSize() {
@@ -101,7 +101,7 @@ public class NomeEditControl implements EditControl<Nome> {
 
     /**
      * Set the value of defaultLabelSize
-     *
+     * É o espaço separado para a label.
      * @param defaultLabelSize new value of defaultLabelSize
      */
     public void setDefaultLabelSize(int defaultLabelSize) {

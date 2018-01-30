@@ -23,7 +23,7 @@ package gueiros.lucas.bomsamaritano.service.nome;
  */
 class NomeVazioInvalidoException extends IllegalArgumentException {
 
-    public NomeVazioInvalidoException() {
+    NomeVazioInvalidoException() {
     }
     
 }

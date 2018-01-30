@@ -26,7 +26,7 @@ import javax.persistence.Embeddable;
  * @author lucasgueiros
  */
 @Embeddable
-public final class Nome implements Serializable {
+public class Nome implements Serializable {
 
     /**
      * Construtor vazio para o JPA.
