@@ -17,12 +17,14 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import gueiros.lucas.bomsamaritano.service.util.restricoes.EmptyArgumentException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import sun.invoke.empty.Empty;
 
 /**
  *
@@ -118,7 +120,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = NomeVazioInvalidoException.class)
+    @Test (expected = EmptyArgumentException.class)
     public void testSetSobrenome1() {
         System.out.println("setSobrenome1");
         String sobrenome = null;
@@ -129,7 +131,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = NomeVazioInvalidoException.class)
+    @Test (expected = EmptyArgumentException.class)
     public void testSetSobrenome2() {
         System.out.println("setSobrenome2");
         String sobrenome = "";
@@ -152,7 +154,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = NomeVazioInvalidoException.class)
+    @Test (expected = EmptyArgumentException.class)
     public void testSetPrimeiroNome1() {
         System.out.println("setPrimeiroNome1");
         String primeiroNome = null;
@@ -163,7 +165,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = NomeVazioInvalidoException.class)
+    @Test (expected = EmptyArgumentException.class)
     public void testSetPrimeiroNome2() {
         System.out.println("setPrimeiroNome2");
         String primeiroNome = "";
