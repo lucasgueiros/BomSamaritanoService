@@ -26,7 +26,8 @@ import javax.swing.JTextField;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
- *
+ * Panel para criação ou edição de Endereços.
+ * 
  * @author lucasgueiros
  */
 class EnderecoEditView extends JPanel implements EditView {

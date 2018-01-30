@@ -23,7 +23,7 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
 import javax.swing.JPanel;
 
 /**
- *
+ * Conforme o padrão, contola NomeEditView
  * @author lucasgueiros
  */
 public class EnderecoEditControl implements EditControl<Endereco>{
@@ -31,6 +31,9 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     private EnderecoEditView editView;
     private Endereco model;
     
+    /**
+     * Construtor padrão.
+     */
     public EnderecoEditControl() {
         editView = new EnderecoEditView();
     }
@@ -74,17 +77,8 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     private int defaultIpadxTextField = 220;
 
     /**
-     * Get the value of defaultIpadxTextField
-     *
-     * @return the value of defaultIpadxTextField
-     */
-    public int getDefaultIpadxTextField() {
-        return defaultIpadxTextField;
-    }
-
-    /**
      * Set the value of defaultIpadxTextField
-     *
+     * É o tamanho do campo de texto!
      * @param defaultIpadxTextField new value of defaultIpadxTextField
      */
     public void setDefaultIpadxTextField(int defaultIpadxTextField) {
@@ -92,8 +86,8 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     }
 
     /**
-     * Get the value of defaultLabelSize
-     *
+     * Get the value of defaultLabelSize.
+     * É o espaço separado para a label.
      * @return the value of defaultLabelSize
      */
     public int getDefaultLabelSize() {
@@ -102,7 +96,7 @@ public class EnderecoEditControl implements EditControl<Endereco>{
 
     /**
      * Set the value of defaultLabelSize
-     *
+     * É o espaço separado para a label.
      * @param defaultLabelSize new value of defaultLabelSize
      */
     public void setDefaultLabelSize(int defaultLabelSize) {

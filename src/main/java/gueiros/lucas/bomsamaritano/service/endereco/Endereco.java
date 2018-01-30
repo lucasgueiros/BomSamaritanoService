@@ -24,7 +24,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- *
+ * Descreve um endereço.
+ * Todos os endereços são, por padrão, considerados em Garanhuns.
  * @author lucasgueiros
  */
 @Entity
@@ -46,54 +47,121 @@ public class Endereco implements Serializable {
     @GeneratedValue
     private Long id;
 
+    /**
+     * Construtor vazio para o JPA.
+     */
     protected Endereco() {
     }
     
+    /**
+     * Construtor principal.
+     * @param logradouro
+     * @param numero
+     * @param bairro
+     * @param complemento
+     */
     public Endereco(String logradouro, int numero, String bairro, String complemento) {
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.complemento = complemento;
+        this.logradouro = filtrarNullable(logradouro);
+        this.numero = filtrarNumero(numero);
+        this.bairro = filtrarNotNullable(bairro);
+        this.complemento = filtrarNotNullable(complemento);
     }
 
+    /**
+     * @return logradouro, rua, avenida velc.
+     */
     public String getLogradouro() {
         return logradouro;
     }
 
+    /**
+     * @return numero da casa
+     */
     public int getNumero() {
         return numero;
     }
 
+    /**
+     * @return bairro
+     */
     public String getBairro() {
         return bairro;
     }
 
+    /**
+     * @return apartamento, ponto de referência etc.
+     */
     public String getComplemento() {
         return complemento;
     }
 
+    /**
+     * @param logradouro nome da rua, avenida etc.
+     */
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+        this.logradouro = filtrarNotNullable(logradouro);
     }
 
+    /**
+     * @param numero numero da casa
+     */
     public void setNumero(int numero) {
-        this.numero = numero;
+        this.numero = filtrarNumero(numero);
     }
 
+    /**
+     * @param bairro
+     */
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        this.bairro = filtrarNotNullable(bairro);
     }
 
+    /**
+     * @param complemento apartamento, ponto de referência etc.
+     */
     public void setComplemento(String complemento) {
-        this.complemento = complemento;
+        this.complemento = filtrarNullable(complemento);
     }
 
+    /**
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    private String filtrarNullable(String in) {
+        if(in != null && in.equals("")){
+            return null;
+        } else {
+            return in;
+        }
+    }
+    
+    private String filtrarNotNullable(String in) {
+        if(in==null || in.equals(""))
+            throw new IllegalArgumentException();
+        else
+            return in;
+    }
+    
+    private int filtrarNumero(int numero){
+        if(numero<=0) 
+            throw new IllegalArgumentException();
+        else
+            return numero;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + '}';
     }
 
 }
