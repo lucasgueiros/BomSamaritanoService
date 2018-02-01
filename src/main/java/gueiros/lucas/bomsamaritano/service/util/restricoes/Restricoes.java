@@ -40,7 +40,7 @@ public class Restricoes {
     
     public static String restricaoNotEmpty(String in) {
         if(in==null || in.equals(""))
-            throw new IllegalArgumentException();
+            throw new EmptyArgumentException();
         else
             return in;
     }
@@ -53,7 +53,7 @@ public class Restricoes {
     }
     
     /**
-     * pode ser igual, não pode ser maior
+     * pode ser igual, não pode ser maior, pode ser igual mas não pode ser menor.
      * @param valor
      * @param minimoInclusivo
      * @param maximoInclusive

@@ -151,7 +151,7 @@ public class Telefone implements Serializable {
     
     private String restricoesNumero(String numero) {
         numero = Restricoes.restricaoApenasNumeros(numero);
-        Restricoes.restricaoRangeInclusive(this.numero.length(), 5, 9);
+        Restricoes.restricaoRangeInclusive(numero.length(), 5, 9);
         return numero;
     }
     

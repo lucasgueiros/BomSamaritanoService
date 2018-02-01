@@ -223,7 +223,7 @@ public class TelefoneTest {
     @Test (expected = IllegalArgumentException.class)
     public void testSetNumero6() {
         System.out.println("setNumero6");
-        String numero = "12345";
+        String numero = "1234";
         Telefone instance = new Telefone();
         instance.setNumero(numero);
     }
@@ -247,7 +247,7 @@ public class TelefoneTest {
     @Test (expected = IllegalArgumentException.class)
     public void testSetNumero8() {
         System.out.println("setNumero8");
-        String numero = "123-45";
+        String numero = "123-4";
         Telefone instance = new Telefone();
         instance.setNumero(numero);
     }
