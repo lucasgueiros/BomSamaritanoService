@@ -134,6 +134,17 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     
     @Override
     public void adicionar(Contribuinte tipo) {
+        // desmebre
+        Nome nome = tipo.getNome();
+        Telefone telefone = tipo.getTelefone();
+        Endereco endereco = tipo.getEndereco();
+        
+        // mande cada qual ao seu respectivo editcontrol
+        this.nomeEditControl.adicionar(nome);
+        this.enderecoEditControl.adicionar(endereco);
+        this.telefoneEditControl.adicionar(telefone);
+        
+        // agora adicione o seu.
         RepositorioFactory.getRepositorio(Contribuinte.class).adicionar(tipo);
     }
     

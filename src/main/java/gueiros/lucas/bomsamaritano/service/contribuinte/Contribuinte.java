@@ -21,7 +21,6 @@ import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,13 +34,13 @@ import javax.persistence.OneToOne;
 @Entity
 public class Contribuinte implements Identificavel {
     
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne
     private Nome nome;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     private Endereco endereco;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     private Telefone telefone;
     
     @Id
