@@ -17,7 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import java.io.Serializable;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +30,7 @@ import static gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes.*;
  * @author lucasgueiros
  */
 @Entity
-public class Endereco implements Serializable {
+public class Endereco implements Identificavel {
     
     @Column
     private String logradouro;
@@ -127,6 +127,7 @@ public class Endereco implements Serializable {
     /**
      * @return id
      */
+    @Override
     public Long getId() {
         return id;
     }
@@ -134,6 +135,7 @@ public class Endereco implements Serializable {
     /**
      * @param id
      */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

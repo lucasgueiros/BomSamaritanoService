@@ -20,28 +20,27 @@ package gueiros.lucas.bomsamaritano.service.contribuinte;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
-import java.io.Serializable;
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 /**
  *
  * @author lucasgueiros
  */
 @Entity
-public class Contribuinte implements Serializable {
+public class Contribuinte implements Identificavel {
     
-    @Embedded
+    @OneToOne
     private Nome nome;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     private Endereco endereco;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     private Telefone telefone;
     
     @Id
@@ -111,10 +110,12 @@ public class Contribuinte implements Serializable {
         this.nome = nome;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

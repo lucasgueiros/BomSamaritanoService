@@ -18,8 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
 /**
@@ -61,11 +60,6 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     }
 
     @Override
-    public Repositorio<Telefone> getRepositorio() {
-        return new RepositorioJPA<>(Telefone.class);
-    }
-
-    @Override
     public String getEntidade() {
         return "Telefone";
     }
@@ -91,4 +85,11 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     public void setDefaultLabelSize(int defaultLabelSize) {
         this.defaultLabelSize = defaultLabelSize;
     }
+
+    @Override
+    public void adicionar(Telefone tipo) {
+        RepositorioFactory.getRepositorio(Telefone.class).adicionar(tipo);
+    }
+    
+    
 }

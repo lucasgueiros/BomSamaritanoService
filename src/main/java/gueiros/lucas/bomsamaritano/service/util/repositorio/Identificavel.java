@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
@@ -17,13 +17,15 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
-import java.util.List;
+import java.io.Serializable;
 
-public interface Repositorio <Tipo extends Identificavel> {
-	
-	public void adicionar(Tipo tipo);
-	public void alterar(Alteracao<Tipo> alteracao,Filtro<Tipo> filtro);
-	public void remover(Filtro<Tipo> filtro);
-	public List<Tipo> recuperar(Filtro<Tipo> filtro);
-	
+/**
+ *
+ * @author lucasgueiros
+ */
+public interface Identificavel extends Serializable {
+    
+    public Long getId();
+    public void setId(Long id);
+    
 }

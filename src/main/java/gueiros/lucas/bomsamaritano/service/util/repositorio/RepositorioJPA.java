@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
-public class RepositorioJPA<Tipo> implements Repositorio<Tipo> {
+public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<Tipo> {
 
 	public RepositorioJPA(Class<Tipo> classe) {
 		this.nomeDaClasse = classe.getName();
@@ -117,14 +117,6 @@ public class RepositorioJPA<Tipo> implements Repositorio<Tipo> {
 			}
 		}
 		
-		/*todos.removeIf(new Predicate<Tipo>() {
-
-			@Override
-			public boolean test(Tipo t) {
-				return ! consulta.filtrar(t);
-			}
-			
-		});*/
 		// Feche a transaction
 		manager.getTransaction().commit();
 		// Feche o EntityManager
