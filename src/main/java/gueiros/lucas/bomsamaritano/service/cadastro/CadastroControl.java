@@ -33,18 +33,22 @@ public class CadastroControl<Tipo extends Identificavel> {
 
     private final CadastroView<Tipo> view;
     private final EditControl<Tipo> editControl;
-    public final LancadorEventos<CadastroEvento> lancador = new LancadorEventos<>();
+    private final LancadorEventos<CadastroEvento> lancador = new LancadorEventos<>();
     
     public CadastroControl(EditControl<Tipo> editControl) {
+        this(new CadastroView<>(),editControl);
+    }
+
+    public CadastroControl(CadastroView<Tipo> view, EditControl<Tipo> editControl) {
+        this.view = view;
         this.editControl = editControl;
-        view = new CadastroView<>();
     }
     
     public void iniciar() {
         editControl.iniciar();
-        view.editView = editControl.getEditView();
+        view.setEditView(editControl.getEditView());
         view.iniciar();
-        view.cadastrarButton.addActionListener((ActionEvent e) -> cadastrarAction());
+        view.addCadastrarListener((ActionEvent e) -> cadastrarAction());
         view.setVisible(true);
     }
     

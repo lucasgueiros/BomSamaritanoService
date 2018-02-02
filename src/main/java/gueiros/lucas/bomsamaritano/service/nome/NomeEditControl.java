@@ -18,6 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
@@ -29,12 +30,23 @@ public class NomeEditControl implements EditControl<Nome> {
 
     private Nome model;
     private NomeEditView editView;
+    private Repositorio<Nome> repositorio;
     
     /**
      * Construtor padrão.
      */
     public NomeEditControl() {
-        this.editView = new NomeEditView();
+        this(new NomeEditView(),RepositorioFactory.getRepositorio(Nome.class));
+    }
+    
+    /**
+     * Construtor completo
+     * @param editView
+     * @param repositorio
+     */
+    public NomeEditControl(NomeEditView editView,Repositorio<Nome> repositorio) {
+        this.editView = editView;
+        this.repositorio = repositorio;
     }
     
     @Override
@@ -53,7 +65,7 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public Nome getModel() {
         if(model == null) {
-            model = new Nome(editView.primeiroNome.getText(),editView.nomesDoMeio.getText(), editView.sobrenome.getText());
+            model = new Nome(editView.getPrimeiroNomeText(),editView.getNomesDoMeioText(), editView.getSobrenomeText());
         }
         return model;
     }
@@ -104,7 +116,7 @@ public class NomeEditControl implements EditControl<Nome> {
     
     @Override
     public void adicionar(Nome tipo) {
-        RepositorioFactory.getRepositorio(Nome.class).adicionar(tipo);
+        repositorio.adicionar(tipo);
     }
 
 }

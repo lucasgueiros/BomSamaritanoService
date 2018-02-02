@@ -57,5 +57,17 @@ class ContribuinteEditView extends JPanel implements EditView {
         constraints.anchor = GridBagConstraints.LINE_START;
         return constraints;
     }
+
+    void setEnderecoEditView(JPanel enderecoEditView) {
+        this.enderecoEditView = enderecoEditView;
+    }
+
+    void setNomeEditView(JPanel nomeEditView) {
+        this.nomeEditView = nomeEditView;
+    }
+
+    void setTelefoneEditView(JPanel telefoneEditView) {
+        this.telefoneEditView = telefoneEditView;
+    }
     
 }

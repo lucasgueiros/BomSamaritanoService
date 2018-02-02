@@ -93,4 +93,12 @@ class TelefoneEditView extends JPanel implements EditView {
             add(numero,constraints);
         }
     }
+
+    public String getDddText() {
+        return ddd.getText();
+    }
+    
+    public String getNumeroText() {
+        return numero.getText();
+    }
 }

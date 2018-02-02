@@ -25,7 +25,7 @@ import java.util.Map;
  * @author lucasgueiros
  */
 public enum RepositorioFactory {
-    JPA,MEMORIA;
+    JPA,MEMORIA; // TODO implementar serizalizacao
     
     private static RepositorioFactory atual = JPA; // TODO permita mudança runtime
     

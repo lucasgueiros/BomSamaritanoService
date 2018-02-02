@@ -125,4 +125,20 @@ class EnderecoEditView extends JPanel implements EditView {
         }
     }
 
+    public String getBairroText(){
+        return bairro.getText();
+    }
+    
+    public String getLogradouroText(){
+        return logradouro.getText();
+    }
+    
+    public  String getNumeroText(){
+        return numero.getText();
+    }
+    
+    public String getComplementoText(){
+        return complemento.getText();
+    }
+    
 }

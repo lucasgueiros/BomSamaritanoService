@@ -24,6 +24,7 @@ import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
@@ -39,29 +40,39 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     private NomeEditControl nomeEditControl;
     private EnderecoEditControl enderecoEditControl;
     private TelefoneEditControl telefoneEditControl;
+    private Repositorio<Contribuinte> repositorio;
+
+    public ContribuinteEditControl(ContribuinteEditView editView, 
+            NomeEditControl nomeEditControl, 
+            EnderecoEditControl enderecoEditControl, 
+            TelefoneEditControl telefoneEditControl, 
+            Repositorio<Contribuinte> repositorio) {
+        this.editView = editView;
+        this.nomeEditControl = nomeEditControl;
+        this.enderecoEditControl = enderecoEditControl;
+        this.telefoneEditControl = telefoneEditControl;
+        this.repositorio = repositorio;
+    }
 
     public ContribuinteEditControl() {
-        editView = new ContribuinteEditView();
+        this(new ContribuinteEditView(),
+                new NomeEditControl(),
+                new EnderecoEditControl(),
+                new TelefoneEditControl(),
+                RepositorioFactory.getRepositorio(Contribuinte.class));
     }
 
     @Override
     public void iniciar() {
-        editView = new ContribuinteEditView();
-        
-        nomeEditControl = new NomeEditControl();
         nomeEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
         nomeEditControl.setDefaultLabelSize(defaultLabelSize);
-        
-        enderecoEditControl = new EnderecoEditControl();
         enderecoEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
         enderecoEditControl.setDefaultLabelSize(defaultLabelSize);
-        
-        telefoneEditControl = new TelefoneEditControl();
         telefoneEditControl.setDefaultLabelSize(defaultLabelSize);
         
-        editView.nomeEditView = nomeEditControl.getEditView();
-        editView.enderecoEditView = enderecoEditControl.getEditView();
-        editView.telefoneEditView = telefoneEditControl.getEditView();
+        editView.setNomeEditView(nomeEditControl.getEditView());
+        editView.setEnderecoEditView ( enderecoEditControl.getEditView());
+        editView.setTelefoneEditView ( telefoneEditControl.getEditView());
         
         nomeEditControl.iniciar();
         enderecoEditControl.iniciar();
@@ -145,7 +156,7 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
         this.telefoneEditControl.adicionar(telefone);
         
         // agora adicione o seu.
-        RepositorioFactory.getRepositorio(Contribuinte.class).adicionar(tipo);
+        repositorio.adicionar(tipo);
     }
     
 }

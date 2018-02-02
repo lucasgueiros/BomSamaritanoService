@@ -115,4 +115,16 @@ class NomeEditView extends JPanel implements EditView {
         return constraints;
     }
 
+    public String getNomesDoMeioText() {
+        return nomesDoMeio.getText();
+    }
+
+    public String getPrimeiroNomeText() {
+        return primeiroNome.getText();
+    }
+    public String getSobrenomeText() {
+        return sobrenome.getText();
+    }
+    
+    
 }

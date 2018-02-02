@@ -18,6 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.endereco;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
@@ -29,12 +30,18 @@ public class EnderecoEditControl implements EditControl<Endereco>{
 
     private EnderecoEditView editView;
     private Endereco model;
+    private Repositorio<Endereco> repositorio;
     
     /**
      * Construtor padrão.
      */
     public EnderecoEditControl() {
-        editView = new EnderecoEditView();
+        this(new EnderecoEditView(),RepositorioFactory.getRepositorio(Endereco.class));
+    }
+
+    public EnderecoEditControl(EnderecoEditView editView, Repositorio<Endereco> repositorio) {
+        this.editView = editView;
+        this.repositorio = repositorio;
     }
     
     @Override
@@ -53,10 +60,10 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     @Override
     public Endereco getModel() {
         if(model == null) {
-            String logradouro = editView.logradouro.getText();
-            int numero = Integer.parseInt(editView.numero.getText());
-            String bairro = editView.bairro.getText();
-            String complemento = editView.complemento.getText();
+            String logradouro = editView.getLogradouroText();
+            int numero = Integer.parseInt(editView.getNumeroText());
+            String bairro = editView.getBairroText();
+            String complemento = editView.getComplementoText();
             model = new Endereco(logradouro, numero, bairro, complemento);
         }
         return model;
@@ -100,6 +107,6 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     
     @Override
     public void adicionar(Endereco tipo) {
-        RepositorioFactory.getRepositorio(Endereco.class).adicionar(tipo);
+        repositorio.adicionar(tipo);
     }
 }

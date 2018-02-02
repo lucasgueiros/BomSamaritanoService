@@ -1,5 +1,5 @@
-/* 
- * Copyright 2018 lucasgueiros
+/*
+ * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
  * BomSamaritanoService is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.associacaobomsamaritano.util.tipos;
+package gueiros.lucas.bomsamaritano.service.util.tipos;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -28,7 +28,6 @@ public class CPFTest {
     
     public CPFTest() {
     }
-
     /*@Test
     public void testGerarDigitoVerificador1() {
         long cpf =  71249586L;
@@ -98,5 +97,40 @@ public class CPFTest {
         int dvs = 25;
         assertEquals(dvs, CPF.gerarDigitosVerificadores(cpf));
     }*/
+
+    /**
+     * Test of getDigitosVerificadores method, of class CPF.
+     */
+    @Test
+    public void testGetDigitosVerificadores() {
+    }
+
+    /**
+     * Test of getNumero method, of class CPF.
+     */
+    @Test
+    public void testGetNumero() {
+    }
+
+    /**
+     * Test of toString method, of class CPF.
+     */
+    @Test
+    public void testToString() {
+    }
+
+    /**
+     * Test of setNumero method, of class CPF.
+     */
+    @Test
+    public void testSetNumero() {
+    }
+
+    /**
+     * Test of setDigitosVerificadores method, of class CPF.
+     */
+    @Test
+    public void testSetDigitosVerificadores() {
+    }
     
 }
