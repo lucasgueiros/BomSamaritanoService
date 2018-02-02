@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import gueiros.lucas.bomsamaritano.service.util.propriedades.Propriedades;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,9 +37,18 @@ public enum RepositorioFactory {
      */
     MEMORIA; // TODO implementar serizalizacao
     
-    private static RepositorioFactory atual = JPA; // TODO permita mudança runtime
+    private static RepositorioFactory atual = MEMORIA; // TODO permita mudança runtime
     
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
+    
+    static{
+        String modo = Propriedades.getString("persistencia.modo");
+        switch(modo) {
+            case "JPA": atual = JPA; break;
+            case "MEMORIA": atual = MEMORIA;  break;
+            default: atual = MEMORIA; break;
+        }
+    }
     
     /**
      * Retorna um repositório para o tipo desejado.
