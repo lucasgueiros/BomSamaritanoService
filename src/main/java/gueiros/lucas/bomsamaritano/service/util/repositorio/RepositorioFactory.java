@@ -37,16 +37,16 @@ public enum RepositorioFactory {
      */
     MEMORIA; // TODO implementar serizalizacao
     
-    private static RepositorioFactory atual = MEMORIA; // TODO permita mudança runtime
+    private static RepositorioFactory modo = MEMORIA; // TODO permita mudança runtime
     
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
     
     static{
-        String modo = Propriedades.getString("persistencia.modo");
-        switch(modo) {
-            case "JPA": atual = JPA; break;
-            case "MEMORIA": atual = MEMORIA;  break;
-            default: atual = MEMORIA; break;
+        String modoString = Propriedades.getString("persistencia.modo");
+        switch(modoString) {
+            case "JPA": modo = JPA; break;
+            case "MEMORIA": modo = MEMORIA;  break;
+            default: modo = MEMORIA; break;
         }
     }
     
@@ -59,13 +59,22 @@ public enum RepositorioFactory {
      */
     public static <Tipo extends Identificavel> Repositorio<Tipo> getRepositorio(Class<Tipo> classe)  {
         if(!repositorios.containsKey(classe)) {
-            switch(atual) {
+            switch(modo) {
                 case JPA: repositorios.put(classe,new RepositorioJPA<>(classe)); break;
                 case MEMORIA: repositorios.put(classe, new RepositorioMemoria<>()); break;
                 default:repositorios.put(classe, new RepositorioMemoria<>()); break;
             }
         }
         return (Repositorio <Tipo>)repositorios.get(classe);
+    }
+    
+    /**
+     * Muda o modo de persistencia.
+     * Atenção! Ao mudar o modo de persistência pode-se perder todos os dados.
+     * @param repositorioFactory o novo modo
+     */
+    public static void mudarModo(RepositorioFactory repositorioFactory) {
+        modo = repositorioFactory;
     }
     
 }

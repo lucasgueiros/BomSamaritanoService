@@ -55,7 +55,7 @@ public class Propriedades  implements Serializable {
      * @return
      */
     public static String getString(String key) {
-        return properties.getProperty(key); // TODO use isso para definir JPA ou MEMORIA
+        return properties.getProperty(key);
     }
     
 }
