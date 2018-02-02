@@ -34,9 +34,16 @@ public class TelefoneEditControl implements EditControl<Telefone> {
      * Construtor padrão.
      */
     public TelefoneEditControl() {
-        editView = new TelefoneEditView();
+        this(new TelefoneEditView());
     }
-
+    
+    /**
+     * Construtor alternativo
+     */
+    TelefoneEditControl(TelefoneEditView editView) {
+        this.editView = editView;
+    }
+    
     @Override
     public void iniciar() {
         editView.defaultLabelSize = defaultLabelSize;
