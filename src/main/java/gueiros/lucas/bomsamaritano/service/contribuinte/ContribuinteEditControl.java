@@ -24,8 +24,7 @@ import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
 /**
@@ -90,11 +89,6 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     }
 
     @Override
-    public Repositorio<Contribuinte> getRepositorio() {
-        return new RepositorioJPA<>(Contribuinte.class);
-    }
-
-    @Override
     public String getEntidade() {
         return "Contribuinte";
     }
@@ -136,6 +130,11 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
      */
     public void setDefaultLabelSize(int defaultLabelSize) {
         this.defaultLabelSize = defaultLabelSize;
+    }
+    
+    @Override
+    public void adicionar(Contribuinte tipo) {
+        RepositorioFactory.getRepositorio(Contribuinte.class).adicionar(tipo);
     }
     
 }

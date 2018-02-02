@@ -18,8 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.endereco;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJPA;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
 /**
@@ -63,10 +62,6 @@ public class EnderecoEditControl implements EditControl<Endereco>{
         return model;
     }
 
-    @Override
-    public Repositorio<Endereco> getRepositorio() {
-        return new RepositorioJPA<>(Endereco.class);
-    }
 
     @Override
     public String getEntidade() {
@@ -101,5 +96,10 @@ public class EnderecoEditControl implements EditControl<Endereco>{
      */
     public void setDefaultLabelSize(int defaultLabelSize) {
         this.defaultLabelSize = defaultLabelSize;
+    }
+    
+    @Override
+    public void adicionar(Endereco tipo) {
+        RepositorioFactory.getRepositorio(Endereco.class).adicionar(tipo);
     }
 }

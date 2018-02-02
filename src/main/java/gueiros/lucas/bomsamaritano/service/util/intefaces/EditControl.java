@@ -46,9 +46,9 @@ public interface EditControl<Tipo extends Identificavel> {
     
     /**
      * 
-     * @return 
+     * @param tipo
      */
-    public Repositorio<Tipo> getRepositorio();
+    public void adicionar(Tipo tipo);
 
     /**
      * Qual o nome (String) dessa entidade
