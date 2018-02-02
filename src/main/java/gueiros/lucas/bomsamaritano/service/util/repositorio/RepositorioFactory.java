@@ -35,9 +35,9 @@ public enum RepositorioFactory {
     /**
      * Repositórios que guardam as entidades apenas na memória RAM.
      */
-    MEMORIA; // TODO implementar serizalizacao
+    MEMORIA;
     
-    private static RepositorioFactory modo = MEMORIA; // TODO permita mudança runtime
+    private static RepositorioFactory modo = MEMORIA;
     
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
     
@@ -75,6 +75,7 @@ public enum RepositorioFactory {
      */
     public static void mudarModo(RepositorioFactory repositorioFactory) {
         modo = repositorioFactory;
+        repositorios = new HashMap<>(); // limpe tudo!
     }
     
 }

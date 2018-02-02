@@ -36,7 +36,6 @@ public interface EditControl<Tipo extends Identificavel> {
      * @return a JPanel que extende EditView
      */
     public JPanel getEditView();
-    // TODO ou é editview ou Jpanel, faça ser idenpendente de Swing ou COmmandLine
     
     /**
      * Retorna o objeto construído ou modificado.

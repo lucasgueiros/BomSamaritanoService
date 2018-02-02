@@ -17,6 +17,8 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
+import gueiros.lucas.bomsamaritano.service.util.propriedades.Propriedades;
+
 /**
  * Indica que um valor está  fora o intervalo de valores permitidos.
  * @author lucasgueiros
@@ -37,8 +39,8 @@ public class OutOfRangeException extends IllegalArgumentException {
      * o valor fornecido.
      */
     public final int valor;
-    private static final String maior = "O valor é maior que o limite máximo";  // TODO tirar string
-    private static final String menor = "O valor é menor que o limite mínimo"; // TODO tirar string
+    private static final String maior = Propriedades.getString("mensagem.maior");
+    private static final String menor = Propriedades.getString("mensagem.menor");
 
     /**
      * Construtor padrão.
