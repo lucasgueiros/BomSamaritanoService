@@ -17,18 +17,24 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
-import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Representa um nome pessoal (pessoa física).
  *
  * @author lucasgueiros
  */
-@Embeddable
-public class Nome implements Serializable {
+@Entity
+public class Nome implements Identificavel {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     /**
      * Construtor vazio para o JPA.
@@ -192,6 +198,16 @@ public class Nome implements Serializable {
             nomeCompleto = prefixo + " " + nomeCompleto;
         }
         return nomeCompleto;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

@@ -20,11 +20,7 @@ package gueiros.lucas.bomsamaritano.service;
 import gueiros.lucas.bomsamaritano.service.cadastro.CadastroControl;
 import gueiros.lucas.bomsamaritano.service.contribuinte.ContribuinteEditControl;
 import gueiros.lucas.bomsamaritano.service.util.events.Evento;
-import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
 import gueiros.lucas.bomsamaritano.service.util.windows.JanelaPopup;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 

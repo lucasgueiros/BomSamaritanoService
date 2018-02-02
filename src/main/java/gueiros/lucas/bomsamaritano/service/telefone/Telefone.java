@@ -17,8 +17,8 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +34,7 @@ import javax.persistence.Id;
  * @author lucasgueiros
  */
 @Entity
-public class Telefone implements Serializable {
+public class Telefone implements Identificavel {
     /**
      * Este atributo representa o código de área.
      */
@@ -128,6 +128,7 @@ public class Telefone implements Serializable {
      *
      * @return
      */
+    @Override
     public Long getId() {
         return id;
     }
@@ -136,6 +137,7 @@ public class Telefone implements Serializable {
      *
      * @param id
      */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

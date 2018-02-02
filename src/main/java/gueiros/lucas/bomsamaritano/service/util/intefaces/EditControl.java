@@ -17,14 +17,16 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.intefaces;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import javax.swing.JPanel;
 
 /**
  *
  * @author lucasgueiros
+ * @param <Tipo> o tipo do model
  */
-public interface EditControl<Tipo> {
+public interface EditControl<Tipo extends Identificavel> {
     /**
      * Inicializa para criar um novo objeto.
      */

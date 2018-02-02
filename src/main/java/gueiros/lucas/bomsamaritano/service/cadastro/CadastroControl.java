@@ -20,6 +20,7 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 import gueiros.lucas.bomsamaritano.service.util.events.LancadorEventos;
 import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -29,7 +30,7 @@ import javax.swing.JPanel;
  * @author lucasgueiros
  * @param <Tipo>
  */
-public class CadastroControl<Tipo> {
+public class CadastroControl<Tipo extends Identificavel> {
 
     private final CadastroView<Tipo> view;
     private final EditControl<Tipo> editControl;
