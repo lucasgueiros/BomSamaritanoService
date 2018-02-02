@@ -25,6 +25,10 @@ public class TituloEleitoral {
     
     private final long numero;
 
+    /**
+     *
+     * @param numero
+     */
     public TituloEleitoral(long numero) {
         this.numero = numero;
     }

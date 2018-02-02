@@ -25,6 +25,10 @@ public class Religiao {
 
     private String religiao;
 
+    /**
+     *
+     * @param religiao
+     */
     public Religiao(String religiao) {
         this.religiao = religiao;
     }

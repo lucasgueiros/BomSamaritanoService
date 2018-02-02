@@ -17,9 +17,15 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+/**
+ * Este filtro serve para recuperar todos os elementos de uma entidade.
+ * Nenhum elemento é deixado de fora.
+ * @author lucasgueiros
+ * @param <Tipo> tipo da entidade.
+ */
 public class FiltroRecuperarTodos<Tipo> implements Filtro<Tipo> {
 
-	@Override
+    @Override
 	public boolean filtrar(Tipo t) {
 		return true;
 	}

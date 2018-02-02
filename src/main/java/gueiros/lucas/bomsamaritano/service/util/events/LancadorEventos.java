@@ -22,18 +22,27 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- *
+ * Módulo para objetos que desejam lançar eventos e serem ouvidos.
+ * 
+ * Para usá-lo delegue o método adicionar evento e envie eventos quando necessário.
  * @author lucasgueiros
- * @param <Tipo>
+ * @param <Tipo> o tipo do evento
  */
 public class LancadorEventos<Tipo extends Evento> {
     
     private final Queue<Tipo> eventos = new LinkedList<>();
     private final List<ListenerEventos<Tipo>> listeners = new LinkedList<>();
 
+    /**
+     * Construtor padrão.
+     */
     public LancadorEventos() {
     }
     
+    /**
+     * Envia o evento para todos os Listeners cadastrados.
+     * @param evento
+     */
     public void enviarEvento(Tipo evento) {
         eventos.add(evento);
         listeners.stream().forEach((listener) -> {
@@ -48,6 +57,10 @@ public class LancadorEventos<Tipo extends Evento> {
         }).start();*/
     }
     
+    /**
+     * Faz com que um objeto listener receba mensagens quando o evento ocorrer.
+     * @param listener o objeto que receberá mensagens.
+     */
     public void cadastrarListener(ListenerEventos<Tipo> listener) {
         listeners.add(listener);
     }

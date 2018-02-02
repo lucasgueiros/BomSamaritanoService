@@ -17,6 +17,20 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+/**
+ * Esta classe serve para realizar consultas.
+ * 
+ * 
+ * @author lucasgueiros
+ * @param <Tipo>
+ */
 public interface Filtro<Tipo> {
-	public boolean filtrar(Tipo t);
+
+    /**
+     * Indica se o parametro deve ser incluido no resultado da consulta.
+     * Este método retorna TRUE ou FALSE para um dado parâmetro.
+     * @param t o objeto que será o ou não incluso.
+     * @return true se deve ser incluido.
+     */
+    public boolean filtrar(Tipo t);
 }

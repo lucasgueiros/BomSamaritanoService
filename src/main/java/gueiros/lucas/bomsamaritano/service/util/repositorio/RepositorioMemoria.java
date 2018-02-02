@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * Repositório usado para guardar objetos apenas na memória.
  * Não pode ser criado de qualquer jeito, só pode ter um para cada tipo.
  * 
  * @author lucasgueiros
@@ -32,6 +32,10 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
 
     private Long nextid = 1L;
     private List<Tipo> tipos = new LinkedList<>();
+    /**
+     * Construtor padrão.
+     */
+    RepositorioMemoria(){}
     
     @Override
     public void adicionar(Tipo tipo) {

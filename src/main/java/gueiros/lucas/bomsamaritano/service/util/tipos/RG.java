@@ -28,6 +28,11 @@ public final class RG {
     private final int numero;
     private final String orgao;
 
+    /**
+     *
+     * @param numero
+     * @param orgao
+     */
     public RG(int numero, String orgao) {
         if(numero < 1000 || orgao == null || orgao.equals("")){
             throw new IllegalArgumentException();

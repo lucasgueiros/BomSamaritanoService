@@ -25,6 +25,10 @@ public class NIS {
     
     private final long nis;
 
+    /**
+     *
+     * @param nis
+     */
     public NIS(long nis) {
         this.nis = nis;
     }

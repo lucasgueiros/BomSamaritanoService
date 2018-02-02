@@ -49,12 +49,13 @@ public class Propriedades  implements Serializable {
         }
     }
 
+    /**
+     * Retorna um propriedade de tipo String.
+     * @param key
+     * @return
+     */
     public static String getString(String key) {
-        return properties.getProperty(key);
+        return properties.getProperty(key); // TODO use isso para definir JPA ou MEMORIA
     }
-    
-    public String get(String key) {
-        return Propriedades.getString(key);
-    }    
     
 }

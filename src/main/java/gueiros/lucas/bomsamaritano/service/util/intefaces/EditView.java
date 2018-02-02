@@ -18,7 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.util.intefaces;
 
 /**
- *
+ * Esta classe descreve uma interface para um usuário inserir ou modificar um entrada numa tabela (entidade).
  * @author lucasgueiros
  */
 public interface EditView {

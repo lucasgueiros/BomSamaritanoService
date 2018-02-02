@@ -18,17 +18,35 @@
 package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
 /**
- *
+ * Indica que um valor está  fora o intervalo de valores permitidos.
  * @author lucasgueiros
  */
 public class OutOfRangeException extends IllegalArgumentException {
     
+    /**
+     * o mínimo possível, podendo ser igual.
+     */
     public final int maximo; // pode ser igual
+
+    /**
+     * o máximo possível, podendo ser igual.
+     */
     public final int minimo; // pode ser igual
+
+    /**
+     * o valor fornecido.
+     */
     public final int valor;
     private static final String maior = "O valor é maior que o limite máximo";  // TODO tirar string
     private static final String menor = "O valor é menor que o limite mínimo"; // TODO tirar string
 
+    /**
+     * Construtor padrão.
+     * 
+     * @param maximo o máximo possível, podendo ser igual.
+     * @param minimo o mínimo possível, podendo ser igual.
+     * @param valor o valor fornecido.
+     */
     public OutOfRangeException(int maximo, int minimo, int valor) {
         super(valor > maximo ? maior : menor);
         this.maximo = maximo;
@@ -36,6 +54,4 @@ public class OutOfRangeException extends IllegalArgumentException {
         this.valor = valor;
     }
 
-    
-    
 }

@@ -19,11 +19,38 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
 import java.util.List;
 
+/**
+ * Descreve um objeto responsável por armazenar objetos.
+ * Garantias de persistência dependem da implementação.
+ * @author lucasgueiros
+ * @param <Tipo>
+ */
 public interface Repositorio <Tipo extends Identificavel> {
 	
-	public void adicionar(Tipo tipo);
-	public void alterar(Alteracao<Tipo> alteracao,Filtro<Tipo> filtro);
-	public void remover(Filtro<Tipo> filtro);
-	public List<Tipo> recuperar(Filtro<Tipo> filtro);
+    /**
+     * Armazena um novo objeto.
+     * @param tipo
+     */
+    public void adicionar(Tipo tipo);
+
+    /**
+     * Atualiza os estados dos objetos já armazenado que passarem no filtro.
+     * @param alteracao
+     * @param filtro
+     */
+    public void alterar(Alteracao<Tipo> alteracao,Filtro<Tipo> filtro);
+
+    /**
+     * Remove os objeto armazeados que couberem no filtrp.
+     * @param filtro
+     */
+    public void remover(Filtro<Tipo> filtro);
+
+    /**
+     * Retorna objetos armazenados que passam no filtro.
+     * @param filtro
+     * @return
+     */
+    public List<Tipo> recuperar(Filtro<Tipo> filtro);
 	
 }

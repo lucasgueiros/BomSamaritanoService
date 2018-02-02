@@ -21,16 +21,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Essa classe é reponsável por criar Repositórios para que as outras classes possam armazenar entidades.
  * @author lucasgueiros
  */
 public enum RepositorioFactory {
-    JPA,MEMORIA; // TODO implementar serizalizacao
+
+    /**
+     * Repositorios que usam o sistema de persistência padrão do java (Java Persistence API).
+     */
+    JPA,
+
+    /**
+     * Repositórios que guardam as entidades apenas na memória RAM.
+     */
+    MEMORIA; // TODO implementar serizalizacao
     
     private static RepositorioFactory atual = JPA; // TODO permita mudança runtime
     
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
     
+    /**
+     * Retorna um repositório para o tipo desejado.
+     * A implementação pode mudar, não se apoie nisso.
+     * @param <Tipo> o tipo dos objetos que seram armazeados
+     * @param classe a classe do tipo.
+     * @return um repositório
+     */
     public static <Tipo extends Identificavel> Repositorio<Tipo> getRepositorio(Class<Tipo> classe)  {
         if(!repositorios.containsKey(classe)) {
             switch(atual) {

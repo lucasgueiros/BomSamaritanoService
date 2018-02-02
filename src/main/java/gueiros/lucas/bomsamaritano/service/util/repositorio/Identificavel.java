@@ -20,12 +20,21 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 import java.io.Serializable;
 
 /**
- *
+ * Descreve qualquer identidade que possa ser identificada por um número único, id.
  * @author lucasgueiros
  */
 public interface Identificavel extends Serializable {
     
+    /**
+     * Retorna um número único que identifica esse objeto.
+     * @return
+     */
     public Long getId();
+
+    /**
+     * Define qual o numero que identifica esse objeto.
+     * @param id
+     */
     public void setId(Long id);
     
 }

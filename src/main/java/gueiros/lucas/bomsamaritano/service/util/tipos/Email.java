@@ -25,6 +25,10 @@ public class Email {
     
     private final String endereco;
 
+    /**
+     *
+     * @param endereco
+     */
     public Email(String endereco) {
         this.endereco = endereco;
     }

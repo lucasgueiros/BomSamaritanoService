@@ -23,6 +23,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
+ * Esta é a classe responsável por criar o EntityManager do JPA.
  * Atenção! Essa classe tem Singleton!
  * @author lucas
  * 

@@ -25,6 +25,10 @@ public class Profissao {
 
     private final String profissão;
 
+    /**
+     *
+     * @param profissão
+     */
     public Profissao(String profissão) {
         this.profissão = profissão;
     }

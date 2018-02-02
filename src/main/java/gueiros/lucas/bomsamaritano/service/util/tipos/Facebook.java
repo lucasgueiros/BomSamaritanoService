@@ -25,6 +25,10 @@ public class Facebook {
     
     private final String endereco;
 
+    /**
+     *
+     * @param endereco
+     */
     public Facebook(String endereco) {
         this.endereco = endereco;
     }
