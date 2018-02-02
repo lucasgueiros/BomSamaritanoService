@@ -24,15 +24,20 @@ import java.util.function.Consumer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
+/**
+ * Repositório que usa a Java Persistenca API para persistir objetos.
+ * @author lucasgueiros
+ * @param <Tipo> tipo dos objetos que serão persistidos.
+ */
 public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<Tipo> {
 
-	public RepositorioJPA(Class<Tipo> classe) {
+    public RepositorioJPA(Class<Tipo> classe) {
 		this.nomeDaClasse = classe.getName();
 	}
 
 	private String nomeDaClasse = null;
 
-	@Override
+    @Override
 	public void adicionar(Tipo tipo) {
 		try {
 			// Recupero o EntityManager que vou usar
@@ -50,7 +55,7 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 		}
 	}
 
-	@Override
+    @Override
 	public void alterar(Alteracao<Tipo> alteracao, Filtro<Tipo> filtro) {
 		try {
 			// Recupero o EntityManager que vou usar
@@ -71,7 +76,7 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 		}
 	}
 
-	@Override
+    @Override
 	public void remover(Filtro<Tipo> filtro) {
 		try {
 			// Recupero o EntityManager que vou usar
@@ -98,7 +103,7 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 		}
 	}
 
-	@Override
+    @Override
 	public List<Tipo> recuperar(Filtro<Tipo> consulta) {
 		// ATENÇÃO: ISTO ESTÁ IMPLEMENTADA DE FORMA BEM ESCROTA!
 		// Recupero o EntityManager que vou usar

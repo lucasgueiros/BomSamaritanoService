@@ -27,9 +27,17 @@ public class CPF {
 
     private int digitosVerificadores;
 
+    /**
+     *
+     */
     public CPF() {
     }
 
+    /**
+     *
+     * @param numero
+     * @param digitosVerificadores
+     */
     public CPF(long numero, int digitosVerificadores) {
         this.numero = numero;
         /*if(digitosVerificadores != gerarDigitosVerificadores(numero)) {
@@ -91,10 +99,20 @@ public class CPF {
         return (dv1*10) + dv2;
     }*/
 
+    /**
+     *
+     * @param numero
+     */
+
+
     public void setNumero(long numero) {
         this.numero = numero;
     }
 
+    /**
+     *
+     * @param digitosVerificadores
+     */
     public void setDigitosVerificadores(int digitosVerificadores) {
         this.digitosVerificadores = digitosVerificadores;
     }

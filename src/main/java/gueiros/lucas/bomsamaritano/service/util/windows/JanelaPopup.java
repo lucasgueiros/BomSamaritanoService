@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
+ * Cria uma janela que se adapta ao contéudo.
  * @author lucasgueiros
  */
 public class JanelaPopup extends JFrame {
@@ -33,16 +33,30 @@ public class JanelaPopup extends JFrame {
     private String titulo;
     private WindowListener listener;
 
+    /**
+     * Construtor padrão.
+     * @param jFrame conteúdo da janela
+     * @param titulo texto a ser exibido na barra de título
+     * @param listener objeto que receberá os eventos dessa janela.
+     */
     public JanelaPopup(JPanel jFrame, String titulo, WindowListener listener) {
         this(jFrame,titulo);
         this.listener = listener;
     }
     
+    /**
+     * Construtor simplificado, sem listener
+     * @param jFrame conteúdo da janela
+     * @param titulo texto a ser exibido na barra de título
+     */
     public JanelaPopup(JPanel jFrame, String titulo) {
         this.jFrame = jFrame;
         this.titulo = titulo;
     }
     
+    /**
+     * Faz a janela ser construída e exibida.
+     */
     public void iniciar(){
         this.addWindowListener(listener);
         this.setLayout(new GridBagLayout());

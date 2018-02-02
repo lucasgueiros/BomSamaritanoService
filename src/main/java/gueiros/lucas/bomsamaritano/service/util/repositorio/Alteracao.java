@@ -19,9 +19,21 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
 import java.util.function.Consumer;
 
+/**
+ * Esta classe descreve uma mudança num objeto.
+ * 
+ * @author lucasgueiros
+ * @param <Tipo>
+ */
 public abstract class Alteracao<Tipo> implements Consumer<Tipo>{
 
-	public abstract Tipo alterar(Tipo t);
+    /**
+     * Este método realiza a mudança em um objeto.
+     * 
+     * @param t o objeto original
+     * @return o objeto já modificado.
+     */
+    public abstract Tipo alterar(Tipo t);
 	
 	@Override
 	public void accept(Tipo t) {

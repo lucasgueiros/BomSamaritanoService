@@ -23,6 +23,9 @@ package gueiros.lucas.bomsamaritano.service.util.tipos;
  */
 public class CadastroIndefinidoException extends Exception {
 
+    /**
+     *
+     */
     public CadastroIndefinidoException() {
     }
     

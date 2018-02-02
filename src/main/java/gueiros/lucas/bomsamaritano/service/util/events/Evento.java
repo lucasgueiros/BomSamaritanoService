@@ -18,13 +18,20 @@
 package gueiros.lucas.bomsamaritano.service.util.events;
 
 /**
- *
+ * Esta classe descreve um evento qualquer.
+ * Pode ser usada por todos os que usam o LancadorDeEventos.
  * @author lucasgueiros
  */
 public class Evento {
     
     private final String descricao;
 
+    /**
+     * Construtor padrão.
+     * A mensagem será usada internamente no programa.
+     * // TODO trabalhar a mensagem no tratamento de excecoes.
+     * @param descricao
+     */
     public Evento(String descricao) {
         this.descricao = descricao;
     }

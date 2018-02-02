@@ -17,29 +17,65 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import gueiros.lucas.bomsamaritano.service.util.propriedades.Propriedades;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Essa classe é reponsável por criar Repositórios para que as outras classes possam armazenar entidades.
  * @author lucasgueiros
  */
 public enum RepositorioFactory {
-    JPA,MEMORIA; // TODO implementar serizalizacao
+
+    /**
+     * Repositorios que usam o sistema de persistência padrão do java (Java Persistence API).
+     */
+    JPA,
+
+    /**
+     * Repositórios que guardam as entidades apenas na memória RAM.
+     */
+    MEMORIA;
     
-    private static RepositorioFactory atual = JPA; // TODO permita mudança runtime
+    private static RepositorioFactory modo = MEMORIA;
     
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
     
+    static{
+        String modoString = Propriedades.getString("persistencia.modo");
+        switch(modoString) {
+            case "JPA": modo = JPA; break;
+            case "MEMORIA": modo = MEMORIA;  break;
+            default: modo = MEMORIA; break;
+        }
+    }
+    
+    /**
+     * Retorna um repositório para o tipo desejado.
+     * A implementação pode mudar, não se apoie nisso.
+     * @param <Tipo> o tipo dos objetos que seram armazeados
+     * @param classe a classe do tipo.
+     * @return um repositório
+     */
     public static <Tipo extends Identificavel> Repositorio<Tipo> getRepositorio(Class<Tipo> classe)  {
         if(!repositorios.containsKey(classe)) {
-            switch(atual) {
+            switch(modo) {
                 case JPA: repositorios.put(classe,new RepositorioJPA<>(classe)); break;
                 case MEMORIA: repositorios.put(classe, new RepositorioMemoria<>()); break;
                 default:repositorios.put(classe, new RepositorioMemoria<>()); break;
             }
         }
         return (Repositorio <Tipo>)repositorios.get(classe);
+    }
+    
+    /**
+     * Muda o modo de persistencia.
+     * Atenção! Ao mudar o modo de persistência pode-se perder todos os dados.
+     * @param repositorioFactory o novo modo
+     */
+    public static void mudarModo(RepositorioFactory repositorioFactory) {
+        modo = repositorioFactory;
+        repositorios = new HashMap<>(); // limpe tudo!
     }
     
 }

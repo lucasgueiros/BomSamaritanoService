@@ -18,12 +18,17 @@
 package gueiros.lucas.bomsamaritano.service.util.events;
 
 /**
- *
+ * Descreve um objeto que espera um evento ser lancado.
  * @author lucasgueiros
  * @param <Tipo>
  */
 public interface ListenerEventos<Tipo extends Evento> {
     
+    /**
+     * É o método chamado quando o evento ocorrer.
+     * 
+     * @param evento contém mais informações do que ocorreu.
+     */
     public void occoreu(Evento evento);
     
 }
