@@ -19,6 +19,7 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -27,7 +28,7 @@ import javax.swing.JPanel;
  * @author lucasgueiros
  * @param <Tipo> tipo que será cadastrado
  */
-class CadastroView<Tipo> extends JPanel {
+public class CadastroView<Tipo> extends JPanel {
     
     JPanel editView;
     JButton cadastrarButton;
@@ -57,6 +58,14 @@ class CadastroView<Tipo> extends JPanel {
         constraints.gridx = 0; //coluna
         constraints.anchor = GridBagConstraints.LINE_START;
         return constraints;
+    }
+    
+    public void setEditView(JPanel editView) {
+        this.editView = editView;
+    }
+    
+    public void addCadastrarListener(ActionListener listener) {
+        this.cadastrarButton.addActionListener(listener);
     }
     
 }
