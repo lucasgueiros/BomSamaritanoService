@@ -18,6 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import javax.swing.JPanel;
 
@@ -29,19 +30,21 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 
     private TelefoneEditView editView;
     private Telefone model;
+    private Repositorio<Telefone> repositorio;
 
     /**
      * Construtor padrão.
      */
     public TelefoneEditControl() {
-        this(new TelefoneEditView());
+        this(new TelefoneEditView(), RepositorioFactory.getRepositorio(Telefone.class));
     }
     
     /**
      * Construtor alternativo
      */
-    TelefoneEditControl(TelefoneEditView editView) {
+    TelefoneEditControl(TelefoneEditView editView,Repositorio<Telefone> repositorio) {
         this.editView = editView;
+        this.repositorio = repositorio;
     }
     
     @Override
@@ -59,8 +62,8 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     @Override
     public Telefone getModel() {
         if(model == null) {
-            String ddd = editView.ddd.getText();
-            String numero = editView.numero.getText();
+            String ddd = editView.getDddText();
+            String numero = editView.getNumeroText();
             model = new Telefone(ddd,numero);
         }
         return model;
@@ -95,8 +98,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 
     @Override
     public void adicionar(Telefone tipo) {
-        RepositorioFactory.getRepositorio(Telefone.class).adicionar(tipo);
+        repositorio.adicionar(tipo);
     }
-    
     
 }

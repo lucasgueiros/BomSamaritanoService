@@ -17,9 +17,14 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -27,21 +32,25 @@ import static org.mockito.Mockito.mock;
  */
 public class TelefoneEditControlTest {
 
+    private TelefoneEditView editView;
+    private Repositorio<Telefone> repositorio;
+    private TelefoneEditControl editControl;
+    
+    @Before
+    public void setandoMocks(){
+        editView = mock(TelefoneEditView.class);
+        repositorio = mock(Repositorio.class);
+        editControl = new TelefoneEditControl(editView,repositorio);
+    }
+    
     /**
      * Test of iniciar method, of class TelefoneEditControl.
      */
     @Test
     public void testIniciar() {
-        TelefoneEditView editView = mock(TelefoneEditView.class);
-        TelefoneEditControl editControl = new TelefoneEditControl(editView);
-        
-    }
-
-    /**
-     * Test of getEditView method, of class TelefoneEditControl.
-     */
-    @Test
-    public void testGetEditView() {
+        editControl.iniciar();
+        verify(editView,times(1)).construirView();
+        verify(editView,times(1)).setVisible(true);
     }
 
     /**
@@ -49,34 +58,12 @@ public class TelefoneEditControlTest {
      */
     @Test
     public void testGetModel() {
-    }
-
-    /**
-     * Test of getEntidade method, of class TelefoneEditControl.
-     */
-    @Test
-    public void testGetEntidade() {
-    }
-
-    /**
-     * Test of getDefaultLabelSize method, of class TelefoneEditControl.
-     */
-    @Test
-    public void testGetDefaultLabelSize() {
-    }
-
-    /**
-     * Test of setDefaultLabelSize method, of class TelefoneEditControl.
-     */
-    @Test
-    public void testSetDefaultLabelSize() {
-    }
-
-    /**
-     * Test of adicionar method, of class TelefoneEditControl.
-     */
-    @Test
-    public void testAdicionar() {
+        when(editView.getDddText()).thenReturn("81");
+        when(editView.getNumeroText()).thenReturn("123456789");
+        Telefone telefone = editControl.getModel();
+        assertEquals("81", telefone.getDdd());
+        assertEquals("123456789", telefone.getNumero());
     }
     
+    // TODO adicionar mais testes de getModel()
 }
