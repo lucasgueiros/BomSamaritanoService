@@ -17,7 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
-import gueiros.lucas.bomsamaritano.service.util.propriedades.Propriedades;
+import gueiros.lucas.bomsamaritano.service.util.propriedades.ValoresStrings;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public enum RepositorioFactory {
     private static Map<Class<?>,Repositorio<?>> repositorios = new HashMap<>();
     
     static{
-        String modoString = Propriedades.getString("persistencia.modo");
+        String modoString = ValoresStrings.getPropriedade("persistencia.modo");
         switch(modoString) {
             case "JPA": modo = JPA; break;
             case "MEMORIA": modo = MEMORIA;  break;
