@@ -72,6 +72,7 @@ class TelefoneEditView extends JPanel implements EditView {
         {
             ddd = new javax.swing.JTextField();
             ddd.setText("(87)");
+            ddd.setName("TelefoneDDDTextField");
             
             // setando valores...
             GridBagConstraints constraints = getDefault();
@@ -82,6 +83,7 @@ class TelefoneEditView extends JPanel implements EditView {
         }
         {
             numero = new javax.swing.JTextField();
+            numero.setName("TelefoneNumeroTextField");
             
             // setando valores...
             GridBagConstraints constraints = getDefault();

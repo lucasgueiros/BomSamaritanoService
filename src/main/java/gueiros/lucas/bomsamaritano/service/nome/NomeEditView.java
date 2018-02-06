@@ -56,12 +56,13 @@ class NomeEditView extends JPanel implements EditView {
         {
             // Adicionando labels
             addLabel(getDefault(), "Primeiro nome:", 0, 1);
-            addLabel(getDefault(), "Nome do meio:", 0, 2);
+            addLabel(getDefault(), "Nomes do meio:", 0, 2);
             addLabel(getDefault(), "Sobrenome:", 0, 3);
         }
         
         {
             primeiroNome = new javax.swing.JTextField();
+            primeiroNome.setName("NomePrimeiroNomeTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 1, 1);
@@ -72,6 +73,7 @@ class NomeEditView extends JPanel implements EditView {
         
         {
             nomesDoMeio = new javax.swing.JTextField();
+            nomesDoMeio.setName("NomeNomesDoMeioTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 2, 1);
@@ -81,6 +83,8 @@ class NomeEditView extends JPanel implements EditView {
         }
         {
             sobrenome = new javax.swing.JTextField();
+            sobrenome.setName("NomeSobrenomeTextField");
+            
             // Setando constraints
             constraints = setPosicao(getDefault(), 3, 1);
             constraints.ipadx = defaultIpadxTextField;

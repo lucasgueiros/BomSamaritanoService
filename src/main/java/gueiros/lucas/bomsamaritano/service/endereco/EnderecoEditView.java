@@ -81,6 +81,7 @@ class EnderecoEditView extends JPanel implements EditView {
         }
         {
             logradouro = new JTextField();
+            logradouro.setName("EnderecoLogradouroTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 1, 1);
@@ -90,6 +91,7 @@ class EnderecoEditView extends JPanel implements EditView {
         }
         {
             numero = new JTextField();
+            numero.setName("EnderecoNumeroTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 2, 1);
@@ -99,6 +101,7 @@ class EnderecoEditView extends JPanel implements EditView {
         }
         {
             complemento = new JTextField();
+            complemento.setName("EnderecoComplementoTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 3, 1);
@@ -108,6 +111,7 @@ class EnderecoEditView extends JPanel implements EditView {
         }
         {
             bairro = new JTextField();
+            bairro.setName("EnderecoBairroTextField");
             
             // Setando constraints
             constraints = setPosicao(getDefault(), 4, 1);

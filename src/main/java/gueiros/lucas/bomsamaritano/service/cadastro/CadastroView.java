@@ -49,6 +49,7 @@ public class CadastroView<Tipo> extends JPanel {
             constraints.gridy = 1;
             constraints.insets.top = insets;
             cadastrarButton = new JButton("Cadastrar");
+            cadastrarButton.setName("CadastroCadastrarButton");
             add(cadastrarButton,constraints);
         }
     }
