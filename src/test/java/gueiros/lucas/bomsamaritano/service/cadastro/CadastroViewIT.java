@@ -27,7 +27,12 @@ import junit.extensions.jfcunit.JFCTestHelper;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
 import org.junit.Test;
 import javax.swing.JButton;
-import static org.junit.Assert.*;
+import javax.swing.JTextField;
+import junit.extensions.jfcunit.eventdata.MouseEventData;
+import junit.extensions.jfcunit.finder.DialogFinder;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 
 /**
  *
@@ -42,6 +47,7 @@ public class CadastroViewIT extends JFCTestCase {
         super(nome);
     }
     
+    @Before
     public void setUp() throws Exception{
         super.setUp();
         setHelper(new JFCTestHelper());
@@ -51,6 +57,7 @@ public class CadastroViewIT extends JFCTestCase {
         control.iniciar();
     }
     
+    @After
     public void tearDown() throws Exception {
         view = null;
         control = null;
@@ -63,12 +70,24 @@ public class CadastroViewIT extends JFCTestCase {
      */
     @Test
     public void testCadastrar1() {
+        System.out.println("testCadastrar1");
         JDialog dialog;// ?
-        NamedComponentFinder finder = new NamedComponentFinder(JComponent.class, "CadastrarButton" );
+        
+        NamedComponentFinder finder = new NamedComponentFinder(JComponent.class, "CadastroCadastrarButton" );
         JButton cadastrarButton = ( JButton ) finder.find( view, 0);
-        assertNotNull( "Botao cadastrar não encontrado", cadastrarButton);
+        Assert.assertNotNull( "Botao CadastroCadastrarButton não encontrado", cadastrarButton);
+        
+        finder.setName("NomePrimeiroNomeTextField");
+        JTextField primeiroNome = (JTextField) finder.find(view,0);
+        Assert.assertNotNull( "TextField NomePrimeiroNomeTextField não encontrado", primeiroNome);
 
-      //getHelper().enterClickAndLeave( new MouseEventData( this, enterButton ) );
+        getHelper().enterClickAndLeave( new MouseEventData( this, cadastrarButton ) );
+        DialogFinder dFinder = new DialogFinder("Erro");
+        JDialog erro = (JDialog) dFinder.find();
+        Assert.assertNotNull(erro);
+        
+        getHelper().disposeWindow( erro, this );
+      //
       /*DialogFinder dFinder = new DialogFinder( loginScreen );
     18:   showingDialogs = dFinder.findAll();
     19:   assertEquals( "Number of dialogs showing is wrong", 1, showingDialogs.size( ) );
