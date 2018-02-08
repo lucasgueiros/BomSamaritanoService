@@ -38,7 +38,6 @@ public class NomeEditView extends EditView {
 	private CampoComLabel primeiroNome;
     private CampoComLabel nomesDoMeio;
     private CampoComLabel sobrenome;
-    private int defaultIpadxTextField = 220;
     private int defaultLabelSize = 0;
 
     /**
@@ -57,11 +56,10 @@ public class NomeEditView extends EditView {
     @Override
     public void construirView() {
         setLayout(new GridBagLayout());
-        GridBagConstraints constraints = null;
         
-        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, defaultIpadxTextField);
-        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, defaultIpadxTextField);
-        sobrenome = new CampoComLabel(this, "Sobrenome", true, defaultIpadxTextField);
+        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField());
+        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField());
+        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField());
         
         primeiroNome.adicionarCampoComLabel(1);
         nomesDoMeio.adicionarCampoComLabel(2);

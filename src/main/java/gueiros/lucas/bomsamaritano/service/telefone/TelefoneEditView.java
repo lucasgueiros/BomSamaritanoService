@@ -44,11 +44,12 @@ public class TelefoneEditView extends EditView {
     JTextField numero;
     private int defaultLabelSize = 130;
     private int melhorLabelSize;
+    private int insets = 1; // TODO padronizar
 
     private GridBagConstraints getDefault(){
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridy = 1; // linha
-        int insets = 1;
+        
         constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
         constraints.anchor = GridBagConstraints.CENTER;
         return constraints;
@@ -66,7 +67,7 @@ public class TelefoneEditView extends EditView {
             constraints.gridx = 0; // coluna
             constraints.anchor = GridBagConstraints.LINE_END;
             
-            melhorLabelSize = labelTelefone.getPreferredSize().width;
+            melhorLabelSize = labelTelefone.getPreferredSize().width + (insets * 2);
             
             add(labelTelefone, constraints);
         }

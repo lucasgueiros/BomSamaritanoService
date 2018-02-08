@@ -37,8 +37,7 @@ public class EnderecoEditView extends EditView {
 	private CampoComLabel bairro;
     private CampoComLabel complemento;
     private CampoComLabel logradouro;
-    private CampoComLabel numero;
-    private int defaultIpadxTextField = -1;
+    private CampoComLabel numero;    
     private int defaultLabelSize = -1;
     
     EnderecoEditView() {}
@@ -48,10 +47,10 @@ public class EnderecoEditView extends EditView {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = null;
         
-        logradouro = new CampoComLabel(this, "Logradouro", true, defaultIpadxTextField);
-        numero = new CampoComLabel(this, "Número", true, defaultIpadxTextField);
-        complemento = new CampoComLabel(this, "Complemento", true, defaultIpadxTextField);
-        bairro = new CampoComLabel(this, "Bairro", true, defaultIpadxTextField);
+        logradouro = new CampoComLabel(this, "Logradouro", true, super.getDefaultIpadxTextField());
+        numero = new CampoComLabel(this, "Número", true, super.getDefaultIpadxTextField());
+        complemento = new CampoComLabel(this, "Complemento", true, super.getDefaultIpadxTextField());
+        bairro = new CampoComLabel(this, "Bairro", true, super.getDefaultIpadxTextField());
         
         logradouro.adicionarCampoComLabel(1);
         numero.adicionarCampoComLabel(2);

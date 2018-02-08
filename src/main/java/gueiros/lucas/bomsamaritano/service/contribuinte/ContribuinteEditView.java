@@ -37,23 +37,36 @@ public class ContribuinteEditView extends EditView {
     private EditView nomeEditView;
     private EditView telefoneEditView;
 
-    ContribuinteEditView() {}
+    public ContribuinteEditView() {
+    	super.setDefaultIpadxTextField(220); // TODO padronizar
+    }
     
     @Override
     public void construirView() {
         if(enderecoEditView == null || nomeEditView == null || telefoneEditView == null) {
             throw new IllegalStateException();
         }
+        
         setLayout(new GridBagLayout());
+        
         GridBagConstraints constraints = getDefaultConstraints();
         constraints.gridy = 0;
         add(nomeEditView,constraints);
+        
         constraints = getDefaultConstraints();
         constraints.gridy = 1;
         add(telefoneEditView,constraints);
+        
         constraints = getDefaultConstraints();
         constraints.gridy = 2;
         add(enderecoEditView,constraints);
+        
+        // setando o label size
+        int melhorLabelSize = this.getMelhorLabelSize();
+        enderecoEditView.setLabelSize(melhorLabelSize);
+        nomeEditView.setLabelSize(melhorLabelSize);
+        telefoneEditView.setLabelSize(melhorLabelSize);
+        
     }
     
     private GridBagConstraints getDefaultConstraints() {
@@ -65,10 +78,12 @@ public class ContribuinteEditView extends EditView {
 
     void setEnderecoEditView(EditView enderecoEditView) {
         this.enderecoEditView = enderecoEditView;
+        enderecoEditView.setDefaultIpadxTextField(super.getDefaultIpadxTextField());
     }
 
     void setNomeEditView(EditView nomeEditView) {
         this.nomeEditView = nomeEditView;
+        nomeEditView.setDefaultIpadxTextField(super.getDefaultIpadxTextField());
     }
 
     void setTelefoneEditView(EditView telefoneEditView) {

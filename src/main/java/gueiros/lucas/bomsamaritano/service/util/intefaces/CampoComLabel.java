@@ -36,6 +36,7 @@ public class CampoComLabel {
     private JTextField textField;
     private JPanel superJPanel;
     private int defaultIpadxTextField;
+    private int insets = 1;
 
     public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField) {
         this.superJPanel = superJPanel;
@@ -66,6 +67,7 @@ public class CampoComLabel {
         constraints = setPosicao(constraints, linha, 0);
         constraints.anchor = GridBagConstraints.LINE_END;
         constraints = setPosicao(constraints, linha, 0);
+        //constraints.ipadx = defaultIpadxTextField;
         superJPanel.add(this.getLabel(), constraints);
 
         constraints = setPosicao(getDefault(), linha, 1);
@@ -87,16 +89,15 @@ public class CampoComLabel {
         return constraints;
     }
     
-    private static GridBagConstraints getDefault() {
+    private GridBagConstraints getDefault() {
         GridBagConstraints constraints = new GridBagConstraints();
-        int insets = 1;
         constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
         constraints.anchor = GridBagConstraints.LINE_START;
         return constraints;
     }
     
     public int getLabelSize() {
-        return label.getPreferredSize().width;
+        return label.getPreferredSize().width + (insets * 2);
     }
 
     public String getText() {

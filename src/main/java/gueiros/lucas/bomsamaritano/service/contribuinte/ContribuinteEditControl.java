@@ -64,12 +64,6 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
 
     @Override
     public void iniciar() {
-        //nomeEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
-        // enderecoEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
-        
-        // nomeEditControl.setDefaultLabelSize(defaultLabelSize);
-        // enderecoEditControl.setDefaultLabelSize(defaultLabelSize);
-        // telefoneEditControl.setDefaultLabelSize(defaultLabelSize);
         
         editView.setNomeEditView(nomeEditControl.getEditView());
         editView.setEnderecoEditView ( enderecoEditControl.getEditView());

@@ -36,7 +36,20 @@ public abstract class EditView extends JPanel {
      */
     public abstract void construirView();
     
+    //  Não basta calcular o label size, tem que adicionar as margens!!
     public abstract int getMelhorLabelSize();
     
     public abstract void setLabelSize(int size);
+    
+    public int getDefaultIpadxTextField() {
+		return defaultIpadxTextField;
+	}
+
+	public void setDefaultIpadxTextField(int defaultIpadxTextField) {
+		this.defaultIpadxTextField = defaultIpadxTextField;
+	}
+
+	private int defaultIpadxTextField;
+    
+    
 }
