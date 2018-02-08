@@ -19,7 +19,6 @@ package gueiros.lucas.bomsamaritano.service.endereco;
 
 import org.junit.Assert;
 import org.junit.Test;
-import static org.mockito.Mockito.mock;
 
 /**
  *

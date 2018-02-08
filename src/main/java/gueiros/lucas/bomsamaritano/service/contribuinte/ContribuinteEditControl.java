@@ -24,9 +24,9 @@ import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
-import javax.swing.JPanel;
 
 /**
  *
@@ -64,11 +64,12 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
 
     @Override
     public void iniciar() {
-        nomeEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
-        nomeEditControl.setDefaultLabelSize(defaultLabelSize);
-        enderecoEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
-        enderecoEditControl.setDefaultLabelSize(defaultLabelSize);
-        telefoneEditControl.setDefaultLabelSize(defaultLabelSize);
+        //nomeEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
+        // enderecoEditControl.setDefaultIpadxTextField(defaultIpadxTextField);
+        
+        // nomeEditControl.setDefaultLabelSize(defaultLabelSize);
+        // enderecoEditControl.setDefaultLabelSize(defaultLabelSize);
+        // telefoneEditControl.setDefaultLabelSize(defaultLabelSize);
         
         editView.setNomeEditView(nomeEditControl.getEditView());
         editView.setEnderecoEditView ( enderecoEditControl.getEditView());
@@ -83,7 +84,7 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     }
 
     @Override
-    public JPanel getEditView() {
+    public EditView getEditView() {
         return editView;
     }
 
@@ -102,45 +103,6 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     @Override
     public String getEntidade() {
         return "Contribuinte";
-    }
-    
-    private int defaultLabelSize = 109; // TODO calcule esse valor em runtime
-    private int defaultIpadxTextField = 220;
-
-    /**
-     * Get the value of defaultIpadxTextField
-     *
-     * @return the value of defaultIpadxTextField
-     */
-    public int getDefaultIpadxTextField() {
-        return defaultIpadxTextField;
-    }
-
-    /**
-     * Set the value of defaultIpadxTextField
-     *
-     * @param defaultIpadxTextField new value of defaultIpadxTextField
-     */
-    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
-        this.defaultIpadxTextField = defaultIpadxTextField;
-    }
-
-    /**
-     * Get the value of defaultLabelSize
-     *
-     * @return the value of defaultLabelSize
-     */
-    public int getDefaultLabelSize() {
-        return defaultLabelSize;
-    }
-
-    /**
-     * Set the value of defaultLabelSize
-     *
-     * @param defaultLabelSize new value of defaultLabelSize
-     */
-    public void setDefaultLabelSize(int defaultLabelSize) {
-        this.defaultLabelSize = defaultLabelSize;
     }
     
     @Override

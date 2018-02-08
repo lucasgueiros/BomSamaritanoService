@@ -23,7 +23,12 @@ package gueiros.lucas.bomsamaritano.service.util.tipos;
  */
 class RGInvalidoException extends IllegalArgumentException {
 
-    public RGInvalidoException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5032823077702570760L;
+
+	public RGInvalidoException() {
     }
     
 }

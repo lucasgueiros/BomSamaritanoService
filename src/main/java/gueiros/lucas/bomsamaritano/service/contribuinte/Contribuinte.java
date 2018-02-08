@@ -34,7 +34,12 @@ import javax.persistence.OneToOne;
 @Entity
 public class Contribuinte implements Identificavel {
     
-    @OneToOne
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9220169030512026839L;
+
+	@OneToOne
     private Nome nome;
 
     @ManyToOne

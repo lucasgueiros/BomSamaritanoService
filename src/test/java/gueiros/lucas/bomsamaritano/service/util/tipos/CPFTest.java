@@ -18,7 +18,6 @@
 package gueiros.lucas.bomsamaritano.service.util.tipos;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

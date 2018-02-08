@@ -26,6 +26,11 @@ import gueiros.lucas.bomsamaritano.service.util.propriedades.ValoresStrings;
 public class OutOfRangeException extends IllegalArgumentException {
     
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7561146632789444674L;
+
+	/**
      * o mínimo possível, podendo ser igual.
      */
     public final int maximo; // pode ser igual

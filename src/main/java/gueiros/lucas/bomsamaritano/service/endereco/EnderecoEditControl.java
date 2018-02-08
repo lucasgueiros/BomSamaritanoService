@@ -18,9 +18,9 @@
 package gueiros.lucas.bomsamaritano.service.endereco;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
-import javax.swing.JPanel;
 
 /**
  * Conforme o padrão, contola NomeEditView
@@ -46,14 +46,14 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     
     @Override
     public void iniciar() {
-        editView.defaultIpadxTextField = defaultIpadxTextField;
-        editView.defaultLabelSize = defaultLabelSize;
+        //editView.defaultIpadxTextField = defaultIpadxTextField;
+        //editView.defaultLabelSize = defaultLabelSize;
         editView.construirView();
         editView.setVisible(true);
     }
 
     @Override
-    public JPanel getEditView() {
+    public EditView getEditView() {
         return editView;
     }
 
@@ -73,36 +73,6 @@ public class EnderecoEditControl implements EditControl<Endereco>{
     @Override
     public String getEntidade() {
         return "Endereco";
-    }
-    
-    private int defaultLabelSize = 130;
-    private int defaultIpadxTextField = 220;
-
-    /**
-     * Set the value of defaultIpadxTextField
-     * É o tamanho do campo de texto!
-     * @param defaultIpadxTextField new value of defaultIpadxTextField
-     */
-    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
-        this.defaultIpadxTextField = defaultIpadxTextField;
-    }
-
-    /**
-     * Get the value of defaultLabelSize.
-     * É o espaço separado para a label.
-     * @return the value of defaultLabelSize
-     */
-    public int getDefaultLabelSize() {
-        return defaultLabelSize;
-    }
-
-    /**
-     * Set the value of defaultLabelSize
-     * É o espaço separado para a label.
-     * @param defaultLabelSize new value of defaultLabelSize
-     */
-    public void setDefaultLabelSize(int defaultLabelSize) {
-        this.defaultLabelSize = defaultLabelSize;
     }
     
     @Override

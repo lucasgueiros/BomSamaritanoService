@@ -20,7 +20,6 @@ package gueiros.lucas.bomsamaritano.service.telefone;
 import java.awt.GridBagConstraints;
 import javax.swing.Box;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
@@ -28,9 +27,14 @@ import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
  * Este View Element serve para cadastrar ou modificar Telefones.
  * @author lucasgueiros
  */
-class TelefoneEditView extends JPanel implements EditView {
+public class TelefoneEditView extends EditView {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4752537668811286153L;
+
+	/**
      * Creates new form TelefoneCadastro
      */
     TelefoneEditView() {
@@ -38,7 +42,8 @@ class TelefoneEditView extends JPanel implements EditView {
     
     JTextField ddd;
     JTextField numero;
-    int defaultLabelSize = 130;
+    private int defaultLabelSize = 130;
+    private int melhorLabelSize;
 
     private GridBagConstraints getDefault(){
         GridBagConstraints constraints = new GridBagConstraints();
@@ -52,20 +57,16 @@ class TelefoneEditView extends JPanel implements EditView {
     @Override
     public void construirView() {
         setLayout(new java.awt.GridBagLayout());
-        if(defaultLabelSize!=-1) {
-            GridBagConstraints constraints = new GridBagConstraints();
-            constraints.gridy = constraints.gridx = 0;
-            add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
-            
-        }
         {
             JLabel labelTelefone = new javax.swing.JLabel();
-            labelTelefone.setText("Telefone:");
+            labelTelefone.setText("Telefone*:");
             
             // setando valores...
             GridBagConstraints constraints = getDefault();
             constraints.gridx = 0; // coluna
             constraints.anchor = GridBagConstraints.LINE_END;
+            
+            melhorLabelSize = labelTelefone.getPreferredSize().width;
             
             add(labelTelefone, constraints);
         }
@@ -102,5 +103,18 @@ class TelefoneEditView extends JPanel implements EditView {
     
     public String getNumeroText() {
         return numero.getText();
+    }
+
+    @Override
+    public int getMelhorLabelSize() {
+        return melhorLabelSize;
+    }
+
+    @Override
+    public void setLabelSize(int size) {
+        defaultLabelSize = size;
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = constraints.gridx = 0;
+        add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
     }
 }

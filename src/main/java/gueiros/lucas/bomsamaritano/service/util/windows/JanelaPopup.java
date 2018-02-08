@@ -29,7 +29,11 @@ import javax.swing.JPanel;
  */
 public class JanelaPopup extends JFrame {
 
-    private JPanel jFrame;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1282719047932756540L;
+	private JPanel jFrame;
     private String titulo;
     private WindowListener listener;
 

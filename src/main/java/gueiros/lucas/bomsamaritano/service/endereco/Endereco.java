@@ -32,7 +32,12 @@ import static gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes.*;
 @Entity
 public class Endereco implements Identificavel {
     
-    @Column
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5713910762879801204L;
+
+	@Column
     private String logradouro;
 
     @Column

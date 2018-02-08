@@ -19,7 +19,8 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import javax.swing.JPanel;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+
 import org.junit.Test;
 import org.junit.Before;
 import static org.mockito.Mockito.times;
@@ -37,7 +38,7 @@ public class CadastroControlTest {
     @Before public void before(){
         model = new Nome("Lucas", "Gueiros");
         editControl = mock(EditControl.class);
-        editView = mock(JPanel.class);
+        editView = mock(EditView.class);
         view = mock(CadastroView.class);
         when(editControl.getEditView()).thenReturn(editView);
         cadastroControl = new CadastroControl<>(view,editControl);
@@ -46,7 +47,7 @@ public class CadastroControlTest {
 
     private EditControl<Nome> editControl;
     private CadastroControl<Nome> cadastroControl;
-    private JPanel editView;
+    private EditView editView;
     private CadastroView<Nome> view;
     private Nome model;
     

@@ -24,6 +24,11 @@ package gueiros.lucas.bomsamaritano.service.util.tipos;
 public class CadastroIndefinidoException extends Exception {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7987301699911887536L;
+
+	/**
      *
      */
     public CadastroIndefinidoException() {

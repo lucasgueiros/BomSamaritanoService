@@ -17,8 +17,6 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.tipos;
 
-import java.util.regex.Pattern;
-
 /**
  *
  * @author lucasgueiros

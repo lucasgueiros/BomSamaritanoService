@@ -17,15 +17,26 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.intefaces;
 
+import javax.swing.JPanel;
+
 /**
  * Esta classe descreve uma interface para um usuário inserir ou modificar um entrada numa tabela (entidade).
  * @author lucasgueiros
  */
-public interface EditView {
+public abstract class EditView extends JPanel {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 436911654879370511L;
+
+	/**
      * Constrói toda a vizualização.
      * Deve ser chamado pelo EditControl, porque ele pode setar todos os parâme-
      * tros antes de chamar esse método.
      */
-    public void construirView();
+    public abstract void construirView();
+    
+    public abstract int getMelhorLabelSize();
+    
+    public abstract void setLabelSize(int size);
 }

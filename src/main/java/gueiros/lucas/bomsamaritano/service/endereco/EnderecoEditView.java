@@ -17,12 +17,10 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
+import gueiros.lucas.bomsamaritano.service.util.intefaces.CampoComLabel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
@@ -30,103 +28,43 @@ import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
  * 
  * @author lucasgueiros
  */
-class EnderecoEditView extends JPanel implements EditView {
+public class EnderecoEditView extends EditView {
     
-    JTextField bairro;
-    JTextField complemento;
-    JTextField logradouro;
-    JTextField numero;
-    int defaultIpadxTextField = -1;
-    int defaultLabelSize = -1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4958933225710768172L;
+	private CampoComLabel bairro;
+    private CampoComLabel complemento;
+    private CampoComLabel logradouro;
+    private CampoComLabel numero;
+    private int defaultIpadxTextField = -1;
+    private int defaultLabelSize = -1;
     
     EnderecoEditView() {}
-
-    private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna) {
-        return setPosicao(constraints, linha, coluna,1,1);
-    }
     
-    private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna, int qtdLinhas, int qtdColunas) {
-        constraints.gridx = coluna; // coluna
-        constraints.gridy = linha; // linha
-        constraints.gridheight = qtdLinhas;
-        constraints.gridwidth = qtdColunas;
-        return constraints;
-    }
-    
-    private void addLabel(GridBagConstraints constraints, String texto, int coluna, int linha) {
-        constraints = setPosicao(constraints, linha, coluna);
-        constraints.anchor = GridBagConstraints.LINE_END;
-        add(new JLabel(texto),constraints);
-    }
-    
-    private GridBagConstraints getDefault(){
-        GridBagConstraints constraints = new GridBagConstraints();
-        int insets = 1;
-        constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
-        constraints.anchor = GridBagConstraints.LINE_START;
-        return constraints;
-    }
-
     @Override
     public void construirView() {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = null;
         
-        {   // adicionando labels
-            
-            addLabel(getDefault(), "Logradouro:", 0, 1);
-            addLabel(getDefault(), "Número:", 0, 2);
-            addLabel(getDefault(), "Complemento:", 0, 3);
-            addLabel(getDefault(), "Bairro:", 0, 4);
+        logradouro = new CampoComLabel(this, "Logradouro", true, defaultIpadxTextField);
+        numero = new CampoComLabel(this, "Número", true, defaultIpadxTextField);
+        complemento = new CampoComLabel(this, "Complemento", true, defaultIpadxTextField);
+        bairro = new CampoComLabel(this, "Bairro", true, defaultIpadxTextField);
+        
+        logradouro.adicionarCampoComLabel(1);
+        numero.adicionarCampoComLabel(2);
+        complemento.adicionarCampoComLabel(3);
+        bairro.adicionarCampoComLabel(4);
+        
+        
+        if(defaultLabelSize!=-1){
+            constraints = new GridBagConstraints();
+            constraints.gridy = constraints.gridx = 0;
+            add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
         }
-        {
-            logradouro = new JTextField();
-            logradouro.setName("EnderecoLogradouroTextField");
             
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 1, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(logradouro,constraints);
-        }
-        {
-            numero = new JTextField();
-            numero.setName("EnderecoNumeroTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 2, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(numero,constraints);
-        }
-        {
-            complemento = new JTextField();
-            complemento.setName("EnderecoComplementoTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 3, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(complemento,constraints);
-        }
-        {
-            bairro = new JTextField();
-            bairro.setName("EnderecoBairroTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 4, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(bairro,constraints);
-        }
-        {
-            if(defaultLabelSize!=-1){
-                constraints = new GridBagConstraints();
-                constraints.gridy = constraints.gridx = 0;
-                add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
-            }
-            
-        }
     }
 
     public String getBairroText(){
@@ -144,5 +82,16 @@ class EnderecoEditView extends JPanel implements EditView {
     public String getComplementoText(){
         return complemento.getText();
     }
+
+    @Override
+    public int getMelhorLabelSize() {
+        return CampoComLabel.getMelhorLabelSize(logradouro,numero,complemento,bairro);
+    }
     
+    public void setLabelSize(int size) {
+        defaultLabelSize = size;
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = constraints.gridx = 0;
+        add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
+    }
 }

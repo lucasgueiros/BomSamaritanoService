@@ -32,7 +32,11 @@ import javax.persistence.Id;
 @Entity
 public class Nome implements Identificavel {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3214165212749652108L;
+	@Id
     @GeneratedValue
     private Long id;
 

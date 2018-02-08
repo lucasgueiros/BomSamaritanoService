@@ -18,7 +18,6 @@
 package gueiros.lucas.bomsamaritano.service.util.intefaces;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import javax.swing.JPanel;
 
 /**
  * Esta interface descreve o objeto responsável por controlar um EditView e realizar as operações necessárias no model.
@@ -35,7 +34,7 @@ public interface EditControl<Tipo extends Identificavel> {
      * Retorna um elemento de vizualização para inserir ou modificar (formulário)
      * @return a JPanel que extende EditView
      */
-    public JPanel getEditView();
+    public EditView getEditView();
     
     /**
      * Retorna o objeto construído ou modificado.

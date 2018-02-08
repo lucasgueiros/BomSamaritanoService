@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
@@ -15,20 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.bomsamaritano.service.util.tipos;
+package gueiros.lucas.bomsamaritano.service.util.outros;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
  * @author lucasgueiros
  */
-class DigitosDeVerificacaoException extends IllegalArgumentException {
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1356449829848208031L;
-
-	public DigitosDeVerificacaoException() {
+public class Matematica {
+    
+    public static int max(int ... is) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for(Integer i : is) {
+            list.add(i);
+        }
+        return Collections.max(list);
     }
     
 }

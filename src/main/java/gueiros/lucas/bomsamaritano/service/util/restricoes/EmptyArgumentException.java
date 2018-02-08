@@ -22,5 +22,10 @@ package gueiros.lucas.bomsamaritano.service.util.restricoes;
  * @author lucasgueiros
  */
 public class EmptyArgumentException extends IllegalArgumentException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7645583040038064001L;
     
 }

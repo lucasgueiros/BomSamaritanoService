@@ -17,106 +17,55 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import gueiros.lucas.bomsamaritano.service.util.intefaces.CampoComLabel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 
 /**
- * Descreve um painel para criação ou edição de nomes de pessoas físicas simplificado.
- * Nâo inclui aqui prefixo e sufixo do nome.
+ * Descreve um painel para criação ou edição de nomes de pessoas físicas
+ * simplificado. Nâo inclui aqui prefixo e sufixo do nome.
+ *
  * @author lucasgueiros
  */
-class NomeEditView extends JPanel implements EditView {
+public class NomeEditView extends EditView {
 
-    JTextField nomesDoMeio;
-    JTextField primeiroNome;
-    JTextField sobrenome;
-    int defaultIpadxTextField = 220;
-    int defaultLabelSize = 130;
-    
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6006528168204297580L;
+	private CampoComLabel primeiroNome;
+    private CampoComLabel nomesDoMeio;
+    private CampoComLabel sobrenome;
+    private int defaultIpadxTextField = 220;
+    private int defaultLabelSize = 0;
+
     /**
      * Creates new form NomeCadastro
      */
-    NomeEditView() {}
+    NomeEditView() {
+    }
 
+    public void setLabelSize(int size) {
+        defaultLabelSize = size;
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridy = constraints.gridx = 0;
+        add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
+    }
+    
     @Override
     public void construirView() {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = null;
-        if(defaultLabelSize!=-1){
-                constraints = new GridBagConstraints();
-                constraints.gridy = constraints.gridx = 0;
-                add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
-        }
         
-        {
-            // Adicionando labels
-            addLabel(getDefault(), "Primeiro nome:", 0, 1);
-            addLabel(getDefault(), "Nomes do meio:", 0, 2);
-            addLabel(getDefault(), "Sobrenome:", 0, 3);
-        }
+        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, defaultIpadxTextField);
+        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, defaultIpadxTextField);
+        sobrenome = new CampoComLabel(this, "Sobrenome", true, defaultIpadxTextField);
         
-        {
-            primeiroNome = new javax.swing.JTextField();
-            primeiroNome.setName("NomePrimeiroNomeTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 1, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(primeiroNome,constraints);
-        }
-        
-        {
-            nomesDoMeio = new javax.swing.JTextField();
-            nomesDoMeio.setName("NomeNomesDoMeioTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 2, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(nomesDoMeio,constraints);
-        }
-        {
-            sobrenome = new javax.swing.JTextField();
-            sobrenome.setName("NomeSobrenomeTextField");
-            
-            // Setando constraints
-            constraints = setPosicao(getDefault(), 3, 1);
-            constraints.ipadx = defaultIpadxTextField;
-            
-            add(sobrenome,constraints);
-        }
-    }
-    
-    private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna) {
-        return setPosicao(constraints, linha, coluna,1,1);
-    }
-    
-    private GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna, int qtdLinhas, int qtdColunas) {
-        constraints.gridx = coluna; // coluna
-        constraints.gridy = linha; // linha
-        constraints.gridheight = qtdLinhas;
-        constraints.gridwidth = qtdColunas;
-        return constraints;
-    }
-    
-    private void addLabel(GridBagConstraints constraints, String texto, int coluna, int linha) {
-        constraints = setPosicao(constraints, linha, coluna);
-        constraints.anchor = GridBagConstraints.LINE_END;
-        add(new JLabel(texto),constraints);
-    }
-    
-    private GridBagConstraints getDefault(){
-        GridBagConstraints constraints = new GridBagConstraints();
-        int insets = 1;
-        constraints.insets.bottom = constraints.insets.left = constraints.insets.right = constraints.insets.top = insets;
-        constraints.anchor = GridBagConstraints.LINE_START;
-        return constraints;
+        primeiroNome.adicionarCampoComLabel(1);
+        nomesDoMeio.adicionarCampoComLabel(2);
+        sobrenome.adicionarCampoComLabel(3);
     }
 
     public String getNomesDoMeioText() {
@@ -126,9 +75,13 @@ class NomeEditView extends JPanel implements EditView {
     public String getPrimeiroNomeText() {
         return primeiroNome.getText();
     }
+
     public String getSobrenomeText() {
         return sobrenome.getText();
     }
     
-    
+    @Override public int getMelhorLabelSize() {
+        return CampoComLabel.getMelhorLabelSize(primeiroNome,nomesDoMeio,sobrenome);
+    }
+
 }

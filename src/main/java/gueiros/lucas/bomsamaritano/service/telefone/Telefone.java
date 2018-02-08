@@ -36,6 +36,10 @@ import javax.persistence.Id;
 @Entity
 public class Telefone implements Identificavel {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7676482691654474713L;
+	/**
      * Este atributo representa o código de área.
      */
     @Column private int ddd = 87;

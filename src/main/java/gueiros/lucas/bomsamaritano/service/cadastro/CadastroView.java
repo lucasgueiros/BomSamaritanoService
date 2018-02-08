@@ -30,7 +30,11 @@ import javax.swing.JPanel;
  */
 public class CadastroView<Tipo> extends JPanel {
     
-    JPanel editView;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4540716916777903663L;
+	JPanel editView;
     JButton cadastrarButton;
     final int insets = 10; // TODO padronizar
 

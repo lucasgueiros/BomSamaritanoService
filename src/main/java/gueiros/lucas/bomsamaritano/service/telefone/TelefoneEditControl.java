@@ -18,9 +18,9 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
-import javax.swing.JPanel;
 
 /**
  * Seguindo o padrão determinado, este controlador é responsável por TelefoneEditView.
@@ -49,13 +49,13 @@ public class TelefoneEditControl implements EditControl<Telefone> {
     
     @Override
     public void iniciar() {
-        editView.defaultLabelSize = defaultLabelSize;
+        //editView.defaultLabelSize = defaultLabelSize;
         editView.construirView();
         editView.setVisible(true);
     }
 
     @Override
-    public JPanel getEditView() {
+    public EditView getEditView() {
         return editView;
     }
 
@@ -74,28 +74,6 @@ public class TelefoneEditControl implements EditControl<Telefone> {
         return "Telefone";
     }
     
-    private int defaultLabelSize = 130;
-
-    /**
-     * Get the value of defaultLabelSize.
-     * Este é o tamanho padrão dos campos de textos no EditView.
-     * 
-     * @return the value of defaultLabelSize
-     */
-    public int getDefaultLabelSize() {
-        return defaultLabelSize;
-    }
-
-    /**
-     * Set the value of defaultLabelSize.
-     * Este é o tamanho padrão dos campos de textos no EditView.
-     * 
-     * @param defaultLabelSize new value of defaultLabelSize
-     */
-    public void setDefaultLabelSize(int defaultLabelSize) {
-        this.defaultLabelSize = defaultLabelSize;
-    }
-
     @Override
     public void adicionar(Telefone tipo) {
         repositorio.adicionar(tipo);

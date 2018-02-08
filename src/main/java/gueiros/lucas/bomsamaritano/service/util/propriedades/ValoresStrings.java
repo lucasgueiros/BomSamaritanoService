@@ -35,7 +35,11 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class ValoresStrings  implements Serializable {
 
-    private final static Properties propriedades = new Properties();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7327998256231009889L;
+	private final static Properties propriedades = new Properties();
     private final static Map<String,Properties> arquivos = new HashMap<>();
     private final static String PROPRIEDADES = "propriedades";
     private final static String TYPE = ".properties";

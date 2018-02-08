@@ -19,18 +19,23 @@ package gueiros.lucas.bomsamaritano.service.contribuinte;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JPanel;
+
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+import gueiros.lucas.bomsamaritano.service.util.outros.Matematica;
 
 /**
  *
  * @author lucasgueiros
  */
-class ContribuinteEditView extends JPanel implements EditView {
+public class ContribuinteEditView extends EditView {
 
-    JPanel enderecoEditView;
-    JPanel nomeEditView;
-    JPanel telefoneEditView;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2408535434006272483L;
+	private EditView enderecoEditView;
+    private EditView nomeEditView;
+    private EditView telefoneEditView;
 
     ContribuinteEditView() {}
     
@@ -58,16 +63,26 @@ class ContribuinteEditView extends JPanel implements EditView {
         return constraints;
     }
 
-    void setEnderecoEditView(JPanel enderecoEditView) {
+    void setEnderecoEditView(EditView enderecoEditView) {
         this.enderecoEditView = enderecoEditView;
     }
 
-    void setNomeEditView(JPanel nomeEditView) {
+    void setNomeEditView(EditView nomeEditView) {
         this.nomeEditView = nomeEditView;
     }
 
-    void setTelefoneEditView(JPanel telefoneEditView) {
+    void setTelefoneEditView(EditView telefoneEditView) {
         this.telefoneEditView = telefoneEditView;
+    }
+
+    @Override
+    public int getMelhorLabelSize() {
+        return Matematica.max(nomeEditView.getMelhorLabelSize(),telefoneEditView.getMelhorLabelSize(),enderecoEditView.getMelhorLabelSize());
+    }
+
+    @Override
+    public void setLabelSize(int size) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

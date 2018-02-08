@@ -18,9 +18,9 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
-import javax.swing.JPanel;
 
 /**
  * Seguindo o padrão, ele controla um panel de cadastro ou edição de Nomes de pessoas físicas.
@@ -51,14 +51,14 @@ public class NomeEditControl implements EditControl<Nome> {
     
     @Override
     public void iniciar() {
-        this.editView.defaultIpadxTextField = defaultIpadxTextField;
-        this.editView.defaultLabelSize = defaultLabelSize;
+        //this.editView.defaultIpadxTextField = defaultIpadxTextField;
+        //this.editView.defaultLabelSize = defaultLabelSize;
         this.editView.construirView();
         editView.setVisible(true);
     }
 
     @Override
-    public JPanel getEditView() {
+    public EditView getEditView() {
         return editView;
     }
 
@@ -73,45 +73,6 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public String getEntidade() {
         return "Nome";
-    }
-
-    private int defaultLabelSize = 130;
-    private int defaultIpadxTextField = 220;
-
-    /**
-     * Get the value of defaultIpadxTextField.
-     * É o tamanho do campo de texto!
-     * @return the value of defaultIpadxTextField
-     */
-    public int getDefaultIpadxTextField() {
-        return defaultIpadxTextField;
-    }
-
-    /**
-     * Set the value of defaultIpadxTextField
-     * É o tamanho do campo de texto!
-     * @param defaultIpadxTextField new value of defaultIpadxTextField
-     */
-    public void setDefaultIpadxTextField(int defaultIpadxTextField) {
-        this.defaultIpadxTextField = defaultIpadxTextField;
-    }
-
-    /**
-     * Get the value of defaultLabelSize.
-     * É o espaço separado para a label.
-     * @return the value of defaultLabelSize
-     */
-    public int getDefaultLabelSize() {
-        return defaultLabelSize;
-    }
-
-    /**
-     * Set the value of defaultLabelSize
-     * É o espaço separado para a label.
-     * @param defaultLabelSize new value of defaultLabelSize
-     */
-    public void setDefaultLabelSize(int defaultLabelSize) {
-        this.defaultLabelSize = defaultLabelSize;
     }
     
     @Override
