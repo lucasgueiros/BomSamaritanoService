@@ -20,8 +20,8 @@ package gueiros.lucas.bomsamaritano.service.contribuinte;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.outros.Matematica;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  *

@@ -17,10 +17,10 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Seguindo o padrão, ele controla um panel de cadastro ou edição de Nomes de pessoas físicas.

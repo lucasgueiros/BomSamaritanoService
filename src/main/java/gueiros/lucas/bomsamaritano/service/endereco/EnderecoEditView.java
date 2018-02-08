@@ -17,11 +17,14 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.CampoComLabel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.text.NumberFormat;
+
 import javax.swing.Box;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+
+import gueiros.lucas.bomsamaritano.service.util.ui.CampoComLabel;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Panel para criação ou edição de Endereços.
@@ -48,7 +51,7 @@ public class EnderecoEditView extends EditView {
         GridBagConstraints constraints = null;
         
         logradouro = new CampoComLabel(this, "Logradouro", true, super.getDefaultIpadxTextField());
-        numero = new CampoComLabel(this, "Número", true, super.getDefaultIpadxTextField());
+        numero = new CampoComLabel(this, "Número", true, super.getDefaultIpadxTextField(), NumberFormat.getNumberInstance());
         complemento = new CampoComLabel(this, "Complemento", true, super.getDefaultIpadxTextField());
         bairro = new CampoComLabel(this, "Bairro", true, super.getDefaultIpadxTextField());
         

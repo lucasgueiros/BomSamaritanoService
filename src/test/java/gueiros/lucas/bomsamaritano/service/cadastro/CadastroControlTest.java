@@ -18,8 +18,8 @@
 package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 import org.junit.Test;
 import org.junit.Before;

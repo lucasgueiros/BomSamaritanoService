@@ -21,7 +21,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Este View Element serve para cadastrar ou modificar Telefones.

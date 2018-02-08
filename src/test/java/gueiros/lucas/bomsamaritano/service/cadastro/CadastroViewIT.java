@@ -19,7 +19,8 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import junit.extensions.jfcunit.JFCTestCase;

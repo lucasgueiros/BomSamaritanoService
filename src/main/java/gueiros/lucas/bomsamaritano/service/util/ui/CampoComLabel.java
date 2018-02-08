@@ -15,14 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.bomsamaritano.service.util.intefaces;
+package gueiros.lucas.bomsamaritano.service.util.ui;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
+import java.awt.RenderingHints;
+import java.text.Format;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JLayer;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
+import javax.swing.plaf.LayerUI;
+import javax.swing.text.DefaultFormatter;
 
 /**
  * Criando a classe Campo de texto para ajudar, pode ser útil em outras classes também.
@@ -33,17 +46,91 @@ import javax.swing.JTextField;
 public class CampoComLabel {
 
     private JLabel label;
-    private JTextField textField;
+    private JLayer<JFormattedTextField> textField;
     private JPanel superJPanel;
     private int defaultIpadxTextField;
     private int insets = 1;
 
     public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField) {
+    	this(superJPanel,campo,obrigatorio,defaultIpadxTextField,null);
+    }
+    
+    public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField, Format format) {
         this.superJPanel = superJPanel;
         label = new JLabel(campo + (obrigatorio ? "*:" : ":"));
-        textField = new JTextField();
-        textField.setName(superJPanel.getName() + campo);
+        
+        // Criando o botão
+        JFormattedTextField theTextField = null;
+        if(format==null) {
+        	theTextField = new JFormattedTextField();
+        	/*theTextField.setFormatterFactory(new AbstractFormatterFactory() {
+				
+				@Override
+				public AbstractFormatter getFormatter(JFormattedTextField tf) {
+					return new TrueFormatter();
+				}
+			});*/
+        } else {
+        	theTextField = new JFormattedTextField(format);
+        }
+        
+        SubclassLayerUi layerUi = new SubclassLayerUi();
+        textField = new JLayer<>(theTextField,layerUi);
+        
+        textField.getView().setName(superJPanel.getName() + campo);
         this.defaultIpadxTextField = defaultIpadxTextField;
+    }
+    
+    private class TrueFormatter extends JFormattedTextField.AbstractFormatter {
+
+		@Override
+		public Object stringToValue(String text) throws ParseException {
+			setEditValid(false);
+			return text;
+		}
+
+		@Override
+		public String valueToString(Object value) throws ParseException {
+			setEditValid(false);
+			if(value == null) return "";
+			return value.toString();
+		}
+    	
+    }
+    
+    private class SubclassLayerUi extends LayerUI<JFormattedTextField> {
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = -8523644548062406294L;
+
+		@Override
+    	  public void paint (Graphics g, JComponent c) {
+    	    super.paint (g, c);
+    	 
+    	    JLayer<JFormattedTextField> jlayer = (JLayer<JFormattedTextField>)c;
+    	    JFormattedTextField ftf = (JFormattedTextField)jlayer.getView();
+    	    if (!ftf.isEditValid()) {
+    	      Graphics2D g2 = (Graphics2D)g.create();
+    	 
+    	      // Paint the red X.
+    	      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+    	          RenderingHints.VALUE_ANTIALIAS_ON);
+    	      int w = c.getWidth();
+    	      int h = c.getHeight();
+    	      int s = 8;
+    	      int pad = 4;
+    	      int x = w - pad - s;
+    	      int y = (h - s) / 2;
+    	      g2.setPaint(Color.red);
+    	      g2.fillRect(x, y, s + 1, s + 1);
+    	      g2.setPaint(Color.white);
+    	      g2.drawLine(x, y, x + s, y + s);
+    	      g2.drawLine(x, y + s, x + s, y);
+    	 
+    	      g2.dispose();
+    	    }
+    	  }
     }
 
     public JLabel getLabel() {
@@ -54,13 +141,6 @@ public class CampoComLabel {
         this.label = label;
     }
 
-    public JTextField getTextField() {
-        return textField;
-    }
-
-    public void setTextField(JTextField textField) {
-        this.textField = textField;
-    }
 
     public void adicionarCampoComLabel(int linha) {
         GridBagConstraints constraints = getDefault();
@@ -72,7 +152,7 @@ public class CampoComLabel {
 
         constraints = setPosicao(getDefault(), linha, 1);
         constraints.ipadx = defaultIpadxTextField;
-        superJPanel.add(this.getTextField(), constraints);
+        superJPanel.add(textField, constraints);
 
         // aqui você adiciona o sistema de restrições.
     }
@@ -101,7 +181,7 @@ public class CampoComLabel {
     }
 
     public String getText() {
-        return textField.getText();
+        return textField.getView().getText();
     }
     
     /*

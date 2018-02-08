@@ -17,10 +17,10 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditControl;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Conforme o padrão, contola NomeEditView

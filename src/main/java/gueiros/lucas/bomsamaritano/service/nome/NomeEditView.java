@@ -17,11 +17,14 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
-import gueiros.lucas.bomsamaritano.service.util.intefaces.CampoComLabel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.text.Format;
+
 import javax.swing.Box;
-import gueiros.lucas.bomsamaritano.service.util.intefaces.EditView;
+
+import gueiros.lucas.bomsamaritano.service.util.ui.CampoComLabel;
+import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Descreve um painel para criação ou edição de nomes de pessoas físicas
