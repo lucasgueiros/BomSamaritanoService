@@ -24,7 +24,6 @@ import java.awt.GridBagConstraints;
 import java.awt.RenderingHints;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.text.Format;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,14 +31,11 @@ import java.util.Collections;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JFormattedTextField.AbstractFormatter;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import javax.swing.plaf.LayerUI;
-import javax.swing.text.DefaultFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
@@ -59,25 +55,24 @@ public class CampoComLabel {
 	private int defaultIpadxTextField;
 	private int insets = 1;
 	private String campo;
+	private boolean obrigatorio;
+	private Restricao<String> restricao;
+	
+	public Restricao<String> getRestricao() {
+		return restricao;
+	}
 
-	public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField, Restricao<String> restricao) {
+	public void setRestricao(Restricao<String> restricao) {
+		this.restricao = restricao;
+	}
+
+	private GridBagConstraints labelConstraints;
+	private GridBagConstraints fieldConstraints;
+
+	public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField) {
 		this.superJPanel = superJPanel;
-		label = new JLabel(campo + (obrigatorio ? "*:" : ":"));
 		this.campo = campo;
-
-		// Criando o botão
-		JFormattedTextField theTextField = null;
-
-			theTextField = new JFormattedTextField();
-			theTextField.setFocusLostBehavior(JFormattedTextField.COMMIT);
-			theTextField.addFocusListener(new FirstTimeFocusListener());
-			theTextField.setInputVerifier(new FormattedTextFieldVerifier());
-			theTextField.setFormatterFactory(new DefaultFormatterFactory(new RestricaoFormatter(restricao)));
-
-		SubclassLayerUi layerUi = new SubclassLayerUi();
-		textField = new JLayer<>(theTextField, layerUi);
-
-		textField.getView().setName(superJPanel.getName() + campo);
+		this.obrigatorio = obrigatorio;
 		this.defaultIpadxTextField = defaultIpadxTextField;
 	}
 
@@ -116,6 +111,29 @@ public class CampoComLabel {
 		}
 	}
 
+	public void construirView() {
+		label = new JLabel(campo + (obrigatorio ? "*:" : ":"));
+
+		// Criando o botão
+		JFormattedTextField theTextField = null;
+
+			theTextField = new JFormattedTextField();
+			theTextField.setFocusLostBehavior(JFormattedTextField.COMMIT);
+			theTextField.addFocusListener(new FirstTimeFocusListener());
+			theTextField.setInputVerifier(new FormattedTextFieldVerifier());
+			theTextField.setFormatterFactory(new DefaultFormatterFactory(new RestricaoFormatter(restricao)));
+
+		SubclassLayerUi layerUi = new SubclassLayerUi();
+		textField = new JLayer<>(theTextField, layerUi);
+
+		textField.getView().setName(superJPanel.getName() + campo);
+		
+		labelConstraints = getDefault();
+		labelConstraints.anchor = GridBagConstraints.LINE_END;
+		fieldConstraints = getDefault();
+		fieldConstraints.ipadx = defaultIpadxTextField;
+	}
+	
 	public JLabel getLabel() {
 		return label;
 	}
@@ -125,18 +143,8 @@ public class CampoComLabel {
 	}
 
 	public void adicionarCampoComLabel(int linha) {
-		GridBagConstraints constraints = getDefault();
-		constraints = setPosicao(constraints, linha, 0);
-		constraints.anchor = GridBagConstraints.LINE_END;
-		constraints = setPosicao(constraints, linha, 0);
-		// constraints.ipadx = defaultIpadxTextField;
-		superJPanel.add(this.getLabel(), constraints);
-
-		constraints = setPosicao(getDefault(), linha, 1);
-		constraints.ipadx = defaultIpadxTextField;
-		superJPanel.add(textField, constraints);
-
-		// aqui você adiciona o sistema de restrições.
+		superJPanel.add(this.getLabel(), setPosicao(labelConstraints, linha, 0));
+		superJPanel.add(textField, setPosicao(fieldConstraints, linha, 1));
 	}
 
 	private static GridBagConstraints setPosicao(GridBagConstraints constraints, int linha, int coluna) {
@@ -192,7 +200,6 @@ public class CampoComLabel {
 		public void focusLost(FocusEvent e) {
 			if (e.getSource() instanceof JFormattedTextField) {
 				JFormattedTextField field = (JFormattedTextField) e.getSource();
-				String text = field.getText();
 				field.getInputVerifier().verify(field);
 			}
 		}

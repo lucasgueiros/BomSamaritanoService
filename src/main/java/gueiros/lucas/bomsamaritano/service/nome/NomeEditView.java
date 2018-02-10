@@ -19,10 +19,9 @@ package gueiros.lucas.bomsamaritano.service.nome;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.text.Format;
-
 import javax.swing.Box;
 
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import gueiros.lucas.bomsamaritano.service.util.ui.CampoComLabel;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -60,9 +59,13 @@ public class NomeEditView extends EditView {
     public void construirView() {
         setLayout(new GridBagLayout());
         
-        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField(),Nome.getRestricaoPrimeiroNome());
-        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField(),Nome.getRestricaoNomesDoMeio());
-        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField(),Nome.getRestricaoSobrenome());
+        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField());
+        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField());
+        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField());
+        
+        primeiroNome.construirView();
+        nomesDoMeio.construirView();
+        sobrenome.construirView();
         
         primeiroNome.adicionarCampoComLabel(1);
         nomesDoMeio.adicionarCampoComLabel(2);
@@ -84,5 +87,16 @@ public class NomeEditView extends EditView {
     @Override public int getMelhorLabelSize() {
         return CampoComLabel.getMelhorLabelSize(primeiroNome,nomesDoMeio,sobrenome);
     }
-
+    
+    public void setPrimeiroNomeRestricao(Restricao<String> restricao) {
+    	this.primeiroNome.setRestricao(restricao);
+    }
+    
+    public void setSobrenomeRestricao(Restricao<String> restricao) {
+    	this.sobrenome.setRestricao(restricao);
+    }
+    
+    public void setNomesDoMeioRestricao(Restricao<String> restricao) {
+    	this.nomesDoMeio.setRestricao(restricao);
+    }
 }

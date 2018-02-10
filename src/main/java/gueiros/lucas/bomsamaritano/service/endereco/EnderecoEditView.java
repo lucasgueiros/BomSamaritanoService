@@ -62,11 +62,11 @@ public class EnderecoEditView extends EditView {
 		setLayout(new GridBagLayout());
 		GridBagConstraints constraints = null;
 
-		logradouro = new CampoComLabel(this, "Logradouro", true, super.getDefaultIpadxTextField(), Endereco.getRestricaoLogradouro());
-		numero = new CampoComLabel(this, "Número", true, super.getDefaultIpadxTextField(),Endereco.getRestricaoNumeroAsString());// TODO deve ser um  tipo diferente
-		complemento = new CampoComLabel(this, "Complemento", true, super.getDefaultIpadxTextField(), Endereco.getRestricaoComplemento());
-		bairro = new CampoComLabel(this, "Bairro", true, super.getDefaultIpadxTextField(), Endereco.getRestricaoBairro());
-
+		logradouro = new CampoComLabel(this, "Logradouro", true, super.getDefaultIpadxTextField());
+		numero = new CampoComLabel(this, "Número", true, super.getDefaultIpadxTextField());// TODO deve ser um  tipo diferente
+		complemento = new CampoComLabel(this, "Complemento", true, super.getDefaultIpadxTextField());
+		bairro = new CampoComLabel(this, "Bairro", true, super.getDefaultIpadxTextField());
+		
 		logradouro.adicionarCampoComLabel(1);
 		numero.adicionarCampoComLabel(2);
 		complemento.adicionarCampoComLabel(3);
@@ -108,4 +108,20 @@ public class EnderecoEditView extends EditView {
 		add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
 	}
 
+	public void setLogradouroRestricao(Restricao<String> restricao) {
+		this.logradouro.setRestricao(restricao);
+	}
+	
+	public void setBairroRestricao(Restricao<String> restricao) {
+		this.bairro.setRestricao(restricao);
+	}
+	
+	public void setNumeroRestricao(Restricao<String> restricao) {
+		this.numero.setRestricao(restricao);
+	}
+	
+	public void setComplementoRestricao(Restricao<String> restricao) {
+		this.complemento.setRestricao(restricao);
+	}
+	
 }

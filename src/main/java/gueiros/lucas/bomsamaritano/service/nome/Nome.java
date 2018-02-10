@@ -60,11 +60,11 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public Nome(String prefixo, String primeiroNome, String nomesDoMeio, String sobrenome, String sufixo) throws ForaDeRestricaoException {
-        this.primeiroNome = this.getRestricaoPrimeiroNome().restringir(primeiroNome);
-        this.sobrenome = this.getRestricaoSobrenome().restringir(sobrenome);
-        this.nomesDoMeio = this.getRestricaoNomesDoMeio().restringir(nomesDoMeio);
-        this.prefixo = this.getRestricaoPrefixo().restringir(prefixo);
-        this.sufixo = this.getRestricaoSufixo().restringir(sufixo);
+        this.primeiroNome = getRestricaoPrimeiroNome().restringir(primeiroNome);
+        this.sobrenome = getRestricaoSobrenome().restringir(sobrenome);
+        this.nomesDoMeio = getRestricaoNomesDoMeio().restringir(nomesDoMeio);
+        this.prefixo = getRestricaoPrefixo().restringir(prefixo);
+        this.sufixo = getRestricaoSufixo().restringir(sufixo);
     }
 
     public static Restricao<String> getRestricaoSufixo() {
@@ -138,7 +138,7 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setSufixo(String sufixo) throws ForaDeRestricaoException {
-        this.sufixo = this.getRestricaoSufixo().restringir(sufixo);
+        this.sufixo = getRestricaoSufixo().restringir(sufixo);
 
     }
 
@@ -158,7 +158,7 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setSobrenome(String sobrenome) throws ForaDeRestricaoException {
-        this.sobrenome = this.getRestricaoSobrenome().restringir(sobrenome);
+        this.sobrenome = getRestricaoSobrenome().restringir(sobrenome);
     }
 
     /**
@@ -177,7 +177,7 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setNomesDoMeio(String nomesDoMeio) throws ForaDeRestricaoException {
-        this.nomesDoMeio = this.getRestricaoNomesDoMeio().restringir(nomesDoMeio);
+        this.nomesDoMeio = getRestricaoNomesDoMeio().restringir(nomesDoMeio);
     }
 
     /**
@@ -196,7 +196,7 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setPrefixo(String prefixo) throws ForaDeRestricaoException {
-        this.prefixo = this.getRestricaoPrefixo().restringir(prefixo);
+        this.prefixo = getRestricaoPrefixo().restringir(prefixo);
     }
 
     /**
@@ -215,7 +215,7 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setPrimeiroNome(String primeiroNome) throws ForaDeRestricaoException {
-        this.primeiroNome = this.getRestricaoPrimeiroNome().restringir(primeiroNome);
+        this.primeiroNome = getRestricaoPrimeiroNome().restringir(primeiroNome);
     }
 
     @Override

@@ -52,10 +52,12 @@ public class NomeEditControl implements EditControl<Nome> {
     
     @Override
     public void iniciar() {
-        //this.editView.defaultIpadxTextField = defaultIpadxTextField;
-        //this.editView.defaultLabelSize = defaultLabelSize;
+    	this.editView.setPrimeiroNomeRestricao(Nome.getRestricaoPrimeiroNome());
+    	this.editView.setNomesDoMeioRestricao(Nome.getRestricaoNomesDoMeio());
+    	this.editView.setSobrenomeRestricao(Nome.getRestricaoSobrenome());
+    	
         this.editView.construirView();
-        editView.setVisible(true);
+        this.editView.setVisible(true);
     }
 
     @Override
@@ -66,6 +68,14 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public Nome getModel() {
         if(model == null) {
+        	
+        	
+        	// Primeiro verifique se as condições são ideais
+        	if(Nome.getRestricaoPrimeiroNome().verificar(editView.getPrimeiroNomeText())) {
+        		
+        	}
+        	
+        	// Só vai dar errado se tiver algo realmente muito errado!
             try {
 				model = new Nome(editView.getPrimeiroNomeText(),editView.getNomesDoMeioText(), editView.getSobrenomeText());
 			} catch (ForaDeRestricaoException e) {
