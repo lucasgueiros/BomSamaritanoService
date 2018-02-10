@@ -51,14 +51,17 @@ public class ContribuinteEditView extends EditView {
         
         GridBagConstraints constraints = getDefaultConstraints();
         constraints.gridy = 0;
+        nomeEditView.setName("NomeEditView:");
         add(nomeEditView,constraints);
         
         constraints = getDefaultConstraints();
         constraints.gridy = 1;
+        telefoneEditView.setName("telefoneEditView:");
         add(telefoneEditView,constraints);
         
         constraints = getDefaultConstraints();
         constraints.gridy = 2;
+        enderecoEditView.setName("enderecoEditView:");
         add(enderecoEditView,constraints);
         
         // setando o label size

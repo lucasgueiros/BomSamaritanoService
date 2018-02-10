@@ -23,7 +23,7 @@ import gueiros.lucas.bomsamaritano.service.util.propriedades.ValoresStrings;
  * Indica que um valor está  fora o intervalo de valores permitidos.
  * @author lucasgueiros
  */
-public class OutOfRangeException extends IllegalArgumentException {
+public class OutOfRangeException extends ForaDeRestricaoException {
     
     /**
 	 * 

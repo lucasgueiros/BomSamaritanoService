@@ -24,6 +24,8 @@ import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -64,7 +66,7 @@ public class ContribuinteEditControlTest {
         verify(enderecoEditControl,times(1)).iniciar();
     }
     
-    @Test public void testGetModel(){
+    @Test public void testGetModel() {
         Nome nome = new Nome("Lucas", "Gueiros");
         Endereco endereco = new Endereco("logradouro", 10, "bairro", "complemento");
         Telefone telefone = new Telefone("123456789");

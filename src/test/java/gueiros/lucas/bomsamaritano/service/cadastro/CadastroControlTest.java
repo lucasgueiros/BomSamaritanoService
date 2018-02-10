@@ -18,6 +18,7 @@
 package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -35,7 +36,7 @@ import static org.mockito.Mockito.verify;
  */
 public class CadastroControlTest {
     
-    @Before public void before(){
+    @Before public void before() throws ForaDeRestricaoException{
         model = new Nome("Lucas", "Gueiros");
         editControl = mock(EditControl.class);
         editView = mock(EditView.class);

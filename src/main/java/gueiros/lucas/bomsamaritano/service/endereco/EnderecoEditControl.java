@@ -19,6 +19,7 @@ package gueiros.lucas.bomsamaritano.service.endereco;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -64,7 +65,12 @@ public class EnderecoEditControl implements EditControl<Endereco>{
             int numero = Integer.parseInt(editView.getNumeroText());
             String bairro = editView.getBairroText();
             String complemento = editView.getComplementoText();
-            model = new Endereco(logradouro, numero, bairro, complemento);
+            try {
+				model = new Endereco(logradouro, numero, bairro, complemento);
+			} catch (ForaDeRestricaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         return model;
     }

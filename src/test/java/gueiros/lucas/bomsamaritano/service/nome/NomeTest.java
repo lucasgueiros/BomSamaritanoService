@@ -17,7 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
-import gueiros.lucas.bomsamaritano.service.util.restricoes.EmptyArgumentException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -119,7 +119,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = EmptyArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetSobrenome1() {
         System.out.println("setSobrenome1");
         String sobrenome = null;
@@ -130,7 +130,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = EmptyArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetSobrenome2() {
         System.out.println("setSobrenome2");
         String sobrenome = "";
@@ -153,7 +153,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = EmptyArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetPrimeiroNome1() {
         System.out.println("setPrimeiroNome1");
         String primeiroNome = null;
@@ -164,7 +164,7 @@ public class NomeTest {
     /**
      * Test of setSobrenome method, of class Nome.
      */
-    @Test (expected = EmptyArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetPrimeiroNome2() {
         System.out.println("setPrimeiroNome2");
         String primeiroNome = "";

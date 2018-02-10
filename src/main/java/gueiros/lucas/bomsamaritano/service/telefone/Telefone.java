@@ -18,7 +18,13 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ApenasNumerosRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ConjuntoRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.IntervaloIntegerRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.LengthRangeInclusiveRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.NumeroPositivoRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,8 +70,9 @@ public class Telefone implements Identificavel {
      * Construtor que interpreta a ausência de código de área como sendo DDD 87.
      * 
      * @param numero
+     * @throws ForaDeRestricaoException 
      */
-    public Telefone(String numero) {
+    public Telefone(String numero) throws ForaDeRestricaoException {
         this("87",numero);
     }
     
@@ -75,10 +82,11 @@ public class Telefone implements Identificavel {
      * 
      * @param ddd código de área
      * @param numero o número mesmo
+     * @throws ForaDeRestricaoException 
      */
-    public Telefone(String ddd, String numero) {
-        this.ddd = restricoDdd(ddd);
-        this.numero = restricoesNumero(numero);
+    public Telefone(String ddd, String numero) throws ForaDeRestricaoException {
+        this.ddd = restringirDdd(ddd);
+        this.numero = getRestricaoNumero().restringir(numero);
     }
     
     /**
@@ -103,19 +111,20 @@ public class Telefone implements Identificavel {
      * Set the value of ddd.
      * 
      * @param ddd
+     * @throws ForaDeRestricaoException 
      */
-    public void setDdd(int ddd) {
-        this.ddd = Restricoes.restricaoRangeInclusive(ddd, 11, 99);
+    public void setDdd(int ddd) throws ForaDeRestricaoException {
+        this.ddd = this.getRestricaoDdd().restringir(ddd);
     }
     
     /**
      * Set the value of ddd.
      * Este método permite converter o String em número.
      * @param dddAsString 
+     * @throws ForaDeRestricaoException 
      */
-    public void setDdd(String dddAsString) {
-        dddAsString = dddAsString.replaceAll("[^0-9]", "");
-        int ddd = Integer.parseInt(dddAsString);
+    public void setDdd(String dddAsString) throws ForaDeRestricaoException {
+        int ddd = restringirDdd(dddAsString);;
         setDdd(ddd);
     }
 
@@ -123,9 +132,10 @@ public class Telefone implements Identificavel {
      * Set the value of numero.
      *
      * @param numero
+     * @throws ForaDeRestricaoException 
      */
-    public final void setNumero(String numero) {
-        this.numero = restricoesNumero(numero);
+    public final void setNumero(String numero) throws ForaDeRestricaoException {
+        this.numero = this.getRestricaoNumero().restringir(numero);
     }
 
     /**
@@ -155,16 +165,22 @@ public class Telefone implements Identificavel {
         }
     }
     
-    private String restricoesNumero(String numero) {
-        numero = Restricoes.restricaoApenasNumeros(numero);
-        Restricoes.restricaoRangeInclusive(numero.length(), 5, 9);
-        return numero;
-    }
-    
-    private int restricoDdd(String ddd) {
-        ddd = Restricoes.restricaoApenasNumeros(ddd);
+    private int restringirDdd(String ddd) throws ForaDeRestricaoException {
+        ddd = new ApenasNumerosRestricao().restringir(ddd);
         int dddAsIntger = Integer.parseInt(ddd);
         return dddAsIntger;
+    }
+    
+    public static Restricao<Integer> getRestricaoDdd() {
+    	return new ConjuntoRestricao<Integer>(
+    			new NumeroPositivoRestricao(),
+    			new IntervaloIntegerRestricao(11, 99));
+    }
+    
+    public static Restricao<String> getRestricaoNumero() {
+    	return new ConjuntoRestricao<String>(
+    			new ApenasNumerosRestricao(),
+    			new LengthRangeInclusiveRestricao(5, 9));
     }
 
 }

@@ -18,6 +18,9 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import org.junit.Test;
+
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -82,7 +85,7 @@ public class TelefoneTest {
      * Test of setDdd method, of class Telefone.
      * Com um DDD inválido menor que o possível.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetDdd3() {
         System.out.println("setDdd3");
         int ddd = 9;
@@ -94,7 +97,7 @@ public class TelefoneTest {
      * Test of setDdd method, of class Telefone.
      * Com um DDD inválido maior que o possível.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetDdd4() {
         System.out.println("setDdd4");
         int ddd = 120;
@@ -106,7 +109,7 @@ public class TelefoneTest {
      * Test of setDdd method, of class Telefone.
      * Com um DDD inválido menor que o possível, mas no limite
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetDdd5() {
         System.out.println("setDdd5");
         int ddd = 10;
@@ -118,7 +121,7 @@ public class TelefoneTest {
      * Test of setDdd method, of class Telefone.
      * Com um DDD inválido maior que o possível, mas no limite
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetDdd6() {
         System.out.println("setDdd6");
         int ddd = 100;
@@ -208,7 +211,7 @@ public class TelefoneTest {
      * Test of setNumero method, of class Telefone.
      * Número inválido com digitos em ecvesso limpo.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero5() {
         System.out.println("setNumero5");
         String numero = "9123456789";
@@ -220,7 +223,7 @@ public class TelefoneTest {
      * Test of setNumero method, of class Telefone.
      * Número inválido com dígitos faltando e limpo.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero6() {
         System.out.println("setNumero6");
         String numero = "1234";
@@ -232,7 +235,7 @@ public class TelefoneTest {
      * Test of setNumero method, of class Telefone.
      * Número inválido com digitos em excesso sujo.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero7() {
         System.out.println("setNumero7");
         String numero = "91 2345-6789"; // isto parece um DDD!!
@@ -244,7 +247,7 @@ public class TelefoneTest {
      * Test of setNumero method, of class Telefone.
      * Número inválido com dígitos faltando e sujo.
      */
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero8() {
         System.out.println("setNumero8");
         String numero = "123-4";

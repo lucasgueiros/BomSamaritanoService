@@ -18,7 +18,10 @@
 package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricoes;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyNullableRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,23 +57,45 @@ public class Nome implements Identificavel {
      * @param nomesDoMeio
      * @param sobrenome ex.: "da Silva", "Gueiros"
      * @param sufixo ex.: "OSB"
+     * @throws ForaDeRestricaoException 
      */
-    public Nome(String prefixo, String primeiroNome, String nomesDoMeio, String sobrenome, String sufixo) {
-        this.primeiroNome = Restricoes.restricaoNotEmpty(primeiroNome);
-        this.sobrenome = Restricoes.restricaoNotEmpty(sobrenome);
-        this.nomesDoMeio = Restricoes.restricaoNotEmptyNullable(nomesDoMeio);
-        this.prefixo = Restricoes.restricaoNotEmptyNullable(prefixo);
-        this.sufixo = Restricoes.restricaoNotEmptyNullable(sufixo);
+    public Nome(String prefixo, String primeiroNome, String nomesDoMeio, String sobrenome, String sufixo) throws ForaDeRestricaoException {
+        this.primeiroNome = this.getRestricaoPrimeiroNome().restringir(primeiroNome);
+        this.sobrenome = this.getRestricaoSobrenome().restringir(sobrenome);
+        this.nomesDoMeio = this.getRestricaoNomesDoMeio().restringir(nomesDoMeio);
+        this.prefixo = this.getRestricaoPrefixo().restringir(prefixo);
+        this.sufixo = this.getRestricaoSufixo().restringir(sufixo);
     }
 
-    /**
+    public static Restricao<String> getRestricaoSufixo() {
+		return new NotEmptyNullableRestricao();
+	}
+
+    public static Restricao<String> getRestricaoPrefixo() {
+		return new NotEmptyNullableRestricao();
+	}
+
+    public static Restricao<String> getRestricaoNomesDoMeio() {
+		return new NotEmptyNullableRestricao();
+	}
+
+    public static Restricao<String> getRestricaoSobrenome() {
+		return new NotEmptyRestricao();
+	}
+
+    public static Restricao<String> getRestricaoPrimeiroNome() {
+		return new NotEmptyRestricao();
+	}
+
+	/**
      * Construtor simplificado. Prefixo e sufixo ficam vazios.
      *
      * @param primeiroNome
      * @param nomesDoMeio
      * @param sobrenome
+	 * @throws ForaDeRestricaoException 
      */
-    public Nome(String primeiroNome, String nomesDoMeio, String sobrenome) {
+    public Nome(String primeiroNome, String nomesDoMeio, String sobrenome) throws ForaDeRestricaoException {
         this(null, primeiroNome, nomesDoMeio, sobrenome, null);
     }
 
@@ -80,8 +105,9 @@ public class Nome implements Identificavel {
      *
      * @param primeiroNome
      * @param sobrenome
+     * @throws ForaDeRestricaoException 
      */
-    public Nome(String primeiroNome, String sobrenome) {
+    public Nome(String primeiroNome, String sobrenome) throws ForaDeRestricaoException {
         this(null, primeiroNome, null, sobrenome, null);
     }
 
@@ -109,9 +135,10 @@ public class Nome implements Identificavel {
      * Set the value of sufixo
      *
      * @param sufixo new value of sufixo
+     * @throws ForaDeRestricaoException 
      */
-    public void setSufixo(String sufixo) {
-        this.sufixo = Restricoes.restricaoNotEmptyNullable(sufixo);
+    public void setSufixo(String sufixo) throws ForaDeRestricaoException {
+        this.sufixo = this.getRestricaoSufixo().restringir(sufixo);
 
     }
 
@@ -128,9 +155,10 @@ public class Nome implements Identificavel {
      * Set the value of sobrenome
      *
      * @param sobrenome new value of sobrenome
+     * @throws ForaDeRestricaoException 
      */
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = Restricoes.restricaoNotEmpty(sobrenome);
+    public void setSobrenome(String sobrenome) throws ForaDeRestricaoException {
+        this.sobrenome = this.getRestricaoSobrenome().restringir(sobrenome);
     }
 
     /**
@@ -146,9 +174,10 @@ public class Nome implements Identificavel {
      * Set the value of nomesDoMeio
      *
      * @param nomesDoMeio new value of nomesDoMeio
+     * @throws ForaDeRestricaoException 
      */
-    public void setNomesDoMeio(String nomesDoMeio) {
-        this.nomesDoMeio = Restricoes.restricaoNotEmptyNullable(nomesDoMeio);
+    public void setNomesDoMeio(String nomesDoMeio) throws ForaDeRestricaoException {
+        this.nomesDoMeio = this.getRestricaoNomesDoMeio().restringir(nomesDoMeio);
     }
 
     /**
@@ -164,9 +193,10 @@ public class Nome implements Identificavel {
      * Set the value of prefixo
      *
      * @param prefixo new value of prefixo
+     * @throws ForaDeRestricaoException 
      */
-    public void setPrefixo(String prefixo) {
-        this.prefixo = Restricoes.restricaoNotEmptyNullable(prefixo);
+    public void setPrefixo(String prefixo) throws ForaDeRestricaoException {
+        this.prefixo = this.getRestricaoPrefixo().restringir(prefixo);
     }
 
     /**
@@ -182,9 +212,10 @@ public class Nome implements Identificavel {
      * Set the value of primeiroNome
      *
      * @param primeiroNome new value of primeiroNome
+     * @throws ForaDeRestricaoException 
      */
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = Restricoes.restricaoNotEmpty(primeiroNome);
+    public void setPrimeiroNome(String primeiroNome) throws ForaDeRestricaoException {
+        this.primeiroNome = this.getRestricaoPrimeiroNome().restringir(primeiroNome);
     }
 
     @Override

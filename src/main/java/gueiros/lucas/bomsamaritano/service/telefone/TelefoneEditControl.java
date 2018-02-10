@@ -19,6 +19,7 @@ package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -64,7 +65,12 @@ public class TelefoneEditControl implements EditControl<Telefone> {
         if(model == null) {
             String ddd = editView.getDddText();
             String numero = editView.getNumeroText();
-            model = new Telefone(ddd,numero);
+            try {
+				model = new Telefone(ddd,numero);
+			} catch (ForaDeRestricaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         return model;
     }

@@ -60,9 +60,9 @@ public class NomeEditView extends EditView {
     public void construirView() {
         setLayout(new GridBagLayout());
         
-        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField());
-        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField());
-        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField());
+        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField(),Nome.getRestricaoPrimeiroNome());
+        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField(),Nome.getRestricaoNomesDoMeio());
+        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField(),Nome.getRestricaoSobrenome());
         
         primeiroNome.adicionarCampoComLabel(1);
         nomesDoMeio.adicionarCampoComLabel(2);

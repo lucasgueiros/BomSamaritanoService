@@ -20,6 +20,8 @@ package gueiros.lucas.bomsamaritano.service.endereco;
 import org.junit.Assert;
 import org.junit.Test;
 
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+
 /**
  *
  * @author lucasgueiros
@@ -34,14 +36,14 @@ public class EnderecoTest {
         Assert.assertEquals(esperado,instance.getLogradouro());
     }
  
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetLogradouro2() {
         String esperado = "";
         Endereco instance = new Endereco();
         instance.setLogradouro(esperado);
     }
   
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetLogradouro3() {
         String esperado = null;
         Endereco instance = new Endereco();
@@ -56,14 +58,14 @@ public class EnderecoTest {
         Assert.assertTrue(instance.getNumero()==12);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero2() {
         int numero = 0;
         Endereco instance = new Endereco();
         instance.setNumero(numero);
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetNumero3() {
         int numero = -10;
         Endereco instance = new Endereco();
@@ -78,14 +80,14 @@ public class EnderecoTest {
         Assert.assertEquals(esperado,instance.getBairro());
     }
     
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetBairro2() {
         String esperado = "";
         Endereco instance = new Endereco();
         instance.setBairro(esperado);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = ForaDeRestricaoException.class)
     public void testSetBairro3() {
         String esperado = null;
         Endereco instance = new Endereco();

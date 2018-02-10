@@ -19,6 +19,7 @@ package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -65,7 +66,12 @@ public class NomeEditControl implements EditControl<Nome> {
     @Override
     public Nome getModel() {
         if(model == null) {
-            model = new Nome(editView.getPrimeiroNomeText(),editView.getNomesDoMeioText(), editView.getSobrenomeText());
+            try {
+				model = new Nome(editView.getPrimeiroNomeText(),editView.getNomesDoMeioText(), editView.getSobrenomeText());
+			} catch (ForaDeRestricaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         return model;
     }
