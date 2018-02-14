@@ -17,10 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ConjuntoRestricaoBuilder;
@@ -49,22 +46,13 @@ public class Telefone implements Identificavel {
 	/**
      * Este atributo representa o código de área.
      */
-    @Column private int ddd = 87;
+    private final int ddd;
     /**
      * Este atributo representa o número mesmo de telefone.
      * Ele está como String para facilitar as verificações e transformações.
      */
-    @Column private String numero;
-    @Id
-    @GeneratedValue
+    private final String numero;
     private Long id;
-
-    /**
-     * Construtor padrão para o JPA.
-     * NÃO UTILIZE!!
-     */
-    protected Telefone() {
-    }
 
     /**
      *
@@ -116,41 +104,12 @@ public class Telefone implements Identificavel {
     }
 
     /**
-     * Set the value of ddd. NÃO USE ISSO!
-     * 
-     * @param ddd
-     * @throws ForaDeRestricaoException 
-     */
-    public void setDdd(int ddd) {
-    	if(restricaoDdd.isVerificado(ddd)) this.ddd = ddd;
-    }
-
-    /**
-     * Set the value of numero.
-     *
-     * @param numero
-     * @throws ForaDeRestricaoException 
-     */
-    public final void setNumero(String numero) {
-        if(restricaoNumero.isVerificado(numero)) this.numero = numero;
-    }
-
-    /**
      *
      * @return
      */
     @Override
     public Long getId() {
         return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

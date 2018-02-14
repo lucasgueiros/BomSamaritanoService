@@ -125,11 +125,4 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 		return ts;
 	}
 
-	@Override
-	public Long adicionarId(T tipo) {
-		// TODO Auto-generated method stub
-		// INSERT INTO persons (lastname,firstname) VALUES ('Smith', 'John') RETURNING id;
-		return 0L;
-	}
-
 }

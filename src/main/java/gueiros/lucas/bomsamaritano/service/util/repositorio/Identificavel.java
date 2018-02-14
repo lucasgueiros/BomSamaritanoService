@@ -30,11 +30,5 @@ public interface Identificavel extends Serializable {
      * @return
      */
     public Long getId();
-
-    /**
-     * Define qual o numero que identifica esse objeto.
-     * @param id
-     */
-    public void setId(Long id);
     
 }

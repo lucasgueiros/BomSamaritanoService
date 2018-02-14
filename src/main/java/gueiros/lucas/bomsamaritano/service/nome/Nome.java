@@ -43,12 +43,6 @@ public class Nome implements Identificavel {
     private Long id;
 
     /**
-     * Construtor vazio para o JPA.
-     */
-    protected Nome() {
-    }
-
-    /**
      * Construtor completo.
      *
      * @param prefixo ex.: "Sr.", "Dom", "Frei", "Pe."
@@ -102,117 +96,12 @@ public class Nome implements Identificavel {
     	this.id = id2;
 	}
 
-	@Column
     private String primeiroNome;
-    @Column
     private String prefixo;
-    @Column
     private String nomesDoMeio;
-    @Column
     private String sobrenome;
-    @Column
     private String sufixo;
 
-    /**
-     * Get the value of sufixo
-     *
-     * @return the value of sufixo
-     */
-    public String getSufixo() {
-        return sufixo;
-    }
-
-    /**
-     * Set the value of sufixo
-     *
-     * @param sufixo new value of sufixo
-     * @throws ForaDeRestricaoException 
-     */
-    public void setSufixo(String sufixo) throws ForaDeRestricaoException {
-    	if(restricaoSufixo.isVerificado(sufixo))
-        this.sufixo = sufixo;
-
-    }
-
-    /**
-     * Get the value of sobrenome
-     *
-     * @return the value of sobrenome
-     */
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    /**
-     * Set the value of sobrenome
-     *
-     * @param sobrenome new value of sobrenome
-     * @throws ForaDeRestricaoException 
-     */
-    public void setSobrenome(String sobrenome) throws ForaDeRestricaoException {
-    	if(restricaoSobrenome.isVerificado(sobrenome))
-        this.sobrenome = sobrenome;
-    }
-
-    /**
-     * Get the value of nomesDoMeio
-     *
-     * @return the value of nomesDoMeio
-     */
-    public String getNomesDoMeio() {
-        return nomesDoMeio;
-    }
-
-    /**
-     * Set the value of nomesDoMeio
-     *
-     * @param nomesDoMeio new value of nomesDoMeio
-     * @throws ForaDeRestricaoException 
-     */
-    public void setNomesDoMeio(String nomesDoMeio) throws ForaDeRestricaoException {
-    	if(restricaoNomesDoMeio.isVerificado(nomesDoMeio))
-    		this.nomesDoMeio = nomesDoMeio;
-    }
-
-    /**
-     * Get the value of prefixo
-     *
-     * @return the value of prefixo
-     */
-    public String getPrefixo() {
-        return prefixo;
-    }
-
-    /**
-     * Set the value of prefixo
-     *
-     * @param prefixo new value of prefixo
-     * @throws ForaDeRestricaoException 
-     */
-    public void setPrefixo(String prefixo) {
-    	if(restricaoPrefixo.isVerificado(prefixo))
-    		this.prefixo = prefixo;
-    }
-
-    /**
-     * Get the value of primeiroNome
-     *
-     * @return the value of primeiroNome
-     */
-    public String getPrimeiroNome() {
-        return primeiroNome;
-    }
-
-    /**
-     * Set the value of primeiroNome
-     *
-     * @param primeiroNome new value of primeiroNome
-     * @throws ForaDeRestricaoException 
-     */
-    public void setPrimeiroNome(String primeiroNome) throws ForaDeRestricaoException {
-    	if(restricaoPrimeiroNome.isVerificado(primeiroNome))
-        	this.primeiroNome = primeiroNome;
-    }
 
     @Override
     public String toString() {
@@ -231,16 +120,81 @@ public class Nome implements Identificavel {
         return nomeCompleto;
     }
 
-    @Override
+    /**
+	 * @return the primeiroNome
+	 */
+	public String getPrimeiroNome() {
+		return primeiroNome;
+	}
+
+	/**
+	 * @param primeiroNome the primeiroNome to set
+	 */
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
+	}
+
+	/**
+	 * @return the prefixo
+	 */
+	public String getPrefixo() {
+		return prefixo;
+	}
+
+	/**
+	 * @param prefixo the prefixo to set
+	 */
+	public void setPrefixo(String prefixo) {
+		this.prefixo = prefixo;
+	}
+
+	/**
+	 * @return the nomesDoMeio
+	 */
+	public String getNomesDoMeio() {
+		return nomesDoMeio;
+	}
+
+	/**
+	 * @param nomesDoMeio the nomesDoMeio to set
+	 */
+	public void setNomesDoMeio(String nomesDoMeio) {
+		this.nomesDoMeio = nomesDoMeio;
+	}
+
+	/**
+	 * @return the sobrenome
+	 */
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	/**
+	 * @param sobrenome the sobrenome to set
+	 */
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	/**
+	 * @return the sufixo
+	 */
+	public String getSufixo() {
+		return sufixo;
+	}
+
+	/**
+	 * @param sufixo the sufixo to set
+	 */
+	public void setSufixo(String sufixo) {
+		this.sufixo = sufixo;
+	}
+
+	@Override
     public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     // STATIC
     public static final Restricao<String> restricaoPrimeiroNome;
     public static final Restricao<String> restricaoSobrenome;

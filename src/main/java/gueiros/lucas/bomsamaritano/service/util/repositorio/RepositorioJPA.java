@@ -129,11 +129,5 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 		manager.close();
 		return aLista;
 	}
-    
-    @Override
-	public Long adicionarId(Tipo tipo) {
-		// TODO Auto-generated method stub
-		return 0L;
-	}
 
 }

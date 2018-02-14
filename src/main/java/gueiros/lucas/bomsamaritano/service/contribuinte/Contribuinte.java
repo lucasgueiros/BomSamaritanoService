@@ -38,22 +38,10 @@ public class Contribuinte implements Identificavel {
 	 * 
 	 */
 	private static final long serialVersionUID = -9220169030512026839L;
-
-	@OneToOne
     private Nome nome;
-
-    @ManyToOne
     private Endereco endereco;
-
-    @ManyToOne
     private Telefone telefone;
-    
-    @Id
-    @GeneratedValue
     private Long id;
-
-    protected Contribuinte() {
-    }
 
     public Contribuinte(Nome nome, Endereco endereco, Telefone telefone) {
         this.nome = nome;
@@ -66,68 +54,52 @@ public class Contribuinte implements Identificavel {
 		this.id = id;
 	}
 
-	/**
-     * Get the value of telefone
-     *
-     * @return the value of telefone
-     */
-    public Telefone getTelefone() {
-        return telefone;
-    }
-
-    /**
-     * Set the value of telefone
-     *
-     * @param telefone new value of telefone
-     */
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
-    }
-
-    /**
-     * Get the value of endereco
-     *
-     * @return the value of endereco
-     */
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * Set the value of endereco
-     *
-     * @param endereco new value of endereco
-     */
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    /**
-     * Get the value of nome
-     *
-     * @return the value of nome
-     */
-    public Nome getNome() {
-        return nome;
-    }
-
-    /**
-     * Set the value of nome
-     *
-     * @param nome new value of nome
-     */
-    public void setNome(Nome nome) {
-        this.nome = nome;
-    }
 
     @Override
     public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
+	/**
+	 * @return the nome
+	 */
+	public Nome getNome() {
+		return nome;
+	}
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(Nome nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * @return the endereco
+	 */
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	/**
+	 * @param endereco the endereco to set
+	 */
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	/**
+	 * @return the telefone
+	 */
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	/**
+	 * @param telefone the telefone to set
+	 */
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
 
 }

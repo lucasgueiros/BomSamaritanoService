@@ -41,7 +41,9 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
     public Tipo adicionar(Tipo tipo) {
         // dê um identificador
         Long id = gerarId();
-        tipo.setId(id);
+        // TODO essa linha de baixo é necessária mas está dando errado depois da remoção dos sets
+        //tipo.setId(id);
+        // precisa de um método para criar o objeto com ID apartir de um sem ID e que seja independete.
         // adicione no mapa.
         tipos.add(tipo);
         return tipo;
@@ -81,10 +83,4 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
         return nextid++;
     }
 
-	@Override
-	public Long adicionarId(Tipo tipo) {
-		// TODO Auto-generated method stub
-		return 0L;
-	}
-    
 }

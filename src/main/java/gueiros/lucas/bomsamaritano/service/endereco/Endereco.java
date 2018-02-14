@@ -42,28 +42,12 @@ public class Endereco implements Identificavel {
 	 */
 	private static final long serialVersionUID = 5713910762879801204L;
 
-	@Column
     private String logradouro;
-
-    @Column
     private int numero;
-
-    @Column
     private String bairro;
-
-    @Column
     private String complemento;
-    
-    @Id
-    @GeneratedValue
     private Long id;
 
-    /**
-     * Construtor vazio para o JPA.
-     */
-    protected Endereco() {
-    }
-    
     /**
      * Construtor principal.
      * @param logradouro
@@ -119,44 +103,6 @@ public class Endereco implements Identificavel {
     }
 
     /**
-     * @param logradouro nome da rua, avenida etc.
-     * @throws ForaDeRestricaoException 
-     */
-    public void setLogradouro(String logradouro) throws ForaDeRestricaoException {
-    	if(restricaoLogradouro.isVerificado(logradouro))
-    		this.logradouro = logradouro;
-    }
-
-    /**
-     * @param numero numero da casa
-     * @throws ForaDeRestricaoException 
-     */
-    public void setNumero(int numero) throws ForaDeRestricaoException {
-    	if(restricaoNumero.isVerificado(numero))
-    		this.numero = numero;
-    }
-
-    /**
-     * @param bairro
-     * @throws ForaDeRestricaoException 
-     */
-    public void setBairro(String bairro) throws ForaDeRestricaoException {
-    	if(restricaoBairro.isVerificado(bairro))
-    		this.bairro = bairro;
-    }
-
-    
-
-	/**
-     * @param complemento apartamento, ponto de referência etc.
-	 * @throws ForaDeRestricaoException 
-     */
-    public void setComplemento(String complemento) throws ForaDeRestricaoException {
-    	if(restricaoComplemento.isVerificado(complemento))
-    		this.complemento = complemento;
-    }
-
-    /**
      * @return id
      */
     @Override
@@ -164,14 +110,6 @@ public class Endereco implements Identificavel {
         return id;
     }
 
-    /**
-     * @param id
-     */
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     @Override
     public String toString() {
         return "Endereco{" + "logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + '}';

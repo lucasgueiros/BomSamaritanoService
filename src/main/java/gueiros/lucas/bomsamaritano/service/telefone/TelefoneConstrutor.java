@@ -49,22 +49,8 @@ public class TelefoneConstrutor extends Construtor<Telefone> {
 
 	@Override
 	public ResultadoConstrucao<Telefone> modificar() {
-		// Primeiro, faca as verificacoes
-		ResultadoVerificacao<Integer> verificacaoDdd = Telefone.restricaoDdd.verificar(this.ddd);
-		ResultadoVerificacao<String> verificacaoNumero = Telefone.restricaoNumero.verificar(this.numero);
-
-		Telefone model = super.getBase();
-		
-		if(verificacaoDdd.isVerificado() && verificacaoNumero.isVerificado()) {
-			model.setDdd(ddd);
-			model.setNumero(numero);
-		}
-		newResultadoConstrucao();
-		setModel(model);
-		addVerificacao("ddd", verificacaoDdd);
-		addVerificacao("numero", verificacaoNumero);
-		return getResultadoConstrucao();
-				
+		// TODO programar
+		return null;
 	}
 
 	@Override
