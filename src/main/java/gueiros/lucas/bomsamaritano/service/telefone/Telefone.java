@@ -92,7 +92,12 @@ public class Telefone implements Identificavel {
     	this.numero = numero;
     }
     
-    /**
+    public Telefone(long id2, int ddd2, String numero2) {
+    	this(ddd2,numero2);
+    	this.id = id2;
+	}
+
+	/**
      * Get the value of ddd
      *
      * @return the value of ddd

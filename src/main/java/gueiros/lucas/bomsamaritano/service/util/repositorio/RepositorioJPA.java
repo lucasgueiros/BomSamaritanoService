@@ -38,7 +38,7 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 	private String nomeDaClasse = null;
 
     @Override
-	public void adicionar(Tipo tipo) {
+	public Tipo adicionar(Tipo tipo) {
 		try {
 			// Recupero o EntityManager que vou usar
 			EntityManager manager = EntityManagerFactoryAbstraction.getInstance().createEntityManager();
@@ -53,6 +53,7 @@ public class RepositorioJPA<Tipo extends Identificavel> implements Repositorio<T
 		} catch (PersistenceException persistenceException) {
 			persistenceException.printStackTrace(); // TODO Trate isso aqui
 		}
+		return tipo; // TODO ISSO TÁ CERTO? NÃO IMPORTA
 	}
 
     @Override

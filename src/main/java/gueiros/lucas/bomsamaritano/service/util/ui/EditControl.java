@@ -17,7 +17,10 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.ui;
 
+import java.util.List;
+
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 
 /**
@@ -47,7 +50,7 @@ public interface EditControl<Tipo extends Identificavel> {
      * Adiciona um objeto ao repositório (persist)
      * @param tipo
      */
-    public void adicionar(Tipo tipo);
+    public Tipo adicionar(Tipo tipo);
 
     /**
      * Qual o nome (String) dessa entidade
@@ -55,4 +58,9 @@ public interface EditControl<Tipo extends Identificavel> {
      */
     public String getEntidade();
     
+    // TODO isso não é trabalho de editcontrol, mas de outro control
+    /**
+     * 
+     */
+    public List<Tipo> recuperar(Filtro<Tipo> filtro);
 }

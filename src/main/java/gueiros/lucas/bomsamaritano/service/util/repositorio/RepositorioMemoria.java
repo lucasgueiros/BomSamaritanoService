@@ -38,12 +38,13 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
     RepositorioMemoria(){}
     
     @Override
-    public void adicionar(Tipo tipo) {
+    public Tipo adicionar(Tipo tipo) {
         // dê um identificador
         Long id = gerarId();
         tipo.setId(id);
         // adicione no mapa.
         tipos.add(tipo);
+        return tipo;
     }
 
     @Override

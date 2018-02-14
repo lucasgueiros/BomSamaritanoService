@@ -72,7 +72,10 @@ public class EnderecoEditView extends EditView {
 		complemento.setRestricao(complementoRestricao);
 		bairro.setRestricao(bairroRestricao);
 		
-		// TODO construir view
+		logradouro.construirView();
+		numero.construirView();
+		complemento.construirView();
+		bairro.construirView();
 		
 		logradouro.adicionarCampoComLabel(1);
 		numero.adicionarCampoComLabel(2);
@@ -128,7 +131,7 @@ public class EnderecoEditView extends EditView {
 		this.bairroRestricao = bairroRestricao;
 	}
 
-	public void setNumeroRestricoa(Restricao<String> numeroRestricoa) {
+	public void setNumeroRestricao(Restricao<String> numeroRestricoa) {
 		this.numeroRestricao = numeroRestricoa;
 	}
 

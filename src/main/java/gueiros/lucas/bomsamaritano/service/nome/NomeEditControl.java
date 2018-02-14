@@ -17,11 +17,12 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import java.util.List;
+
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -82,8 +83,14 @@ public class NomeEditControl implements EditControl<Nome> {
     }
     
     @Override
-    public void adicionar(Nome tipo) {
-        repositorio.adicionar(tipo);
+    public Nome adicionar(Nome tipo) {
+        return repositorio.adicionar(tipo);
     }
+
+	@Override
+	public List<Nome> recuperar(Filtro<Nome> filtro) {
+		return repositorio.recuperar(filtro);
+	}
+
 
 }

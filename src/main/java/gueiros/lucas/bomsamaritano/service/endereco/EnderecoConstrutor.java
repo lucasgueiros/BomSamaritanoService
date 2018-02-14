@@ -10,6 +10,7 @@ public class EnderecoConstrutor extends Construtor<Endereco> {
     private int numero;
     private String bairro;
     private String complemento;
+    private Long id = 0L;
 	
     public EnderecoConstrutor() {}
     
@@ -62,18 +63,27 @@ public class EnderecoConstrutor extends Construtor<Endereco> {
 		ResultadoVerificacao<String> verificacaoBairro = Endereco.restricaoBairro.verificar(bairro);
 		ResultadoVerificacao<String> verificacaoComplemento = Endereco.restricaoComplemento.verificar(complemento);
 		
-		newResultadoConstrucao();
-		setModel(verificacaoLogradouro.isVerificado() 
+		boolean verificado = verificacaoLogradouro.isVerificado() 
 				|| verificacaoBairro.isVerificado() 
 				|| verificacaoNumero.isVerificado()
-				|| verificacaoComplemento.isVerificado() ?
-						new Endereco(logradouro,numero,bairro,complemento) 
-						: null);
+				|| verificacaoComplemento.isVerificado();
+		
+		newResultadoConstrucao();
+		setVerificado(verificado);
+		setModel(verificado ? (id < 1 ?
+								new Endereco(logradouro,numero,bairro,complemento)
+						:		new Endereco(id,logradouro,numero,bairro,complemento))
+						: 		null);
 		addVerificacao("logradouro", verificacaoLogradouro);
 		addVerificacao("numero", verificacaoNumero);
 		addVerificacao("bairro", verificacaoBairro);
 		addVerificacao("complemento", verificacaoComplemento);
 		return getResultadoConstrucao();
+	}
+
+	public EnderecoConstrutor setId(long id) {
+		this.id = id;
+		return this;
 	}
 
 }

@@ -15,6 +15,14 @@ public class ResultadoConstrucao<T> {
 	
 	ResultadoConstrucao(){
 		verificacoes = new HashMap<>();
+		construcoes = new HashMap<>();
+	}
+	
+	ResultadoConstrucao(T model, T base, boolean verificado) {
+		this();
+		this.model = model;
+		this.base = base;
+		this.verificado = verificado;
 	}
 	
 	public ResultadoConstrucao(T t, Map<String, ResultadoVerificacao<?>> verificacoes, boolean verificado) {

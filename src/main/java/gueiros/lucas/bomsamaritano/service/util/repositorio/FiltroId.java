@@ -18,12 +18,12 @@ public class FiltroId<T extends Identificavel> implements Filtro<T> {
 
 	@Override
 	public String getCondicao() {
-		return "when id=?";
+		return "where id=?";
 	}
 
 	@Override
 	public int set(int i, PreparedStatement preparedStatement) throws SQLException {
-		preparedStatement.setLong(i++, id);
+		preparedStatement.setLong(++i, id);
 		return i;
 	}
 

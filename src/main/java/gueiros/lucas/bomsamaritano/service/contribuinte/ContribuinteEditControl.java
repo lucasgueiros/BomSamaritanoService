@@ -17,16 +17,20 @@
  */
 package gueiros.lucas.bomsamaritano.service.contribuinte;
 
+import java.util.List;
+
 import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
 import gueiros.lucas.bomsamaritano.service.endereco.EnderecoEditControl;
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
+import gueiros.lucas.bomsamaritano.service.telefone.TelefoneConstrutor;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -49,19 +53,26 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
             EnderecoEditControl enderecoEditControl, 
             TelefoneEditControl telefoneEditControl, 
             Repositorio<Contribuinte> repositorio) {
+        this(editView,nomeEditControl,enderecoEditControl,telefoneEditControl);
+        this.repositorio = repositorio;
+    }
+
+    private ContribuinteEditControl(ContribuinteEditView editView, 
+            NomeEditControl nomeEditControl, 
+            EnderecoEditControl enderecoEditControl, 
+            TelefoneEditControl telefoneEditControl) {
         this.editView = editView;
         this.nomeEditControl = nomeEditControl;
         this.enderecoEditControl = enderecoEditControl;
         this.telefoneEditControl = telefoneEditControl;
-        this.repositorio = repositorio;
     }
-
+    
     public ContribuinteEditControl() {
         this(new ContribuinteEditView(),
                 new NomeEditControl(),
                 new EnderecoEditControl(),
-                new TelefoneEditControl(),
-                RepositorioFactory.getRepositorio(Contribuinte.class));
+                new TelefoneEditControl());
+        this.repositorio = new RepositorioJDBC<Contribuinte>(new ContribuinteConversor(this));
     }
 
     @Override
@@ -103,19 +114,45 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     }
     
     @Override
-    public void adicionar(Contribuinte tipo) {
+    public Contribuinte adicionar(Contribuinte tipo) {
         // desmebre
         Nome nome = tipo.getNome();
         Telefone telefone = tipo.getTelefone();
         Endereco endereco = tipo.getEndereco();
         
         // mande cada qual ao seu respectivo editcontrol
-        this.nomeEditControl.adicionar(nome);
-        this.enderecoEditControl.adicionar(endereco);
-        this.telefoneEditControl.adicionar(telefone);
+        // e receba de volta o objeto com ID
+        nome = this.nomeEditControl.adicionar(nome);
+        endereco = this.enderecoEditControl.adicionar(endereco);
+        telefone = this.telefoneEditControl.adicionar(telefone);
+        
+        // Agora recire o seu usando os objetos com ID
+        tipo = new ContribuinteConstrutor()
+        .setNome(nome)
+        .setEndereco(endereco)
+        .setTelefone(telefone)
+        .construir() // TODO é bom fazer verificacoes
+        .getModel();
         
         // agora adicione o seu.
-        repositorio.adicionar(tipo);
+        return repositorio.adicionar(tipo);
+    }
+
+	@Override
+	public List<Contribuinte> recuperar(Filtro<Contribuinte> filtro) {
+		return this.repositorio.recuperar(filtro);
+	}
+    
+    List<Nome> recuperarNome(Filtro<Nome> filtro) {
+    	return this.nomeEditControl.recuperar(filtro);
+    }
+    
+    List<Endereco> recuperarEndereco(Filtro<Endereco> filtro) {
+    	return this.enderecoEditControl.recuperar(filtro);
+    }
+    
+    List<Telefone> recuperarTelefone(Filtro<Telefone> filtro) {
+    	return this.telefoneEditControl.recuperar(filtro);
     }
     
 }

@@ -17,10 +17,15 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
+import java.util.List;
+
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.IntegerToStringAdapterRestricao;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -39,7 +44,7 @@ public class EnderecoEditControl implements EditControl<Endereco> {
 	 * Construtor padrão.
 	 */
 	public EnderecoEditControl() {
-		this(new EnderecoEditView(), RepositorioFactory.getRepositorio(Endereco.class));
+		this(new EnderecoEditView(), new RepositorioJDBC<>(new EnderecoConversor()));
 	}
 
 	public EnderecoEditControl(EnderecoEditView editView, Repositorio<Endereco> repositorio) {
@@ -51,6 +56,10 @@ public class EnderecoEditControl implements EditControl<Endereco> {
 	public void iniciar() {
 		// editView.defaultIpadxTextField = defaultIpadxTextField;
 		// editView.defaultLabelSize = defaultLabelSize;
+		editView.setLogradouroRestricao(Endereco.restricaoLogradouro);
+		editView.setNumeroRestricao(new IntegerToStringAdapterRestricao(Endereco.restricaoNumero));
+		editView.setBairroRestricao(Endereco.restricaoBairro);
+		editView.setComplementoRestricao(Endereco.restricaoComplemento);
 		editView.construirView();
 		editView.setVisible(true);
 	}
@@ -80,7 +89,12 @@ public class EnderecoEditControl implements EditControl<Endereco> {
 	}
 
 	@Override
-	public void adicionar(Endereco tipo) {
-		repositorio.adicionar(tipo);
+	public Endereco adicionar(Endereco tipo) {
+		return repositorio.adicionar(tipo);
+	}
+
+	@Override
+	public List<Endereco> recuperar(Filtro<Endereco> filtro) {
+		return this.repositorio.recuperar(filtro);
 	}
 }

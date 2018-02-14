@@ -61,7 +61,12 @@ public class Contribuinte implements Identificavel {
         this.telefone = telefone;
     }
 
-    /**
+    public Contribuinte(long id, Nome nome, Endereco endereco, Telefone telefone) {
+    	this(nome,endereco,telefone);
+		this.id = id;
+	}
+
+	/**
      * Get the value of telefone
      *
      * @return the value of telefone

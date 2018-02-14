@@ -31,7 +31,7 @@ public interface Repositorio <Tipo extends Identificavel> {
      * Armazena um novo objeto.
      * @param tipo
      */
-    public void adicionar(Tipo tipo);
+    public Tipo adicionar(Tipo tipo);
     
     /**
      * Armazena um novo objeto.

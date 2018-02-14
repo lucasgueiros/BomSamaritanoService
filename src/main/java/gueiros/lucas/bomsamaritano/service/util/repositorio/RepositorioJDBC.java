@@ -22,7 +22,7 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 	}
 
 	@Override
-	public void adicionar(T tipo) {
+	public T adicionar(T tipo) {
 		String sql = "insert into " + tabela + " (";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -32,17 +32,26 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 		for (int i = 1; i < conversor.getNumeroColunas(); i++) {
 			sql += ",?";
 		}
-		sql += ");";
+		sql += ") RETURNING id;";
 
 		try {
 			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
 			conversor.adicionarValores(0,preparedStatement,tipo);
-			preparedStatement.executeUpdate();
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				Long id = resultSet.getLong(1);
+				return this.recuperar(new FiltroId<>(id)).get(0);
+			} else {
+				throw new SQLException("resultSet.next()==false");
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(sql);
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -52,7 +61,7 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 
 		// trabalhe o SQL
 		sql = sql + alteracao.getSql() + " ";
-		sql = sql + filtro.getCondicao() + " RETURNING id;";
+		sql = sql + filtro.getCondicao() + " ;"; // RETURNING id;
 
 		try {
 			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
@@ -62,6 +71,7 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println(sql);
 			e.printStackTrace();
 		}
 
@@ -81,15 +91,16 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println(sql);
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public List<T> recuperar(Filtro<T> filtro) {
-		String sql = "select ";
+		String sql = "select id,";
 		sql += conversor.getColunas();
-		sql += "* from " + tabela + " ";
+		sql += " from " + tabela + " ";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		List<T> ts = new LinkedList<>();
@@ -107,6 +118,7 @@ public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println(sql);
 			e.printStackTrace();
 		}
 

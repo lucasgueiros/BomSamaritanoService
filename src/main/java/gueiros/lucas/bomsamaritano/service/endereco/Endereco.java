@@ -85,6 +85,11 @@ public class Endereco implements Identificavel {
         this.complemento = complemento;
     }
 
+	public Endereco(Long id, String logradouro, int numero, String bairro, String complemento) {
+		this(logradouro,numero, bairro,complemento);
+		this.id = id;
+	}
+
 	/**
      * @return logradouro, rua, avenida velc.
      */

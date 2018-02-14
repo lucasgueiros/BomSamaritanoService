@@ -40,8 +40,6 @@ public class Nome implements Identificavel {
 	 * 
 	 */
 	private static final long serialVersionUID = -3214165212749652108L;
-	@Id
-    @GeneratedValue
     private Long id;
 
     /**
@@ -99,7 +97,12 @@ public class Nome implements Identificavel {
         this(null, primeiroNome, null, sobrenome, null);
     }
 
-    @Column
+    public Nome(Long id2, String primeiroNome2, String nomesDoMeio2, String sobrenome2) {
+    	this(primeiroNome2,nomesDoMeio2,sobrenome2);
+    	this.id = id2;
+	}
+
+	@Column
     private String primeiroNome;
     @Column
     private String prefixo;

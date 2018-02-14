@@ -16,7 +16,15 @@ public class NomeConversor implements Conversor<Nome> {
 
 	@Override
 	public Nome getParaObjeto(ResultSet resultSet) throws SQLException {
-		ResultadoConstrucao<Nome> resultadoConstrucao = new NomeConstrutor(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4)).setSufixo(resultSet.getString(0)).setSufixo(resultSet.getString(5)).construir();
+		int i = 0;
+		ResultadoConstrucao<Nome> resultadoConstrucao = new NomeConstrutor()
+				.setId(resultSet.getLong(++i))
+				.setSufixo(resultSet.getString(++i))
+				.setPrimeiroNome(resultSet.getString(++i))
+				.setNomesDoMeio(resultSet.getString(++i))
+				.setSobrenome(resultSet.getString(++i))
+				.setPrefixo(resultSet.getString(++i))
+				.construir();
 		// TODO faca alguma verificacao
 		return resultadoConstrucao.getModel();
 	}
@@ -28,11 +36,11 @@ public class NomeConversor implements Conversor<Nome> {
 
 	@Override
 	public void adicionarValores(int i, PreparedStatement preparedStatement, Nome tipo) throws SQLException {
-		preparedStatement.setString(i+1, tipo.getPrefixo());
-		preparedStatement.setString(i+2, tipo.getPrimeiroNome());
-		preparedStatement.setString(i+3, tipo.getNomesDoMeio());
-		preparedStatement.setString(i+4, tipo.getSobrenome());
-		preparedStatement.setString(i+5, tipo.getSufixo());
+		preparedStatement.setString(++i, tipo.getPrefixo());
+		preparedStatement.setString(++i, tipo.getPrimeiroNome());
+		preparedStatement.setString(++i, tipo.getNomesDoMeio());
+		preparedStatement.setString(++i, tipo.getSobrenome());
+		preparedStatement.setString(++i, tipo.getSufixo());
 	}
 
 	@Override

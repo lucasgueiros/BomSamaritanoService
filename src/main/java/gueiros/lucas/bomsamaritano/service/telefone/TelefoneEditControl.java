@@ -17,9 +17,13 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import java.util.List;
+
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
@@ -39,7 +43,7 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 	 * Construtor padrão.
 	 */
 	public TelefoneEditControl() {
-		this(new TelefoneEditView(), RepositorioFactory.getRepositorio(Telefone.class));
+		this(new TelefoneEditView(), new RepositorioJDBC<>(new TelefoneConversor()));
 	}
 
 	/**
@@ -75,8 +79,13 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 	}
 
 	@Override
-	public void adicionar(Telefone tipo) {
-		repositorio.adicionar(tipo);
+	public Telefone adicionar(Telefone tipo) {
+		return repositorio.adicionar(tipo);
+	}
+
+	@Override
+	public List<Telefone> recuperar(Filtro<Telefone> filtro) {
+		return this.repositorio.recuperar(filtro);
 	}
 
 }

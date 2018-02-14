@@ -38,7 +38,7 @@ import java.awt.event.WindowListener;
 public class BomSamaritanoService {
     
     public static void main(String[] args) {
-        CadastroControl<Nome> control = new CadastroControl<>(new NomeEditControl());
+        CadastroControl<Contribuinte> control = new CadastroControl<>(new ContribuinteEditControl());
         
         JanelaPopup janelaPopup = new JanelaPopup(control.getView(), "Cadastrar Nome");
         janelaPopup.addWindowListener(new WindowListener() {

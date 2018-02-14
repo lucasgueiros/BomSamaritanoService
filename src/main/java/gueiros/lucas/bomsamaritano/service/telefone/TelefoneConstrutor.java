@@ -11,6 +11,7 @@ public class TelefoneConstrutor extends Construtor<Telefone> {
 	// Essa parte da classe serve para criar um novo objeto
 	private int ddd = 87;
 	private String numero;
+	private Long id = 0L;
 
 	public TelefoneConstrutor() {
 	}
@@ -71,14 +72,28 @@ public class TelefoneConstrutor extends Construtor<Telefone> {
 		// Primeiro, faca as verificacoes
 		ResultadoVerificacao<Integer> verificacaoDdd = Telefone.restricaoDdd.verificar(this.ddd);
 		ResultadoVerificacao<String> verificacaoNumero = Telefone.restricaoNumero.verificar(this.numero);
-
+		boolean verificado = verificacaoDdd.isVerificado() && verificacaoNumero.isVerificado();
+		Telefone model = null;
+		
+		if(verificado) {
+			if(id<1L) {
+				model = new Telefone(ddd,numero); 
+			} else {
+				model = new Telefone(id,ddd,numero);
+			}
+		}
+		
+		
 		return super.newResultadoConstrucao()
-				.setModel(
-				verificacaoDdd.isVerificado() && verificacaoNumero.isVerificado() 
-					? new Telefone(ddd, numero) 
-					: null)
+				.setVerificado(verificado)
+				.setModel(model)
 				.addVerificacao("ddd", verificacaoDdd)
 				.addVerificacao("numero", verificacaoNumero)
-				.construir();
+				.getResultadoConstrucao();
+	}
+
+	 TelefoneConstrutor setId(long id) {
+		 this.id = id;
+		 return this;
 	}
 }

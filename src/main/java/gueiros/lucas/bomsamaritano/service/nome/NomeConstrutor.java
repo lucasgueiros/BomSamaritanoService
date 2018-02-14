@@ -9,6 +9,11 @@ public class NomeConstrutor extends Construtor<Nome> {
 	private String primeiroNome;
     private String nomesDoMeio;
     private String sobrenome;
+    private Long id = 0L;
+    
+    public NomeConstrutor() {
+    	// TODO verifique na hora de construir se term os obrigatórios.
+    }
     
 	public NomeConstrutor(String primeiroNome, String nomesDoMeio, String sobrenome) {
 		super();
@@ -55,12 +60,14 @@ public class NomeConstrutor extends Construtor<Nome> {
 		ResultadoVerificacao<String> verificacaoPrimeiroNome = Nome.restricaoNomesDoMeio.verificar(primeiroNome);
 		ResultadoVerificacao<String> verificacaoNomesDoMeio = Nome.restricaoNomesDoMeio.verificar(nomesDoMeio);
 		ResultadoVerificacao<String> verificacaoSobrenome = Nome.restricaoSobrenome.verificar(sobrenome);
-		boolean verificado = verificacaoNomesDoMeio.isVerificado()
-				&& verificacaoPrimeiroNome.isVerificado()
-				&& verificacaoSobrenome.isVerificado();
+		boolean verificado = verificacaoNomesDoMeio.isVerificado()&& verificacaoPrimeiroNome.isVerificado()&& verificacaoSobrenome.isVerificado();
 		newResultadoConstrucao();
-		setModel(
-				verificado ? new Nome(primeiroNome, nomesDoMeio, sobrenome) : null);
+		if(verificado && id<1) {
+			setModel(new Nome(primeiroNome, nomesDoMeio, sobrenome));
+		} else if(verificado) {
+			setModel(new Nome(id,  primeiroNome,nomesDoMeio,sobrenome));
+		}
+		//setModel(verificado ? (id == -1 ?  :) : null);
 		addVerificacao("primeiroNome", verificacaoNomesDoMeio);
 		addVerificacao("nomesDoMeio", verificacaoNomesDoMeio);
 		addVerificacao("sobrenome",verificacaoSobrenome);
@@ -89,7 +96,10 @@ public class NomeConstrutor extends Construtor<Nome> {
 		this.prefixo = prefixo;
 		return this;
 	}
-	
-	
+
+	public NomeConstrutor setId(Long id) {
+		this.id = id;
+		return this;
+	}
 	
 }
