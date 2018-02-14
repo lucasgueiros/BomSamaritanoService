@@ -50,172 +50,172 @@ public class NomeTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetSufixo1() {
-        System.out.println("setSufixo1");
-        String sufixo = "";
-        Nome instance = new Nome();
-        instance.setSufixo(sufixo);
-        assertNull(instance.getSufixo());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetSufixo2() {
-        System.out.println("setSufixo2");
-        String sufixo = "OSB";
-        Nome instance = new Nome();
-        instance.setSufixo(sufixo);
-        assertEquals("OSB",instance.getSufixo());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetSufixo3() {
-        System.out.println("setSufixo3");
-        String sufixo = null;
-        Nome instance = new Nome();
-        instance.setSufixo(sufixo);
-        assertNull(instance.getSufixo());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetPrefixo1() {
-        System.out.println("setPrefixo1");
-        String prefixo = "";
-        Nome instance = new Nome();
-        instance.setPrefixo(prefixo);
-        assertNull(instance.getPrefixo());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetPrefixo2() {
-        System.out.println("setPrefixo2");
-        String prefixo = "Pe.";
-        Nome instance = new Nome();
-        instance.setPrefixo(prefixo);
-        assertEquals("Pe.",instance.getPrefixo());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetPrefixo3() {
-        System.out.println("setPrefixo3");
-        String prefixo = null;
-        Nome instance = new Nome();
-        instance.setPrefixo(prefixo);
-        assertNull(instance.getPrefixo());
-    }
-
-    /**
-     * Test of setSobrenome method, of class Nome.
-     * /
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetSobrenome1() {
-        System.out.println("setSobrenome1");
-        String sobrenome = null;
-        Nome instance = new Nome();
-        instance.setSobrenome(sobrenome);
-    }
-    
-    /**
-     * Test of setSobrenome method, of class Nome.
-     * /
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetSobrenome2() {
-        System.out.println("setSobrenome2");
-        String sobrenome = "";
-        Nome instance = new Nome();
-        instance.setSobrenome(sobrenome);
-    }*/
-
-    /**
-     * Test of setSobrenome method, of class Nome.
-     */
-    @Test
-    public void testSetSobrenome3() {
-        System.out.println("setSobrenome3");
-        String sobrenome = "Gueiros";
-        Nome instance = new Nome();
-        instance.setSobrenome(sobrenome);
-        assertEquals("Gueiros", instance.getSobrenome());
-    }
-    
-    /**
-     * Test of setSobrenome method, of class Nome.
-     * /
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetPrimeiroNome1() {
-        System.out.println("setPrimeiroNome1");
-        String primeiroNome = null;
-        Nome instance = new Nome();
-        instance.setPrimeiroNome(primeiroNome);
-    }
-    
-    /**
-     * Test of setSobrenome method, of class Nome.
-     * /
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetPrimeiroNome2() {
-        System.out.println("setPrimeiroNome2");
-        String primeiroNome = "";
-        Nome instance = new Nome();
-        instance.setPrimeiroNome(primeiroNome);
-    }*/
-
-    /**
-     * Test of setSobrenome method, of class Nome.
-     */
-    @Test
-    public void testSetPrimeiroNome3() {
-        System.out.println("setPrimeiroNome3");
-        String primeiroNome = "Lucas";
-        Nome instance = new Nome();
-        instance.setPrimeiroNome(primeiroNome);
-        assertEquals("Lucas", instance.getPrimeiroNome());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetNomesDoMeio1() {
-        System.out.println("setNomesDoMeio1");
-        String nomesDoMeio = "";
-        Nome instance = new Nome();
-        instance.setNomesDoMeio(nomesDoMeio);
-        assertNull(instance.getNomesDoMeio());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetNomesDoMeio2() {
-        System.out.println("setNomesDoMeio2");
-        String nomesDoMeio = "Dantas de Oliveira";
-        Nome instance = new Nome();
-        instance.setNomesDoMeio(nomesDoMeio);
-        assertEquals("Dantas de Oliveira",instance.getNomesDoMeio());
-    }
-    
-    /**
-     * Test of setSufixo method, of class Nome.
-     */
-    @Test public void testSetNomesDoMeio3() {
-        System.out.println("setSufixo3");
-        String nomesDoMeio = null;
-        Nome instance = new Nome();
-        instance.setNomesDoMeio(nomesDoMeio);
-        assertNull(instance.getNomesDoMeio());
-    }
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetSufixo1() {
+//        System.out.println("setSufixo1");
+//        String sufixo = "";
+//        Nome instance = new Nome();
+//        instance.setSufixo(sufixo);
+//        assertNull(instance.getSufixo());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetSufixo2() {
+//        System.out.println("setSufixo2");
+//        String sufixo = "OSB";
+//        Nome instance = new Nome();
+//        instance.setSufixo(sufixo);
+//        assertEquals("OSB",instance.getSufixo());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetSufixo3() {
+//        System.out.println("setSufixo3");
+//        String sufixo = null;
+//        Nome instance = new Nome();
+//        instance.setSufixo(sufixo);
+//        assertNull(instance.getSufixo());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetPrefixo1() {
+//        System.out.println("setPrefixo1");
+//        String prefixo = "";
+//        Nome instance = new Nome();
+//        instance.setPrefixo(prefixo);
+//        assertNull(instance.getPrefixo());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetPrefixo2() {
+//        System.out.println("setPrefixo2");
+//        String prefixo = "Pe.";
+//        Nome instance = new Nome();
+//        instance.setPrefixo(prefixo);
+//        assertEquals("Pe.",instance.getPrefixo());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetPrefixo3() {
+//        System.out.println("setPrefixo3");
+//        String prefixo = null;
+//        Nome instance = new Nome();
+//        instance.setPrefixo(prefixo);
+//        assertNull(instance.getPrefixo());
+//    }
+//
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     * /
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetSobrenome1() {
+//        System.out.println("setSobrenome1");
+//        String sobrenome = null;
+//        Nome instance = new Nome();
+//        instance.setSobrenome(sobrenome);
+//    }
+//    
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     * /
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetSobrenome2() {
+//        System.out.println("setSobrenome2");
+//        String sobrenome = "";
+//        Nome instance = new Nome();
+//        instance.setSobrenome(sobrenome);
+//    }*/
+//
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     */
+//    @Test
+//    public void testSetSobrenome3() {
+//        System.out.println("setSobrenome3");
+//        String sobrenome = "Gueiros";
+//        Nome instance = new Nome();
+//        instance.setSobrenome(sobrenome);
+//        assertEquals("Gueiros", instance.getSobrenome());
+//    }
+//    
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     * /
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetPrimeiroNome1() {
+//        System.out.println("setPrimeiroNome1");
+//        String primeiroNome = null;
+//        Nome instance = new Nome();
+//        instance.setPrimeiroNome(primeiroNome);
+//    }
+//    
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     * /
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetPrimeiroNome2() {
+//        System.out.println("setPrimeiroNome2");
+//        String primeiroNome = "";
+//        Nome instance = new Nome();
+//        instance.setPrimeiroNome(primeiroNome);
+//    }*/
+//
+//    /**
+//     * Test of setSobrenome method, of class Nome.
+//     */
+//    @Test
+//    public void testSetPrimeiroNome3() {
+//        System.out.println("setPrimeiroNome3");
+//        String primeiroNome = "Lucas";
+//        Nome instance = new Nome();
+//        instance.setPrimeiroNome(primeiroNome);
+//        assertEquals("Lucas", instance.getPrimeiroNome());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetNomesDoMeio1() {
+//        System.out.println("setNomesDoMeio1");
+//        String nomesDoMeio = "";
+//        Nome instance = new Nome();
+//        instance.setNomesDoMeio(nomesDoMeio);
+//        assertNull(instance.getNomesDoMeio());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetNomesDoMeio2() {
+//        System.out.println("setNomesDoMeio2");
+//        String nomesDoMeio = "Dantas de Oliveira";
+//        Nome instance = new Nome();
+//        instance.setNomesDoMeio(nomesDoMeio);
+//        assertEquals("Dantas de Oliveira",instance.getNomesDoMeio());
+//    }
+//    
+//    /**
+//     * Test of setSufixo method, of class Nome.
+//     */
+//    @Test public void testSetNomesDoMeio3() {
+//        System.out.println("setSufixo3");
+//        String nomesDoMeio = null;
+//        Nome instance = new Nome();
+//        instance.setNomesDoMeio(nomesDoMeio);
+//        assertNull(instance.getNomesDoMeio());
+//    }
     
     /**
      * Test of toString method, of class Nome.

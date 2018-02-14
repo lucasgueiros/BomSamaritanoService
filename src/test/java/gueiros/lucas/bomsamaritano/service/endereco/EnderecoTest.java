@@ -28,93 +28,93 @@ import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoExcept
  */
 public class EnderecoTest {
     
-    @Test
-    public void testSetLogradouro1() {
-        String esperado = "Rua Ailton Vilela de Moraes";
-        Endereco instance = new Endereco();
-        instance.setLogradouro(esperado);
-        Assert.assertEquals(esperado,instance.getLogradouro());
-    }
- 
-    /*@Test (expected = ForaDeRestricaoException.class)
-    public void testSetLogradouro2() {
-        String esperado = "";
-        Endereco instance = new Endereco();
-        instance.setLogradouro(esperado);
-    }
-  
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetLogradouro3() {
-        String esperado = null;
-        Endereco instance = new Endereco();
-        instance.setLogradouro(esperado);
-    }*/
-
-    @Test
-    public void testSetNumero1() {
-        int numero = 12;
-        Endereco instance = new Endereco();
-        instance.setNumero(numero);
-        Assert.assertTrue(instance.getNumero()==12);
-    }
-    
-    /*@Test (expected = ForaDeRestricaoException.class)
-    public void testSetNumero2() {
-        int numero = 0;
-        Endereco instance = new Endereco();
-        instance.setNumero(numero);
-    }
-    
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetNumero3() {
-        int numero = -10;
-        Endereco instance = new Endereco();
-        instance.setNumero(numero);
-    }*/
-
-    @Test
-    public void testSetBairro1() {
-        String esperado = "Rosarinho";
-        Endereco instance = new Endereco();
-        instance.setBairro(esperado);
-        Assert.assertEquals(esperado,instance.getBairro());
-    }
-    
-    /*@Test (expected = ForaDeRestricaoException.class)
-    public void testSetBairro2() {
-        String esperado = "";
-        Endereco instance = new Endereco();
-        instance.setBairro(esperado);
-    }
-
-    @Test (expected = ForaDeRestricaoException.class)
-    public void testSetBairro3() {
-        String esperado = null;
-        Endereco instance = new Endereco();
-        instance.setBairro(esperado);
-    }*/
-
-    @Test
-    public void testSetComplemento1() {
-        String esperado = "apto. 502";
-        Endereco instance = new Endereco();
-        instance.setComplemento(esperado);
-        Assert.assertEquals(esperado,instance.getComplemento());
-    }
-    
-    @Test
-    public void testSetComplemento2() {
-        String esperado = "";
-        Endereco instance = new Endereco();
-        instance.setComplemento(esperado);
-        Assert.assertTrue(instance.getComplemento()==null || instance.getComplemento().equals(""));
-    }
-    
-    @Test
-    public void testSetComplemento3() {
-        String esperado = null;
-        Endereco instance = new Endereco();
-        instance.setComplemento(esperado);
-        Assert.assertNull(instance.getComplemento());
-    }
+//    @Test
+//    public void testSetLogradouro1() {
+//        String esperado = "Rua Ailton Vilela de Moraes";
+//        Endereco instance = new Endereco();
+//        instance.setLogradouro(esperado);
+//        Assert.assertEquals(esperado,instance.getLogradouro());
+//    }
+// 
+//    /*@Test (expected = ForaDeRestricaoException.class)
+//    public void testSetLogradouro2() {
+//        String esperado = "";
+//        Endereco instance = new Endereco();
+//        instance.setLogradouro(esperado);
+//    }
+//  
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetLogradouro3() {
+//        String esperado = null;
+//        Endereco instance = new Endereco();
+//        instance.setLogradouro(esperado);
+//    }*/
+//
+//    @Test
+//    public void testSetNumero1() {
+//        int numero = 12;
+//        Endereco instance = new Endereco();
+//        instance.setNumero(numero);
+//        Assert.assertTrue(instance.getNumero()==12);
+//    }
+//    
+//    /*@Test (expected = ForaDeRestricaoException.class)
+//    public void testSetNumero2() {
+//        int numero = 0;
+//        Endereco instance = new Endereco();
+//        instance.setNumero(numero);
+//    }
+//    
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetNumero3() {
+//        int numero = -10;
+//        Endereco instance = new Endereco();
+//        instance.setNumero(numero);
+//    }*/
+//
+//    @Test
+//    public void testSetBairro1() {
+//        String esperado = "Rosarinho";
+//        Endereco instance = new Endereco();
+//        instance.setBairro(esperado);
+//        Assert.assertEquals(esperado,instance.getBairro());
+//    }
+//    
+//    /*@Test (expected = ForaDeRestricaoException.class)
+//    public void testSetBairro2() {
+//        String esperado = "";
+//        Endereco instance = new Endereco();
+//        instance.setBairro(esperado);
+//    }
+//
+//    @Test (expected = ForaDeRestricaoException.class)
+//    public void testSetBairro3() {
+//        String esperado = null;
+//        Endereco instance = new Endereco();
+//        instance.setBairro(esperado);
+//    }*/
+//
+//    @Test
+//    public void testSetComplemento1() {
+//        String esperado = "apto. 502";
+//        Endereco instance = new Endereco();
+//        instance.setComplemento(esperado);
+//        Assert.assertEquals(esperado,instance.getComplemento());
+//    }
+//    
+//    @Test
+//    public void testSetComplemento2() {
+//        String esperado = "";
+//        Endereco instance = new Endereco();
+//        instance.setComplemento(esperado);
+//        Assert.assertTrue(instance.getComplemento()==null || instance.getComplemento().equals(""));
+//    }
+//    
+//    @Test
+//    public void testSetComplemento3() {
+//        String esperado = null;
+//        Endereco instance = new Endereco();
+//        instance.setComplemento(esperado);
+//        Assert.assertNull(instance.getComplemento());
+//    } @T
 }
