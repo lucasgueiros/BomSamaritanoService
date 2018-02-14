@@ -1,8 +1,9 @@
 package gueiros.lucas.bomsamaritano.service.util.construtores;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 
-public abstract class Construtor<T> {
+public abstract class Construtor<T extends Identificavel> implements ConstrutorInterno<T> {
 
 	public abstract ResultadoConstrucao<T> modificar(); // Cria um novo objeto!
 	public abstract ResultadoConstrucao<T> construir();

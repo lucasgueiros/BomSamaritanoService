@@ -28,7 +28,7 @@ import java.util.List;
  * @author lucasgueiros
  * @param <Tipo> o tipo dos objetos a serem guardados.
  */
-public class RepositorioMemoria<Tipo extends Identificavel> implements Repositorio<Tipo>{
+public class RepositorioMemoria<Tipo extends Identificavel<Tipo>> implements Repositorio<Tipo>{
 
     private Long nextid = 1L;
     private List<Tipo> tipos = new LinkedList<>();
@@ -39,12 +39,8 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
     
     @Override
     public Tipo adicionar(Tipo tipo) {
-        // dê um identificador
         Long id = gerarId();
-        // TODO essa linha de baixo é necessária mas está dando errado depois da remoção dos sets
-        //tipo.setId(id);
-        // precisa de um método para criar o objeto com ID apartir de um sem ID e que seja independete.
-        // adicione no mapa.
+        tipo = tipo.getConstrutor().modificar(tipo).setId(id).construir().getModel();
         tipos.add(tipo);
         return tipo;
     }

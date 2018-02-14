@@ -17,10 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;

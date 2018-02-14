@@ -17,16 +17,13 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import javax.persistence.Entity;
+
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NotEmptyRestricao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.SemRestricao;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * Representa um nome pessoal (pessoa física).
@@ -128,24 +125,10 @@ public class Nome implements Identificavel {
 	}
 
 	/**
-	 * @param primeiroNome the primeiroNome to set
-	 */
-	public void setPrimeiroNome(String primeiroNome) {
-		this.primeiroNome = primeiroNome;
-	}
-
-	/**
 	 * @return the prefixo
 	 */
 	public String getPrefixo() {
 		return prefixo;
-	}
-
-	/**
-	 * @param prefixo the prefixo to set
-	 */
-	public void setPrefixo(String prefixo) {
-		this.prefixo = prefixo;
 	}
 
 	/**
@@ -156,13 +139,6 @@ public class Nome implements Identificavel {
 	}
 
 	/**
-	 * @param nomesDoMeio the nomesDoMeio to set
-	 */
-	public void setNomesDoMeio(String nomesDoMeio) {
-		this.nomesDoMeio = nomesDoMeio;
-	}
-
-	/**
 	 * @return the sobrenome
 	 */
 	public String getSobrenome() {
@@ -170,24 +146,10 @@ public class Nome implements Identificavel {
 	}
 
 	/**
-	 * @param sobrenome the sobrenome to set
-	 */
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
-	/**
 	 * @return the sufixo
 	 */
 	public String getSufixo() {
 		return sufixo;
-	}
-
-	/**
-	 * @param sufixo the sufixo to set
-	 */
-	public void setSufixo(String sufixo) {
-		this.sufixo = sufixo;
 	}
 
 	@Override

@@ -3,9 +3,10 @@ package gueiros.lucas.bomsamaritano.service.util.construtores;
 import java.util.HashMap;
 import java.util.Map;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 
-public class ResultadoConstrucao<T> {
+public class ResultadoConstrucao<T extends Identificavel<T>> {
 
 	private T model;
 	private T base;
@@ -18,7 +19,7 @@ public class ResultadoConstrucao<T> {
 		construcoes = new HashMap<>();
 	}
 	
-	ResultadoConstrucao(T model, T base, boolean verificado) {
+	public ResultadoConstrucao(T model, T base, boolean verificado) {
 		this();
 		this.model = model;
 		this.base = base;

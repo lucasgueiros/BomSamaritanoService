@@ -19,16 +19,20 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
 import java.io.Serializable;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
+
 /**
  * Descreve qualquer identidade que possa ser identificada por um número único, id.
  * @author lucasgueiros
  */
-public interface Identificavel extends Serializable {
+public interface Identificavel<T extends Identificavel<T>> extends Serializable {
     
     /**
      * Retorna um número único que identifica esse objeto.
      * @return
      */
     public Long getId();
+    
+    public ConstrutorInterno<T> getConstrutor();
     
 }

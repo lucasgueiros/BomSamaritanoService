@@ -1,6 +1,7 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.Construtor;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
@@ -81,5 +82,17 @@ public class TelefoneConstrutor extends Construtor<Telefone> {
 	 TelefoneConstrutor setId(long id) {
 		 this.id = id;
 		 return this;
+	}
+
+	@Override
+	public ConstrutorInterno<Telefone> setId(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ConstrutorInterno<Telefone> modificar(Telefone tipo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
