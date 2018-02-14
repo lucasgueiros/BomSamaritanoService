@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
@@ -25,64 +26,61 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
  * Conforme o padrão, contola NomeEditView
+ * 
  * @author lucasgueiros
  */
-public class EnderecoEditControl implements EditControl<Endereco>{
+public class EnderecoEditControl implements EditControl<Endereco> {
 
-    private EnderecoEditView editView;
-    private Endereco model;
-    private Repositorio<Endereco> repositorio;
-    
-    /**
-     * Construtor padrão.
-     */
-    public EnderecoEditControl() {
-        this(new EnderecoEditView(),RepositorioFactory.getRepositorio(Endereco.class));
-    }
+	private EnderecoEditView editView;
+	private Endereco model;
+	private Repositorio<Endereco> repositorio;
 
-    public EnderecoEditControl(EnderecoEditView editView, Repositorio<Endereco> repositorio) {
-        this.editView = editView;
-        this.repositorio = repositorio;
-    }
-    
-    @Override
-    public void iniciar() {
-        //editView.defaultIpadxTextField = defaultIpadxTextField;
-        //editView.defaultLabelSize = defaultLabelSize;
-        editView.construirView();
-        editView.setVisible(true);
-    }
+	/**
+	 * Construtor padrão.
+	 */
+	public EnderecoEditControl() {
+		this(new EnderecoEditView(), RepositorioFactory.getRepositorio(Endereco.class));
+	}
 
-    @Override
-    public EditView getEditView() {
-        return editView;
-    }
+	public EnderecoEditControl(EnderecoEditView editView, Repositorio<Endereco> repositorio) {
+		this.editView = editView;
+		this.repositorio = repositorio;
+	}
 
-    @Override
-    public Endereco getModel() {
-        if(model == null) {
-            String logradouro = editView.getLogradouroText();
-            int numero = Integer.parseInt(editView.getNumeroText());
-            String bairro = editView.getBairroText();
-            String complemento = editView.getComplementoText();
-            try {
-				model = new Endereco(logradouro, numero, bairro, complemento);
-			} catch (ForaDeRestricaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        return model;
-    }
+	@Override
+	public void iniciar() {
+		// editView.defaultIpadxTextField = defaultIpadxTextField;
+		// editView.defaultLabelSize = defaultLabelSize;
+		editView.construirView();
+		editView.setVisible(true);
+	}
 
+	@Override
+	public EditView getEditView() {
+		return editView;
+	}
 
-    @Override
-    public String getEntidade() {
-        return "Endereco";
-    }
-    
-    @Override
-    public void adicionar(Endereco tipo) {
-        repositorio.adicionar(tipo);
-    }
+	@Override
+	public ResultadoConstrucao<Endereco> getResultadoConstrucao() {
+		String logradouro = editView.getLogradouroText();
+		int numero = Integer.parseInt(editView.getNumeroText());
+		String bairro = editView.getBairroText();
+		String complemento = editView.getComplementoText();
+
+		return new EnderecoConstrutor()
+				.setLogradouro(logradouro)
+				.setBairro(bairro)
+				.setNumero(numero)
+				.setComplemento(complemento).construir();
+	}
+
+	@Override
+	public String getEntidade() {
+		return "Endereco";
+	}
+
+	@Override
+	public void adicionar(Endereco tipo) {
+		repositorio.adicionar(tipo);
+	}
 }

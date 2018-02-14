@@ -62,7 +62,7 @@ public class EnderecoEditControlTest {
         when(editView.getBairroText()).thenReturn("bairro");
         when(editView.getNumeroText()).thenReturn("321");
         when(editView.getComplementoText()).thenReturn("Complemento");
-        Endereco endereco = editControl.getModel();
+        Endereco endereco = editControl.getResultadoConstrucao().getModel();
         assertEquals("logradouro", endereco.getLogradouro());
         assertEquals("bairro", endereco.getBairro());
         assertEquals(321, endereco.getNumero());

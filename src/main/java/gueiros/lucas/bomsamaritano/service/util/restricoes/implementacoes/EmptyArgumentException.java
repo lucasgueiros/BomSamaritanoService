@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.bomsamaritano.service.util.restricoes;
+package gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes;
 
 /**
  * Indica que um argumento é NULL ou, caso seja uma String, é uma String vazia.

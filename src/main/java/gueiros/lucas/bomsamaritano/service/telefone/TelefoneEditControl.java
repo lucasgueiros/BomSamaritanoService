@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.telefone;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
@@ -24,65 +25,58 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
 /**
- * Seguindo o padrão determinado, este controlador é responsável por TelefoneEditView.
+ * Seguindo o padrão determinado, este controlador é responsável por
+ * TelefoneEditView.
+ * 
  * @author lucasgueiros
  */
 public class TelefoneEditControl implements EditControl<Telefone> {
 
-    private TelefoneEditView editView;
-    private Telefone model;
-    private Repositorio<Telefone> repositorio;
+	private TelefoneEditView editView;
+	private Repositorio<Telefone> repositorio;
 
-    /**
-     * Construtor padrão.
-     */
-    public TelefoneEditControl() {
-        this(new TelefoneEditView(), RepositorioFactory.getRepositorio(Telefone.class));
-    }
-    
-    /**
-     * Construtor alternativo
-     */
-    TelefoneEditControl(TelefoneEditView editView,Repositorio<Telefone> repositorio) {
-        this.editView = editView;
-        this.repositorio = repositorio;
-    }
-    
-    @Override
-    public void iniciar() {
-        //editView.defaultLabelSize = defaultLabelSize;
-        editView.construirView();
-        editView.setVisible(true);
-    }
+	/**
+	 * Construtor padrão.
+	 */
+	public TelefoneEditControl() {
+		this(new TelefoneEditView(), RepositorioFactory.getRepositorio(Telefone.class));
+	}
 
-    @Override
-    public EditView getEditView() {
-        return editView;
-    }
+	/**
+	 * Construtor alternativo
+	 */
+	TelefoneEditControl(TelefoneEditView editView, Repositorio<Telefone> repositorio) {
+		this.editView = editView;
+		this.repositorio = repositorio;
+	}
 
-    @Override
-    public Telefone getModel() {
-        if(model == null) {
-            String ddd = editView.getDddText();
-            String numero = editView.getNumeroText();
-            try {
-				model = new Telefone(ddd,numero);
-			} catch (ForaDeRestricaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        return model;
-    }
+	@Override
+	public void iniciar() {
+		// editView.defaultLabelSize = defaultLabelSize;
+		editView.construirView();
+		editView.setVisible(true);
+	}
 
-    @Override
-    public String getEntidade() {
-        return "Telefone";
-    }
-    
-    @Override
-    public void adicionar(Telefone tipo) {
-        repositorio.adicionar(tipo);
-    }
-    
+	@Override
+	public EditView getEditView() {
+		return editView;
+	}
+
+	@Override
+	public ResultadoConstrucao<Telefone> getResultadoConstrucao() {
+		String ddd = editView.getDddText();
+		String numero = editView.getNumeroText();
+		return new TelefoneConstrutor().setDdd(ddd).setNumero(numero).construir();
+	}
+
+	@Override
+	public String getEntidade() {
+		return "Telefone";
+	}
+
+	@Override
+	public void adicionar(Telefone tipo) {
+		repositorio.adicionar(tipo);
+	}
+
 }

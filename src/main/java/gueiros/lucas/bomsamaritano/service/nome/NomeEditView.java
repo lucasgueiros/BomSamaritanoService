@@ -46,6 +46,7 @@ public class NomeEditView extends EditView {
      * Creates new form NomeCadastro
      */
     NomeEditView() {
+    	super.setDefaultIpadxTextField(220); // TODO padronizar e ver nos outros EditView
     }
 
     public void setLabelSize(int size) {
@@ -59,9 +60,13 @@ public class NomeEditView extends EditView {
     public void construirView() {
         setLayout(new GridBagLayout());
         
-        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField());
-        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField());
-        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField());
+        primeiroNome = new CampoComLabel(this, "Primeiro Nome", true, super.getDefaultIpadxTextField()); // TODO tirar string
+        nomesDoMeio = new CampoComLabel(this, "Nomes do meio", false, super.getDefaultIpadxTextField()); // TODO tirar string
+        sobrenome = new CampoComLabel(this, "Sobrenome", true, super.getDefaultIpadxTextField()); // TODO tirar string
+        
+        primeiroNome.setRestricao(primeiroNomeRestricao);
+        nomesDoMeio.setRestricao(nomesDoMeioRestricao);
+        sobrenome.setRestricao(sobrenomeRestricao);
         
         primeiroNome.construirView();
         nomesDoMeio.construirView();
@@ -88,15 +93,20 @@ public class NomeEditView extends EditView {
         return CampoComLabel.getMelhorLabelSize(primeiroNome,nomesDoMeio,sobrenome);
     }
     
-    public void setPrimeiroNomeRestricao(Restricao<String> restricao) {
-    	this.primeiroNome.setRestricao(restricao);
-    }
+    private Restricao<String> primeiroNomeRestricao;
+    private Restricao<String> sobrenomeRestricao;
+    private Restricao<String> nomesDoMeioRestricao;
+
+	public void setPrimeiroNomeRestricao(Restricao<String> primeiroNomeRestricao) {
+		this.primeiroNomeRestricao = primeiroNomeRestricao;
+	}
+
+	public void setSobrenomeRestricao(Restricao<String> sobrenomeRestricao) {
+		this.sobrenomeRestricao = sobrenomeRestricao;
+	}
+
+	public void setNomesDoMeioRestricao(Restricao<String> nomesDoMeioRestricao) {
+		this.nomesDoMeioRestricao = nomesDoMeioRestricao;
+	}
     
-    public void setSobrenomeRestricao(Restricao<String> restricao) {
-    	this.sobrenome.setRestricao(restricao);
-    }
-    
-    public void setNomesDoMeioRestricao(Restricao<String> restricao) {
-    	this.nomesDoMeio.setRestricao(restricao);
-    }
 }

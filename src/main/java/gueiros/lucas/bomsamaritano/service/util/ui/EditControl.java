@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.ui;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 
 /**
@@ -40,7 +41,7 @@ public interface EditControl<Tipo extends Identificavel> {
      * Retorna o objeto construído ou modificado.
      * @return uma entidade
      */
-    public Tipo getModel();
+    public ResultadoConstrucao<Tipo> getResultadoConstrucao();
     
     /**
      * Adiciona um objeto ao repositório (persist)

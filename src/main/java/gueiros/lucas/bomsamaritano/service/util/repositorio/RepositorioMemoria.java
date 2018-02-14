@@ -79,5 +79,11 @@ public class RepositorioMemoria<Tipo extends Identificavel> implements Repositor
     private Long gerarId() {
         return nextid++;
     }
+
+	@Override
+	public Long adicionarId(Tipo tipo) {
+		// TODO Auto-generated method stub
+		return 0L;
+	}
     
 }

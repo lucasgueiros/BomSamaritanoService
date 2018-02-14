@@ -23,6 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!-- entidade mapeada -->
     <class>gueiros.gueiros.lucas.associacaobomsamaritano.contribuinte.Contribuinte</class>
+    <class>gueiros.gueiros.lucas.associacaobomsamaritano.nome.Nome</class>
+    <class>gueiros.gueiros.lucas.associacaobomsamaritano.endereco.Endereco</class>
+    <class>gueiros.gueiros.lucas.associacaobomsamaritano.telefone.Telefone</class>
     <properties>
       <!-- dados da conexao -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

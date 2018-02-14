@@ -17,8 +17,10 @@
  */
 package gueiros.lucas.bomsamaritano.service.nome;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
@@ -37,7 +39,7 @@ public class NomeEditControl implements EditControl<Nome> {
      * Construtor padrão.
      */
     public NomeEditControl() {
-        this(new NomeEditView(),RepositorioFactory.getRepositorio(Nome.class));
+        this(new NomeEditView(),new RepositorioJDBC<>(new NomeConversor()));
     }
     
     /**
@@ -52,9 +54,9 @@ public class NomeEditControl implements EditControl<Nome> {
     
     @Override
     public void iniciar() {
-    	this.editView.setPrimeiroNomeRestricao(Nome.getRestricaoPrimeiroNome());
-    	this.editView.setNomesDoMeioRestricao(Nome.getRestricaoNomesDoMeio());
-    	this.editView.setSobrenomeRestricao(Nome.getRestricaoSobrenome());
+    	this.editView.setPrimeiroNomeRestricao(Nome.restricaoPrimeiroNome);
+    	this.editView.setNomesDoMeioRestricao(Nome.restricaoNomesDoMeio);
+    	this.editView.setSobrenomeRestricao(Nome.restricaoSobrenome);
     	
         this.editView.construirView();
         this.editView.setVisible(true);
@@ -66,24 +68,12 @@ public class NomeEditControl implements EditControl<Nome> {
     }
 
     @Override
-    public Nome getModel() {
-        if(model == null) {
-        	
-        	
-        	// Primeiro verifique se as condições são ideais
-        	if(Nome.getRestricaoPrimeiroNome().verificar(editView.getPrimeiroNomeText())) {
-        		
-        	}
-        	
-        	// Só vai dar errado se tiver algo realmente muito errado!
-            try {
-				model = new Nome(editView.getPrimeiroNomeText(),editView.getNomesDoMeioText(), editView.getSobrenomeText());
-			} catch (ForaDeRestricaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        return model;
+    public ResultadoConstrucao<Nome> getResultadoConstrucao() {
+    	String primeiroNome = editView.getPrimeiroNomeText();
+    	String nomesDoMeio = editView.getNomesDoMeioText();
+    	String sobrenome = editView.getSobrenomeText();
+        return new NomeConstrutor(primeiroNome,nomesDoMeio,sobrenome)
+        		.construir();
     }
 
     @Override

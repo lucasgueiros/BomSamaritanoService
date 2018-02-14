@@ -1,0 +1,84 @@
+package gueiros.lucas.bomsamaritano.service.telefone;
+
+import gueiros.lucas.bomsamaritano.service.util.construtores.Construtor;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.ApenasNumerosRestritor;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.restritores.ImpossivelRestringirException;
+
+public class TelefoneConstrutor extends Construtor<Telefone> {
+	// Essa parte da classe serve para criar um novo objeto
+	private int ddd = 87;
+	private String numero;
+
+	public TelefoneConstrutor() {
+	}
+
+	public TelefoneConstrutor setDdd(int ddd) {
+		this.ddd = ddd;
+		return this;
+	}
+
+	public TelefoneConstrutor setNumero(String numero) {
+		this.numero = numero;
+		return this;
+	}
+
+	// Essa parte da classe serve para modificar um objeto existente
+	public TelefoneConstrutor(Telefone telefone) {
+		super.setBase(telefone);
+	}
+
+	// Restrigindo
+	public TelefoneConstrutor setDdd(String dddAsString) throws ForaDeRestricaoException {
+		int ddd = restringirDdd(dddAsString);
+		setDdd(ddd);
+		return this;
+	}
+
+	private int restringirDdd(String ddd) throws ImpossivelRestringirException {
+		ddd = new ApenasNumerosRestritor().retringir(ddd);
+		int dddAsIntger = Integer.parseInt(ddd);
+		return dddAsIntger;
+	}
+
+	private boolean isDddModificado;
+	private boolean isNumeroModificado;
+
+	@Override
+	public ResultadoConstrucao<Telefone> modificar() {
+		// Primeiro, faca as verificacoes
+		ResultadoVerificacao<Integer> verificacaoDdd = Telefone.restricaoDdd.verificar(this.ddd);
+		ResultadoVerificacao<String> verificacaoNumero = Telefone.restricaoNumero.verificar(this.numero);
+
+		Telefone model = super.getBase();
+		
+		if(verificacaoDdd.isVerificado() && verificacaoNumero.isVerificado()) {
+			model.setDdd(ddd);
+			model.setNumero(numero);
+		}
+		newResultadoConstrucao();
+		setModel(model);
+		addVerificacao("ddd", verificacaoDdd);
+		addVerificacao("numero", verificacaoNumero);
+		return getResultadoConstrucao();
+				
+	}
+
+	@Override
+	public ResultadoConstrucao<Telefone> construir() {
+		// Primeiro, faca as verificacoes
+		ResultadoVerificacao<Integer> verificacaoDdd = Telefone.restricaoDdd.verificar(this.ddd);
+		ResultadoVerificacao<String> verificacaoNumero = Telefone.restricaoNumero.verificar(this.numero);
+
+		return super.newResultadoConstrucao()
+				.setModel(
+				verificacaoDdd.isVerificado() && verificacaoNumero.isVerificado() 
+					? new Telefone(ddd, numero) 
+					: null)
+				.addVerificacao("ddd", verificacaoDdd)
+				.addVerificacao("numero", verificacaoNumero)
+				.construir();
+	}
+}

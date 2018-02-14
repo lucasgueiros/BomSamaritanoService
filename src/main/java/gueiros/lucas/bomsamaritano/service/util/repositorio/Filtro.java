@@ -17,6 +17,9 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  * Esta classe serve para realizar consultas.
  * 
@@ -33,4 +36,12 @@ public interface Filtro<Tipo> {
      * @return true se deve ser incluido.
      */
     public boolean filtrar(Tipo t);
+    
+    /**
+     * Retorna um código SQL  que filtra os objetos. É um clásula WHEN.
+     * @return
+     */
+    public String getCondicao();
+
+	public int set(int i, PreparedStatement preparedStatement) throws SQLException;
 }

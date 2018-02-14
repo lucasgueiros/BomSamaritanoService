@@ -67,6 +67,13 @@ public class EnderecoEditView extends EditView {
 		complemento = new CampoComLabel(this, "Complemento", true, super.getDefaultIpadxTextField());
 		bairro = new CampoComLabel(this, "Bairro", true, super.getDefaultIpadxTextField());
 		
+		logradouro.setRestricao(logradouroRestricao);
+		numero.setRestricao(numeroRestricao);
+		complemento.setRestricao(complementoRestricao);
+		bairro.setRestricao(bairroRestricao);
+		
+		// TODO construir view
+		
 		logradouro.adicionarCampoComLabel(1);
 		numero.adicionarCampoComLabel(2);
 		complemento.adicionarCampoComLabel(3);
@@ -108,20 +115,26 @@ public class EnderecoEditView extends EditView {
 		add(Box.createHorizontalStrut(defaultLabelSize), constraints); // TODO colocar padrao
 	}
 
-	public void setLogradouroRestricao(Restricao<String> restricao) {
-		this.logradouro.setRestricao(restricao);
+	private Restricao<String> logradouroRestricao;
+	private Restricao<String> bairroRestricao;
+	private Restricao<String> numeroRestricao;
+	private Restricao<String> complementoRestricao;
+
+	public void setLogradouroRestricao(Restricao<String> logradouroRestricao) {
+		this.logradouroRestricao = logradouroRestricao;
+	}
+
+	public void setBairroRestricao(Restricao<String> bairroRestricao) {
+		this.bairroRestricao = bairroRestricao;
+	}
+
+	public void setNumeroRestricoa(Restricao<String> numeroRestricoa) {
+		this.numeroRestricao = numeroRestricoa;
+	}
+
+	public void setComplementoRestricao(Restricao<String> complementoRestricao) {
+		this.complementoRestricao = complementoRestricao;
 	}
 	
-	public void setBairroRestricao(Restricao<String> restricao) {
-		this.bairro.setRestricao(restricao);
-	}
-	
-	public void setNumeroRestricao(Restricao<String> restricao) {
-		this.numero.setRestricao(restricao);
-	}
-	
-	public void setComplementoRestricao(Restricao<String> restricao) {
-		this.complemento.setRestricao(restricao);
-	}
 	
 }

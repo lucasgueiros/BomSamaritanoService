@@ -19,9 +19,10 @@ package gueiros.lucas.bomsamaritano.service.nome;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyNullableRestricao;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyRestricao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NotEmptyRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.SemRestricao;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,32 +61,19 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public Nome(String prefixo, String primeiroNome, String nomesDoMeio, String sobrenome, String sufixo) throws ForaDeRestricaoException {
-        this.primeiroNome = getRestricaoPrimeiroNome().restringir(primeiroNome);
-        this.sobrenome = getRestricaoSobrenome().restringir(sobrenome);
-        this.nomesDoMeio = getRestricaoNomesDoMeio().restringir(nomesDoMeio);
-        this.prefixo = getRestricaoPrefixo().restringir(prefixo);
-        this.sufixo = getRestricaoSufixo().restringir(sufixo);
+    	if(!restricaoPrimeiroNome.isVerificado(primeiroNome) ||
+    			!restricaoPrefixo.isVerificado(prefixo) ||
+    			!restricaoNomesDoMeio.isVerificado(nomesDoMeio) ||
+    			!restricaoSobrenome.isVerificado(sobrenome) ||
+    			!restricaoSufixo.isVerificado(sufixo)) {
+    		throw new ForaDeRestricaoException();
+    	}
+        this.primeiroNome = primeiroNome;
+        this.sobrenome = sobrenome;
+        this.nomesDoMeio = nomesDoMeio;
+        this.prefixo = prefixo;
+        this.sufixo = sufixo;
     }
-
-    public static Restricao<String> getRestricaoSufixo() {
-		return new NotEmptyNullableRestricao();
-	}
-
-    public static Restricao<String> getRestricaoPrefixo() {
-		return new NotEmptyNullableRestricao();
-	}
-
-    public static Restricao<String> getRestricaoNomesDoMeio() {
-		return new NotEmptyNullableRestricao();
-	}
-
-    public static Restricao<String> getRestricaoSobrenome() {
-		return new NotEmptyRestricao();
-	}
-
-    public static Restricao<String> getRestricaoPrimeiroNome() {
-		return new NotEmptyRestricao();
-	}
 
 	/**
      * Construtor simplificado. Prefixo e sufixo ficam vazios.
@@ -138,7 +126,8 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setSufixo(String sufixo) throws ForaDeRestricaoException {
-        this.sufixo = getRestricaoSufixo().restringir(sufixo);
+    	if(restricaoSufixo.isVerificado(sufixo))
+        this.sufixo = sufixo;
 
     }
 
@@ -158,7 +147,8 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setSobrenome(String sobrenome) throws ForaDeRestricaoException {
-        this.sobrenome = getRestricaoSobrenome().restringir(sobrenome);
+    	if(restricaoSobrenome.isVerificado(sobrenome))
+        this.sobrenome = sobrenome;
     }
 
     /**
@@ -177,7 +167,8 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setNomesDoMeio(String nomesDoMeio) throws ForaDeRestricaoException {
-        this.nomesDoMeio = getRestricaoNomesDoMeio().restringir(nomesDoMeio);
+    	if(restricaoNomesDoMeio.isVerificado(nomesDoMeio))
+    		this.nomesDoMeio = nomesDoMeio;
     }
 
     /**
@@ -195,8 +186,9 @@ public class Nome implements Identificavel {
      * @param prefixo new value of prefixo
      * @throws ForaDeRestricaoException 
      */
-    public void setPrefixo(String prefixo) throws ForaDeRestricaoException {
-        this.prefixo = getRestricaoPrefixo().restringir(prefixo);
+    public void setPrefixo(String prefixo) {
+    	if(restricaoPrefixo.isVerificado(prefixo))
+    		this.prefixo = prefixo;
     }
 
     /**
@@ -215,7 +207,8 @@ public class Nome implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setPrimeiroNome(String primeiroNome) throws ForaDeRestricaoException {
-        this.primeiroNome = getRestricaoPrimeiroNome().restringir(primeiroNome);
+    	if(restricaoPrimeiroNome.isVerificado(primeiroNome))
+        	this.primeiroNome = primeiroNome;
     }
 
     @Override
@@ -243,6 +236,18 @@ public class Nome implements Identificavel {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    // STATIC
+    public static final Restricao<String> restricaoPrimeiroNome;
+    public static final Restricao<String> restricaoSobrenome;
+    public static final Restricao<String> restricaoNomesDoMeio;
+    public static final Restricao<String> restricaoPrefixo;
+    public static final Restricao<String> restricaoSufixo;
+    
+    static {
+    	restricaoPrimeiroNome = restricaoSobrenome = new NotEmptyRestricao();
+    	restricaoPrefixo = restricaoSufixo = restricaoNomesDoMeio = new SemRestricao<>();
     }
 
 }

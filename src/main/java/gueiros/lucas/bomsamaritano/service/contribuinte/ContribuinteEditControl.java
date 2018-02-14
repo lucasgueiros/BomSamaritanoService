@@ -23,8 +23,10 @@ import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioFactory;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -83,15 +85,16 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     }
 
     @Override
-    public Contribuinte getModel() {
-        if(model == null) {
-            Nome nome = nomeEditControl.getModel();
-            Endereco endereco = enderecoEditControl.getModel();
-            Telefone telefone = telefoneEditControl.getModel();
+    public ResultadoConstrucao<Contribuinte> getResultadoConstrucao() {
+        ResultadoConstrucao<Nome> nome = nomeEditControl.getResultadoConstrucao();
+        ResultadoConstrucao<Endereco> endereco = enderecoEditControl.getResultadoConstrucao();
+            ResultadoConstrucao<Telefone> telefone = telefoneEditControl.getResultadoConstrucao();
         
-            model = new Contribuinte(nome, endereco, telefone);
-        }
-        return model;
+        return new ContribuinteConstrutor()
+        		.setNome(nome)
+        		.setEndereco(endereco)
+        		.setTelefone(telefone)
+        		.construir();
     }
 
     @Override

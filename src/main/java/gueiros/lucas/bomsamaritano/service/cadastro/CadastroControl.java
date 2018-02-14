@@ -23,6 +23,8 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 
 import java.awt.event.ActionEvent;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -54,9 +56,17 @@ public class CadastroControl<Tipo extends Identificavel> {
     }
     
     private void cadastrarAction() {
-        Tipo model = editControl.getModel();
-        editControl.adicionar(model);
-        lancador.enviarEvento(new CadastroEvento("Objeto Cadastrado"));
+    	if(!editControl.getResultadoConstrucao().isVerificado()) {
+    		JOptionPane.showMessageDialog(view, "Deu errado");
+    		System.out.println(editControl.getResultadoConstrucao());
+    		// TODO melhorar
+    		// TODO tome outras providências
+    	} else {
+    		Tipo model = editControl.getResultadoConstrucao().getModel();
+    		editControl.adicionar(model);
+    		lancador.enviarEvento(new CadastroEvento("Objeto Cadastrado"));
+    		JOptionPane.showMessageDialog(view, "Deu certo");
+    	}
     }
 
     public JPanel getView(){

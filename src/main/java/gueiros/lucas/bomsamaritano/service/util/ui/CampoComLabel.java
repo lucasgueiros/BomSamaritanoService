@@ -66,8 +66,8 @@ public class CampoComLabel {
 		this.restricao = restricao;
 	}
 
-	private GridBagConstraints labelConstraints;
-	private GridBagConstraints fieldConstraints;
+	private GridBagConstraints labelConstraints = getDefault();
+	private GridBagConstraints fieldConstraints = getDefault();
 
 	public CampoComLabel(JPanel superJPanel, String campo, boolean obrigatorio, int defaultIpadxTextField) {
 		this.superJPanel = superJPanel;

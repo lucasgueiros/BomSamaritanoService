@@ -17,18 +17,17 @@
  */
 package gueiros.lucas.bomsamaritano.service.endereco;
 
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ApenasNumerosRestricao;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyNullableRestricao;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.NotEmptyRestricao;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.NumeroPositivoRestricao;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NotEmptyRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NumeroPositivoRestricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.SemRestricao;
 
 /**
  * Descreve um endereço.
@@ -74,10 +73,16 @@ public class Endereco implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public Endereco(String logradouro, int numero, String bairro, String complemento) throws ForaDeRestricaoException {
-        this.logradouro = getRestricaoLogradouro().restringir(logradouro);
-        this.numero = getRestricaoNumero().restringir(numero);
-        this.bairro = getRestricaoBairro().restringir(bairro);
-        this.complemento = getRestricaoComplemento().restringir(complemento);
+    	if(!restricaoBairro.isVerificado(bairro)
+    			|| !restricaoComplemento.isVerificado(complemento)
+    			|| !restricaoLogradouro.isVerificado(logradouro)
+    			|| !restricaoNumero.isVerificado(numero) ) {
+    		throw new ForaDeRestricaoException();
+    	}
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.complemento = complemento;
     }
 
 	/**
@@ -113,7 +118,8 @@ public class Endereco implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setLogradouro(String logradouro) throws ForaDeRestricaoException {
-        this.logradouro = getRestricaoLogradouro().restringir(logradouro);
+    	if(restricaoLogradouro.isVerificado(logradouro))
+    		this.logradouro = logradouro;
     }
 
     /**
@@ -121,7 +127,8 @@ public class Endereco implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setNumero(int numero) throws ForaDeRestricaoException {
-        this.numero = getRestricaoNumero().restringir(numero);
+    	if(restricaoNumero.isVerificado(numero))
+    		this.numero = numero;
     }
 
     /**
@@ -129,7 +136,8 @@ public class Endereco implements Identificavel {
      * @throws ForaDeRestricaoException 
      */
     public void setBairro(String bairro) throws ForaDeRestricaoException {
-        this.bairro = getRestricaoBairro().restringir(bairro);
+    	if(restricaoBairro.isVerificado(bairro))
+    		this.bairro = bairro;
     }
 
     
@@ -139,7 +147,8 @@ public class Endereco implements Identificavel {
 	 * @throws ForaDeRestricaoException 
      */
     public void setComplemento(String complemento) throws ForaDeRestricaoException {
-        this.complemento = getRestricaoComplemento().restringir(complemento);
+    	if(restricaoComplemento.isVerificado(complemento))
+    		this.complemento = complemento;
     }
 
     /**
@@ -164,24 +173,9 @@ public class Endereco implements Identificavel {
     }
     
     // Restrições
-    public static Restricao<String> getRestricaoLogradouro(){
-    	return new NotEmptyRestricao();
-    }
-
-    public static Restricao<String> getRestricaoComplemento() {
-		return new NotEmptyNullableRestricao();
-	}
-
-    public static Restricao<Integer> getRestricaoNumero() {
-		return new NumeroPositivoRestricao();
-	}
-    
-    public static Restricao<String> getRestricaoNumeroAsString(){
-    	return new ApenasNumerosRestricao();
-    }
-	
-    public static Restricao<String> getRestricaoBairro() {
-		return new NotEmptyRestricao();
-	}
+    public static final Restricao<String> restricaoLogradouro = new NotEmptyRestricao();
+    public static final Restricao<String> restricaoBairro = new NotEmptyRestricao();
+    public static final Restricao<String> restricaoComplemento = new SemRestricao<>();
+    public static final Restricao<Integer> restricaoNumero = new NumeroPositivoRestricao();
     
 }

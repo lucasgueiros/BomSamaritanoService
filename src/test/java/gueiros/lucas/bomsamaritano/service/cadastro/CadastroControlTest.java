@@ -18,7 +18,9 @@
 package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 
@@ -36,16 +38,22 @@ import static org.mockito.Mockito.verify;
  */
 public class CadastroControlTest {
     
-    @Before public void before() throws ForaDeRestricaoException{
+    
+
+	@Before public void before() throws ForaDeRestricaoException{
+    	resultadoContrucao = mock(ResultadoConstrucao.class);
         model = new Nome("Lucas", "Gueiros");
+        when(resultadoContrucao.getModel()).thenReturn(model);
         editControl = mock(EditControl.class);
         editView = mock(EditView.class);
         view = mock(CadastroView.class);
         when(editControl.getEditView()).thenReturn(editView);
         cadastroControl = new CadastroControl<>(view,editControl);
-        when(editControl.getModel()).thenReturn(model);
+        when(editControl.getResultadoConstrucao()).thenReturn(resultadoContrucao);
+        when(resultadoContrucao.getModel()).thenReturn(model);
     }
 
+	private ResultadoConstrucao resultadoContrucao;
     private EditControl<Nome> editControl;
     private CadastroControl<Nome> cadastroControl;
     private EditView editView;

@@ -17,6 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import java.sql.PreparedStatement;
 import java.util.function.Consumer;
 
 /**
@@ -39,5 +40,9 @@ public abstract class Alteracao<Tipo> implements Consumer<Tipo>{
 	public void accept(Tipo t) {
 		alterar(t);
 	}
+
+	public abstract int setValores(int index, PreparedStatement preparedStatement);
+	
+	public abstract String getSql();
 
 }

@@ -19,7 +19,7 @@ public class RestricaoFormatter extends DefaultFormatter {
 	}
 	
 	public Object stringToValue(String string) throws ParseException {
-		if(!this.restricao.verificar(string))
+		if(!this.restricao.isVerificado(string))
 			throw new ParseException(restricao.getMensagemDeFalha(string), 0);
 		return super.stringToValue(string);
 	}

@@ -60,7 +60,7 @@ public class TelefoneEditControlTest {
     public void testGetModel() {
         when(editView.getDddText()).thenReturn("81");
         when(editView.getNumeroText()).thenReturn("123456789");
-        Telefone telefone = editControl.getModel();
+        Telefone telefone = editControl.getResultadoConstrucao().getModel();
         assertEquals(81, telefone.getDdd());
         assertEquals("123456789", telefone.getNumero());
     }

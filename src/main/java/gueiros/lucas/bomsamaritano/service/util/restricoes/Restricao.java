@@ -17,16 +17,24 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
-public interface Restricao<Tipo> {
+public abstract class Restricao<Tipo> {
 
-	public boolean verificar(Tipo tipo);
-	public Tipo restringir(Tipo tipo) throws ForaDeRestricaoException;
+	/**
+	 * Esse método não deve depender do verificar!
+	 * @param objeto
+	 * @return
+	 */
+	public abstract boolean isVerificado(Tipo objeto);
 	
+	public abstract ResultadoVerificacao<Tipo> verificar(Tipo tipo);
+
 	/**
 	 * Caso  não tenha nenhuma falha, deve retornar NULL.
 	 * @param tipo
 	 * @return
 	 */
-	public String getMensagemDeFalha(Tipo tipo);
+	public final String getMensagemDeFalha(Tipo tipo) {
+		return verificar(tipo).getMensagem();
+	}
 	
 }

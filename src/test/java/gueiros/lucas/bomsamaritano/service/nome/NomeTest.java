@@ -118,7 +118,7 @@ public class NomeTest {
 
     /**
      * Test of setSobrenome method, of class Nome.
-     */
+     * /
     @Test (expected = ForaDeRestricaoException.class)
     public void testSetSobrenome1() {
         System.out.println("setSobrenome1");
@@ -129,14 +129,14 @@ public class NomeTest {
     
     /**
      * Test of setSobrenome method, of class Nome.
-     */
+     * /
     @Test (expected = ForaDeRestricaoException.class)
     public void testSetSobrenome2() {
         System.out.println("setSobrenome2");
         String sobrenome = "";
         Nome instance = new Nome();
         instance.setSobrenome(sobrenome);
-    }
+    }*/
 
     /**
      * Test of setSobrenome method, of class Nome.
@@ -152,7 +152,7 @@ public class NomeTest {
     
     /**
      * Test of setSobrenome method, of class Nome.
-     */
+     * /
     @Test (expected = ForaDeRestricaoException.class)
     public void testSetPrimeiroNome1() {
         System.out.println("setPrimeiroNome1");
@@ -163,14 +163,14 @@ public class NomeTest {
     
     /**
      * Test of setSobrenome method, of class Nome.
-     */
+     * /
     @Test (expected = ForaDeRestricaoException.class)
     public void testSetPrimeiroNome2() {
         System.out.println("setPrimeiroNome2");
         String primeiroNome = "";
         Nome instance = new Nome();
         instance.setPrimeiroNome(primeiroNome);
-    }
+    }*/
 
     /**
      * Test of setSobrenome method, of class Nome.

@@ -17,6 +17,9 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  * Este filtro serve para recuperar todos os elementos de uma entidade.
  * Nenhum elemento é deixado de fora.
@@ -30,6 +33,14 @@ public class FiltroRecuperarTodos<Tipo> implements Filtro<Tipo> {
 		return true;
 	}
 
-	
+	@Override
+	public String getCondicao() {
+		return "" ; // nada na clásula WHEN
+	}
+
+	@Override
+	public int set(int i, PreparedStatement preparedStatement) throws SQLException {
+		return i;
+	} 
 	
 }

@@ -1,39 +1,41 @@
 package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
-public class ConjuntoRestricao<Tipo> implements Restricao<Tipo>{
+import java.util.List;
 
-	private Restricao<Tipo> [] restricoes;
+public class ConjuntoRestricao<Tipo> extends Restricao<Tipo>{
+
+	private List<Restricao<Tipo>> restricoes;
 	
-	public ConjuntoRestricao(Restricao<Tipo> ... restricoes ) {
+	public ConjuntoRestricao(List<Restricao<Tipo>> restricoes ) {
 		this.restricoes = restricoes;
 	}
 	
+	public int getSize() {
+		return restricoes.size();
+	}
+
 	@Override
-	public boolean verificar(Tipo tipo) {
+	public ResultadoVerificacao<Tipo> verificar(Tipo tipo) {
+		ResultadoVerificacao<Tipo> resultadoVerificacao = new ResultadoVerificacao<>();
+		String mensagem = "Os seguintes erros foram encotrados:\n";
+		
+		for(Restricao<Tipo> restricao : restricoes) {
+			mensagem += restricao.getMensagemDeFalha(tipo) + "\n";
+		}
+		
+		resultadoVerificacao.setMensagem(mensagem); // TODO melhorar
+		resultadoVerificacao.setObjeto(tipo);
+		resultadoVerificacao.setVerificado(isVerificado(tipo));
+		return resultadoVerificacao;
+	}
+
+	@Override
+	public boolean isVerificado(Tipo objeto) {
 		boolean verificacao = true;
 		for(Restricao<Tipo> restricao : restricoes) {
-			verificacao = verificacao && restricao.verificar(tipo);
+			verificacao = verificacao && restricao.isVerificado(objeto);
 		}
 		return verificacao;
 	}
-
-	@Override
-	public String getMensagemDeFalha(Tipo tipo) {
-		// TODO melhorar
-		String mensagem = "Os seguintes erros foram encotrados:\n";
-		for(Restricao<Tipo> restricao : restricoes) {
-			if(!restricao.verificar(tipo))
-				mensagem += restricao.getMensagemDeFalha(tipo) + "\n";
-		}
-		return mensagem;
-	}
-
-	@Override
-	public Tipo restringir(Tipo tipo) throws ForaDeRestricaoException {
-		for(Restricao<Tipo> restricao : restricoes) {
-			tipo = restricao.restringir(tipo);
-		}
-		return tipo;
-	}
-
+	
 }

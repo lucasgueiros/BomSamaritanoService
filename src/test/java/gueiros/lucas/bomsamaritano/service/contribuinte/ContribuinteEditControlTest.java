@@ -23,6 +23,7 @@ import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.nome.NomeEditControl;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 
@@ -67,13 +68,19 @@ public class ContribuinteEditControlTest {
     }
     
     @Test public void testGetModel() {
-        Nome nome = new Nome("Lucas", "Gueiros");
-        Endereco endereco = new Endereco("logradouro", 10, "bairro", "complemento");
-        Telefone telefone = new Telefone("123456789");
-        when(nomeEditControl.getModel()).thenReturn(nome);
-        when(enderecoEditControl.getModel()).thenReturn(endereco);
-        when(telefoneEditControl.getModel()).thenReturn(telefone);
-        Contribuinte contribuinte = editControl.getModel();
+        ResultadoConstrucao nome = mock(ResultadoConstrucao.class);
+        ResultadoConstrucao endereco = mock(ResultadoConstrucao.class);
+        ResultadoConstrucao telefone = mock(ResultadoConstrucao.class);
+        when(nome.getModel()).thenReturn(new Nome("Lucas", "Gueiros"));
+        when(endereco.getModel()).thenReturn(new Endereco("logradouro", 10, "bairro", "complemento"));
+        when(telefone.getModel()).thenReturn(new Telefone("123456789"));
+        
+        when(nomeEditControl.getResultadoConstrucao()).thenReturn(nome);
+        when(enderecoEditControl.getResultadoConstrucao()).thenReturn(endereco);
+        when(telefoneEditControl.getResultadoConstrucao()).thenReturn(telefone);
+        
+        Contribuinte contribuinte = editControl.getResultadoConstrucao().getModel();
+        
         assertEquals(endereco, contribuinte.getEndereco());
         assertEquals(nome, contribuinte.getNome());
         assertEquals(telefone, contribuinte.getTelefone());

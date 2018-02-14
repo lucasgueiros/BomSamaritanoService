@@ -64,7 +64,7 @@ public class NomeEditControlTest {
         when(editView.getPrimeiroNomeText()).thenReturn("Lucas");
         when(editView.getNomesDoMeioText()).thenReturn("Dantas");
         when(editView.getSobrenomeText()).thenReturn("Gueiros");
-        Nome nome = editControl.getModel();
+        Nome nome = editControl.getResultadoConstrucao().getModel();
         assertEquals("Lucas", nome.getPrimeiroNome());
         assertEquals("Dantas", nome.getNomesDoMeio());
         assertEquals("Gueiros", nome.getSobrenome());
