@@ -17,8 +17,6 @@
  */
 package gueiros.lucas.bomsamaritano.service.contribuinte;
 
-import javax.persistence.Entity;
-
 import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
@@ -29,8 +27,10 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
  *
  * @author lucasgueiros
  */
-@Entity
-public class Contribuinte implements Identificavel {
+import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
+import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NotNullRestricao;
+
+public class Contribuinte implements Identificavel<Contribuinte> {
     
     /**
 	 * 
@@ -42,7 +42,7 @@ public class Contribuinte implements Identificavel {
     private final Long id;
 
     private Contribuinte(long id, Nome nome, Endereco endereco, Telefone telefone) {
-    	if(nome == null || endereco == null || telefone == null) {
+    	if(!restricaoNome.isVerificado(nome) || !restricaoEndereco.isVerificado(endereco) || !restricaoTelefone.isVerificado(telefone)) {
     		throw new IllegalArgumentException(); // TODO melhorar
     	}
         this.nome = nome;
@@ -77,6 +77,10 @@ public class Contribuinte implements Identificavel {
 	public Telefone getTelefone() {
 		return telefone;
 	}
+	
+	public static Restricao<Nome> restricaoNome = new NotNullRestricao<>(Nome.class);
+	public static Restricao<Endereco> restricaoEndereco = new NotNullRestricao<>(Endereco.class);
+	public static Restricao<Telefone> restricaoTelefone = new NotNullRestricao<>(Telefone.class);
 
 	public static class Construtor implements ConstrutorInterno<Contribuinte>{
 		private Nome nome;
@@ -111,18 +115,44 @@ public class Contribuinte implements Identificavel {
 			return this;
 		}
 		
+		public Nome getNome() {
+			return nome;
+		}
+
+		public Endereco getEndereco() {
+			return endereco;
+		}
+
+		public Telefone getTelefone() {
+			return telefone;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public Contribuinte getModificado() {
+			return modificado;
+		}
+
 		public ResultadoConstrucao<Contribuinte> construir() {
-			Contribuinte model = null;
-			Boolean verificado = true;
-			try {
-				model = new Contribuinte(id, nome, endereco, telefone);
-			} catch (IllegalArgumentException illegalArgumentException) {
-				verificado = false;
-				model = null;
-				// TODO coloque mais informações
+			ResultadoConstrucao.Construtor<Contribuinte> resultadoConstrucao = new ResultadoConstrucao.Construtor<Contribuinte>()
+					.setClasse(Contribuinte.class)
+					.setModificado(modificado);
+			
+			resultadoConstrucao.addVerificacao("nome", Contribuinte.restricaoNome.verificar(nome));
+			resultadoConstrucao.addVerificacao("endereco", Contribuinte.restricaoEndereco.verificar(endereco));
+			resultadoConstrucao.addVerificacao("telefone", Contribuinte.restricaoTelefone.verificar(telefone));
+			
+			resultadoConstrucao.autoSetVerificado();
+			
+			if(resultadoConstrucao.isVerificado()) {
+				resultadoConstrucao.setModel(new Contribuinte(id, nome, endereco, telefone));
+			} else {
+				resultadoConstrucao.setModel(null);
 			}
-			ResultadoConstrucao<Contribuinte> resultadoConstrucao = new ResultadoConstrucao<Contribuinte>(model,modificado,verificado);
-			return resultadoConstrucao;
+			
+			return resultadoConstrucao.construir();
 		}
 	}
 

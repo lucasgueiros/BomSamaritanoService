@@ -19,20 +19,9 @@ package gueiros.lucas.bomsamaritano.service.endereco;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 import javax.swing.Box;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFormattedTextField.AbstractFormatter;
-import javax.swing.JFormattedTextField.AbstractFormatterFactory;
-import javax.swing.text.DefaultFormatter;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.NumberFormatter;
 
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import gueiros.lucas.bomsamaritano.service.util.ui.CampoComLabel;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;

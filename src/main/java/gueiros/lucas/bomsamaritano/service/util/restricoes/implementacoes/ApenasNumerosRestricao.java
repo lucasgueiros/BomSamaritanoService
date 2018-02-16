@@ -8,7 +8,7 @@ import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 public class ApenasNumerosRestricao extends Restricao<String> {
 	@Override
 	public ResultadoVerificacao<String> verificar(String tipo) {
-		ResultadoVerificacao<String> resultado = new ResultadoVerificacao<>();
+		ResultadoVerificacao.Construtor<String> resultado = new ResultadoVerificacao.Construtor<>();
 		resultado.setObjeto(tipo);
 		resultado.setVerificado(isVerificado(tipo));
 		if(resultado.isVerificado()){
@@ -17,7 +17,8 @@ public class ApenasNumerosRestricao extends Restricao<String> {
 			resultado.setMensagem(""); // TODO para arquivo
 		}
 		resultado.setMensagem("");
-		return resultado;
+		resultado.setClasse(String.class);
+		return resultado.construir();
 	}
 
 	@Override

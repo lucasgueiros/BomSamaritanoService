@@ -25,15 +25,19 @@ public class IntegerToStringAdapterRestricao extends Restricao<String>{
 		
 		if(resultadoVerificacaoString.isVerificado()) {
 			ResultadoVerificacao<Integer> resultadoVerificacao = restricaoInteger.verificar(Integer.parseInt(restritor.retringir(objeto)));
-			return new ResultadoVerificacao<String>()
+			return new ResultadoVerificacao.Construtor<String>()
+					.setClasse(String.class)
 					.setMensagem(resultadoVerificacao.getMensagem())
 					.setObjeto(resultadoVerificacaoString.getObjeto())
-					.setVerificado(resultadoVerificacao.isVerificado());
+					.setVerificado(resultadoVerificacao.isVerificado())
+					.construir();
 		} else {
-			return new ResultadoVerificacao<String>()
+			return new ResultadoVerificacao.Construtor<String>()
+					.setClasse(String.class)
 					.setMensagem(resultadoVerificacaoString.getMensagem())
 					.setObjeto(resultadoVerificacaoString.getObjeto())
-					.setVerificado(resultadoVerificacaoString.isVerificado());
+					.setVerificado(resultadoVerificacaoString.isVerificado())
+					.construir();
 		}
 	}
 

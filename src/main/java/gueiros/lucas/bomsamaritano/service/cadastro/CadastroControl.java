@@ -32,7 +32,7 @@ import javax.swing.JPanel;
  * @author lucasgueiros
  * @param <Tipo>
  */
-public class CadastroControl<Tipo extends Identificavel> {
+public class CadastroControl<Tipo extends Identificavel<Tipo>> {
 
     private final CadastroView<Tipo> view;
     private final EditControl<Tipo> editControl;

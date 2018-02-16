@@ -20,6 +20,7 @@ public class NullingRestritor<T,R extends Restricao<T>> implements Restritor<T, 
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public R getRestricao() {
 		return (R) r.getRestricao(); // TODO pq nao e seguro?

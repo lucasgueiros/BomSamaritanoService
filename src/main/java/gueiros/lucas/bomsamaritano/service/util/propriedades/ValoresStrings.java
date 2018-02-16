@@ -54,7 +54,7 @@ public class ValoresStrings  implements Serializable {
         return getValorLinha(PROPRIEDADES, chave);
     }
     
-    private static void clearAndLoad(Properties objeto, String arquivo) {
+    public static void clearAndLoad(Properties objeto, String arquivo) {
         objeto.clear();
         load(objeto,arquivo);
     }

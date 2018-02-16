@@ -7,11 +7,12 @@ public class NotEmptyRestricao extends Restricao<String> {
 
 	@Override
 	public ResultadoVerificacao<String> verificar(String tipo) {
-		ResultadoVerificacao<String> resultadoVerificacao = new ResultadoVerificacao<>();
+		ResultadoVerificacao.Construtor<String> resultadoVerificacao = new ResultadoVerificacao.Construtor<>();
 		resultadoVerificacao.setMensagem("Nao pode ser vazio"); // TODO melhorar
 		resultadoVerificacao.setObjeto(tipo);
 		resultadoVerificacao.setVerificado(isVerificado(tipo));
-		return resultadoVerificacao;
+		resultadoVerificacao.setClasse(String.class);
+		return resultadoVerificacao.construir();
 	}
 
 	@Override

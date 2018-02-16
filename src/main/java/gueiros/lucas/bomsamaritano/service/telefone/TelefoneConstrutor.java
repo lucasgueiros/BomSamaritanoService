@@ -1,49 +1,21 @@
 package gueiros.lucas.bomsamaritano.service.telefone;
 
-import gueiros.lucas.bomsamaritano.service.util.construtores.Construtor;
-import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
-import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.ApenasNumerosRestritor;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.restritores.ImpossivelRestringirException;
 
-public class TelefoneConstrutor extends Construtor<Telefone> {
-	// Essa parte da classe serve para criar um novo objeto
-	private int ddd = 87;
-	private String numero;
-	private Long id = 0L;
-
-	public TelefoneConstrutor() {
-	}
-
-	public TelefoneConstrutor setDdd(int ddd) {
-		this.ddd = ddd;
-		return this;
-	}
-
-	public TelefoneConstrutor setNumero(String numero) {
-		this.numero = numero;
-		return this;
-	}
-
-	// Essa parte da classe serve para modificar um objeto existente
-	public TelefoneConstrutor(Telefone telefone) {
-		super.setBase(telefone);
-	}
-
-	// Restrigindo
+public class TelefoneConstrutor extends Telefone.Construtor {
+	
 	public TelefoneConstrutor setDdd(String dddAsString) throws ForaDeRestricaoException {
-		int ddd = restringirDdd(dddAsString);
+		dddAsString = new ApenasNumerosRestritor().retringir(dddAsString);
+		int ddd = Integer.parseInt(dddAsString);
 		setDdd(ddd);
 		return this;
 	}
-
-	private int restringirDdd(String ddd) throws ImpossivelRestringirException {
-		ddd = new ApenasNumerosRestritor().retringir(ddd);
-		int dddAsIntger = Integer.parseInt(ddd);
-		return dddAsIntger;
-	}
+	
+	// TODO reproveitar o código antigo
+	/* 
+	// Restrigindo
+	
 
 	private boolean isDddModificado;
 	private boolean isNumeroModificado;
@@ -94,5 +66,5 @@ public class TelefoneConstrutor extends Construtor<Telefone> {
 	public ConstrutorInterno<Telefone> modificar(Telefone tipo) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 }

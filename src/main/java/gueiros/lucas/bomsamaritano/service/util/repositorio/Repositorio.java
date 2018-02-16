@@ -25,7 +25,7 @@ import java.util.List;
  * @author lucasgueiros
  * @param <Tipo>
  */
-public interface Repositorio <Tipo extends Identificavel> {
+public interface Repositorio <Tipo extends Identificavel<Tipo>> {
 	
     /**
      * Armazena um novo objeto.

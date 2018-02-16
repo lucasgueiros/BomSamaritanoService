@@ -8,11 +8,12 @@ public class NumeroPositivoRestricao extends Restricao<Integer>{
 
 	@Override
 	public ResultadoVerificacao<Integer> verificar(Integer tipo) {
-		ResultadoVerificacao<Integer> resultadoVerificacao = new ResultadoVerificacao<>();
+		ResultadoVerificacao.Construtor<Integer> resultadoVerificacao = new ResultadoVerificacao.Construtor<>();
 		resultadoVerificacao.setVerificado(isVerificado(tipo));
 		resultadoVerificacao.setObjeto(tipo);
 		resultadoVerificacao.setMensagem("Número deve ser maior que zero."); // TODO melhorar
-		return resultadoVerificacao;
+		resultadoVerificacao.setClasse(Integer.class);
+		return resultadoVerificacao.construir();
 	}
 
 	@Override

@@ -32,7 +32,6 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
  */
 public class NomeEditControl implements EditControl<Nome> {
 
-    private Nome model;
     private NomeEditView editView;
     private Repositorio<Nome> repositorio;
     
@@ -73,7 +72,10 @@ public class NomeEditControl implements EditControl<Nome> {
     	String primeiroNome = editView.getPrimeiroNomeText();
     	String nomesDoMeio = editView.getNomesDoMeioText();
     	String sobrenome = editView.getSobrenomeText();
-        return new NomeConstrutor(primeiroNome,nomesDoMeio,sobrenome)
+        return new Nome.Construtor()
+        		.setPrimeiroNome(primeiroNome)
+        		.setNomesDoMeio(nomesDoMeio)
+        		.setSobrenome(sobrenome)
         		.construir();
     }
 

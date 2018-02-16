@@ -15,11 +15,12 @@ public class IntervaloIntegerRestricao extends Restricao<Integer>{
 
 	@Override
 	public ResultadoVerificacao<Integer> verificar(Integer tipo) {
-		ResultadoVerificacao<Integer> resultadoVerificacao = new ResultadoVerificacao<>();
+		ResultadoVerificacao.Construtor<Integer> resultadoVerificacao = new ResultadoVerificacao.Construtor<>();
 		resultadoVerificacao.setVerificado(isVerificado(tipo));
 		resultadoVerificacao.setObjeto(tipo);
 		resultadoVerificacao.setMensagem("Fora do intervalo permitido."); // TODO melhorar
-		return resultadoVerificacao;
+		resultadoVerificacao.setClasse(Integer.class);
+		return resultadoVerificacao.construir();
 	}
 
 	@Override

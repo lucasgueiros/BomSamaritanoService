@@ -86,6 +86,7 @@ public class CampoComLabel {
 		public void paint(Graphics g, JComponent c) {
 			super.paint(g, c);
 
+			@SuppressWarnings("unchecked") // TODO check
 			JLayer<JFormattedTextField> jlayer = (JLayer<JFormattedTextField>) c;
 			JFormattedTextField ftf = (JFormattedTextField) jlayer.getView();
 			

@@ -217,9 +217,9 @@ public class NomeTest {
 //        assertNull(instance.getNomesDoMeio());
 //    }
     
-    /**
+    /*
      * Test of toString method, of class Nome.
-     */
+     /
     @Test
     public void testToString1() {
         System.out.println("toString");
@@ -231,7 +231,7 @@ public class NomeTest {
     
     /**
      * Test of toString method, of class Nome.
-     */
+     *
     @Test
     public void testToString2() {
         System.out.println("toString");
@@ -243,7 +243,7 @@ public class NomeTest {
     
     /**
      * Test of toString method, of class Nome.
-     */
+     *
     @Test
     public void testToString3() {
         System.out.println("toString");
@@ -251,6 +251,6 @@ public class NomeTest {
         String expResult = "Dom João Machado, OSB";
         String result = instance.toString();
         assertEquals(expResult, result);
-    }
+    }*/
     
 }

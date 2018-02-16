@@ -23,105 +23,64 @@ import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.nome.NomeConversor;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.telefone.TelefoneConversor;
-import gueiros.lucas.bomsamaritano.service.util.construtores.Construtor;
-import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
 
-public class ContribuinteConstrutor extends Construtor<Contribuinte>{
+public class ContribuinteConstrutor extends Contribuinte.Construtor {// extends Construtor<Contribuinte>{
 
     private ResultadoConstrucao<Nome> nomeRC;
     private ResultadoConstrucao<Endereco> enderecoRC;
     private ResultadoConstrucao<Telefone> telefoneRC;
-    private Nome nome;
-    private Endereco endereco;
-    private Telefone telefone;
-	private Long id = 0L;
 	
     public ContribuinteConstrutor() {}
     
-	/**
-	 * @param nome the nome to set
-	 */
-	public ContribuinteConstrutor setNome(Nome nome) {
-		this.nome = nome;
+    public ContribuinteConstrutor setNomeRC(ResultadoConstrucao<Nome> nomeRC) {
+		this.nomeRC = nomeRC;
 		return this;
 	}
 
-	/**
-	 * @param endereco the endereco to set
-	 */
-	public ContribuinteConstrutor setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+    public ContribuinteConstrutor setEnderecoRC(ResultadoConstrucao<Endereco> enderecoRC) {
+		this.enderecoRC = enderecoRC;
 		return this;
 	}
 
-	/**
-	 * @param telefone the telefone to set
-	 */
-	public ContribuinteConstrutor setTelefone(Telefone telefone) {
-		this.telefone = telefone;
+	public ContribuinteConstrutor setTelefoneRC(ResultadoConstrucao<Telefone> telefoneRC) {
+		this.telefoneRC = telefoneRC;
 		return this;
-	}
-
-	public ResultadoConstrucao<Nome> getNome() {
-		return nomeRC;
-	}
-
-	public ContribuinteConstrutor setNome(ResultadoConstrucao<Nome> nome) {
-		this.nomeRC = nome;
-		return this;
-	}
-
-	public ResultadoConstrucao<Endereco> getEndereco() {
-		return enderecoRC;
-	}
-
-	public ContribuinteConstrutor setEndereco(ResultadoConstrucao<Endereco> endereco) {
-		this.enderecoRC = endereco;
-		return this;
-	}
-
-	public ResultadoConstrucao<Telefone> getTelefone() {
-		return telefoneRC;
-	}
-
-	public ContribuinteConstrutor setTelefone(ResultadoConstrucao<Telefone> telefone) {
-		this.telefoneRC = telefone;
-		return this;
-	}
-
-	@Override
-	public ResultadoConstrucao<Contribuinte> modificar() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public ResultadoConstrucao<Contribuinte> construir() {
-		// TODO refazer isso aqui, tá uma confusão. Essa linha aqui em baixo é non sense, sem garantias de segurança nenhuma.
-		boolean verificado = (nomeRC == null || nomeRC.isVerificado()) && (enderecoRC==null || enderecoRC.isVerificado()) && (telefoneRC==null || telefoneRC.isVerificado());
-		Contribuinte model = null;
+		ResultadoConstrucao.Construtor<Contribuinte> resultado = new ResultadoConstrucao.Construtor<>();
 		
-		Nome nome = this.nome==null ? nomeRC.getModel() : this.nome;
-		Endereco endereco = this.endereco==null ? enderecoRC.getModel() : this.endereco;
-		Telefone telefone = this.telefone==null ? telefoneRC.getModel() : this.telefone;
-		
-		if(verificado) {
-			if(id<0) {// TODO qual o melhor teste?
-				model = new Contribuinte(nome,endereco,telefone);
-			} else {
-				model = new Contribuinte(id,nome,endereco,telefone);
+		if(nomeRC != null) { // O resultado de construção de nome foi inserido, temos que dá-lo ao super construtor
+			if(nomeRC.isVerificado()) {
+				super.setNome(nomeRC.getModel());
 			}
+			resultado.addConstrucao("nome", nomeRC);
 		}
-		return super.newResultadoConstrucao()
-				.setVerificado(verificado)
-				.setModel(model)
-				.addConstrucao("nome", nomeRC) // TODO não adicionar construcao mas sim models
-				.addConstrucao("endereco", enderecoRC)
-				.addConstrucao("telefone", telefoneRC)
-				.getResultadoConstrucao();
+		if(enderecoRC != null) {
+			if(enderecoRC.isVerificado()) {
+				super.setEndereco(enderecoRC.getModel());
+			}
+			resultado.addConstrucao("endereco", enderecoRC);
+		}
+		if(telefoneRC != null) {
+			if(telefoneRC.isVerificado()) {
+				super.setTelefone(telefoneRC.getModel());
+			}
+			// temos que adicionar as informações de erro ou acerto no ResultadoConstrucao
+			resultado.addConstrucao("telefone", telefoneRC);
+		}
+		resultado.autoSetVerificado();
+		// uma vez setados os valores que eu tenho, mando o super fazer a construção
+		ResultadoConstrucao<Contribuinte> superResultado = super.construir();
+		// e adiciono as informações que ele me passar
+		
+		resultado.addResultado(superResultado);
+		
+		return resultado.construir();
 	}
 
 	// Repositórios das relações
@@ -129,24 +88,4 @@ public class ContribuinteConstrutor extends Construtor<Contribuinte>{
 	Repositorio<Nome> repositorioNome = new RepositorioJDBC<>(new NomeConversor());
 	Repositorio<Endereco> repositorioEndereco = new RepositorioJDBC<>(new EnderecoConversor());
 	Repositorio<Telefone> repositorioTelefone = new RepositorioJDBC<>(new TelefoneConversor());
-	
-	// USANDO IDS
-
-	ContribuinteConstrutor setId(long id) {
-		this.id = id;
-		return this;
-	}
-
-	@Override
-	public ConstrutorInterno<Contribuinte> setId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ConstrutorInterno<Contribuinte> modificar(Contribuinte tipo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -17,7 +17,7 @@ public class EnderecoConversor implements Conversor<Endereco>{
 	@Override
 	public Endereco getParaObjeto(ResultSet resultSet) throws SQLException {
 		int i = 0;
-		ResultadoConstrucao<Endereco> resultadoConstrucao = new EnderecoConstrutor()
+		ResultadoConstrucao<Endereco> resultadoConstrucao = new Endereco.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setLogradouro(resultSet.getString(++i))
 				.setNumero(resultSet.getInt(++i))

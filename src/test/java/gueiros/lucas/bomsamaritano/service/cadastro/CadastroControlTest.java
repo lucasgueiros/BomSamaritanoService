@@ -42,7 +42,7 @@ public class CadastroControlTest {
 
 	@Before public void before() throws ForaDeRestricaoException{
     	resultadoContrucao = mock(ResultadoConstrucao.class);
-        model = new Nome("Lucas", "Gueiros");
+        model = new Nome.Construtor().setPrimeiroNome("Lucas").setSobrenome("Gueiros").construir().getModel();
         when(resultadoContrucao.getModel()).thenReturn(model);
         editControl = mock(EditControl.class);
         editView = mock(EditView.class);

@@ -1,57 +1,25 @@
+/* 
+ * Copyright 2018 Lucas Gueiros 
+ *
+ * This file is part of BomSamaritanoService.
+ * BomSamaritanoService is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package gueiros.lucas.bomsamaritano.service.util.construtores;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
-import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 
-public abstract class Construtor<T extends Identificavel> implements ConstrutorInterno<T> {
+public abstract class Construtor<T extends Identificavel<T>> implements ConstrutorInterno<T> {// implements ConstrutorInterno<T> {
 
-	public abstract ResultadoConstrucao<T> modificar(); // Cria um novo objeto!
-	public abstract ResultadoConstrucao<T> construir();
 	
-	private T base;
-	private ResultadoConstrucao<T> resultadoConstrucao;
-	
-	
-	public Construtor<T> setBase(T t) {
-		this.base = t;
-		return this;
-	}
-	
-	protected T getBase() {
-		return base;
-	}
-	
-	protected Construtor<T> newResultadoConstrucao() {
-		resultadoConstrucao = new ResultadoConstrucao<T>();
-		return this;
-	}
-	
-	public Construtor<T> setVerificado(boolean verificado) {
-		resultadoConstrucao.setVerificado(verificado);
-		return this;
-	}
-	
-	public ResultadoConstrucao<T> getResultadoConstrucao() {
-		return resultadoConstrucao;
-	}
-	
-	public Construtor<T> setModel(T t) {
-		resultadoConstrucao.setModel(t);
-		return this;
-	}
-	
-	public Construtor<T> setResultadoBase (T t) {
-		resultadoConstrucao.setBase(t);
-		return this;
-	}
-	
-	public Construtor<T> addVerificacao(String field, ResultadoVerificacao<?> resultado) {
-		resultadoConstrucao.putVerificacao(field,resultado);
-		return this;
-	}
-	
-	public Construtor<T> addConstrucao(String relation, ResultadoConstrucao<?> construcao) {
-		resultadoConstrucao.putConstrucao(relation, construcao);
-		return this;
-	}
 }

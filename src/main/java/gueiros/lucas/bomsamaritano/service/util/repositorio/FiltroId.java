@@ -3,7 +3,7 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class FiltroId<T extends Identificavel> implements Filtro<T> {
+public class FiltroId<T extends Identificavel<T>> implements Filtro<T> {
 
 	private final Long id;
 	

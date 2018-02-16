@@ -52,7 +52,7 @@ public class CadastroView<Tipo> extends JPanel {
             constraints.anchor = GridBagConstraints.LINE_END;
             constraints.gridy = 1;
             constraints.insets.top = insets;
-            cadastrarButton = new JButton("Açãõáéúíóàâêîôû");// TODO mudar isso aqui
+            cadastrarButton = new JButton("Cadastrar");// TODO mudar isso aqui
             cadastrarButton.setName("CadastroCadastrarButton");
             add(cadastrarButton,constraints);
         }

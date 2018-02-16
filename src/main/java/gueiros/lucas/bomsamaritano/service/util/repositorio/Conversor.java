@@ -3,11 +3,8 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-import gueiros.lucas.bomsamaritano.service.nome.Nome;
-
-public interface Conversor<T extends Identificavel> {
+public interface Conversor<T extends Identificavel<T>> {
 
 	public String getTabela();
 

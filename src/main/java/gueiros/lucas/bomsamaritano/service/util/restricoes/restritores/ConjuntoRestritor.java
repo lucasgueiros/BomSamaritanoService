@@ -1,18 +1,15 @@
 package gueiros.lucas.bomsamaritano.service.util.restricoes.restritores;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ConjuntoRestricao;
 
 public class ConjuntoRestritor<T> implements Restritor<T,ConjuntoRestricao<T>> {
 
-	private Map<ConjuntoRestricao<?>,Restritor<T,?>> map;
+	//private Map<ConjuntoRestricao<?>,Restritor<T,?>> map = new HashMap<>();
 	private Restritor<T, ?> [] rs;
 	private ConjuntoRestricao<T> cr;
 
-	public ConjuntoRestritor(ConjuntoRestricao<T> cr, Restritor<T,?> ... rs) {
-		this.map = new HashMap<>();
+	// TODO rever sesse suprresswarnings
+	public ConjuntoRestritor(ConjuntoRestricao<T> cr, @SuppressWarnings("unchecked") Restritor<T,?> ... rs) {
 		this.rs = rs;
 		this.cr = cr;
 		//for(cr.get) add map

@@ -35,7 +35,6 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 public class EnderecoEditControl implements EditControl<Endereco> {
 
 	private EnderecoEditView editView;
-	private Endereco model;
 	private Repositorio<Endereco> repositorio;
 
 	/**
@@ -74,7 +73,7 @@ public class EnderecoEditControl implements EditControl<Endereco> {
 		String bairro = editView.getBairroText();
 		String complemento = editView.getComplementoText();
 
-		return new EnderecoConstrutor()
+		return new Endereco.Construtor()
 				.setLogradouro(logradouro)
 				.setBairro(bairro)
 				.setNumero(numero)

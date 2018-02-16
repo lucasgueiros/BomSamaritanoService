@@ -30,7 +30,7 @@ public class ContribuinteConversor implements Conversor<Contribuinte>{
 		Endereco endereco = editControl.recuperarEndereco(new FiltroId<>(resultSet.getLong(3))).get(0);
 		Telefone telefone = editControl.recuperarTelefone(new FiltroId<>(resultSet.getLong(4))).get(0);
 		
-		ResultadoConstrucao<Contribuinte> resultadoConstrucao = new ContribuinteConstrutor()
+		ResultadoConstrucao<Contribuinte> resultadoConstrucao = new Contribuinte.Construtor()
 				.setId(resultSet.getLong(1))
 				.setNome(nome)
 				.setEndereco(endereco)

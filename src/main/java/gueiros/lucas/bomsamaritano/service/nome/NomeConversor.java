@@ -17,7 +17,7 @@ public class NomeConversor implements Conversor<Nome> {
 	@Override
 	public Nome getParaObjeto(ResultSet resultSet) throws SQLException {
 		int i = 0;
-		ResultadoConstrucao<Nome> resultadoConstrucao = new NomeConstrutor()
+		ResultadoConstrucao<Nome> resultadoConstrucao = new Nome.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setSufixo(resultSet.getString(++i))
 				.setPrimeiroNome(resultSet.getString(++i))

@@ -28,7 +28,7 @@ import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
  * @author lucasgueiros
  * @param <Tipo> o tipo do model
  */
-public interface EditControl<Tipo extends Identificavel> {
+public interface EditControl<Tipo extends Identificavel<Tipo>> {
     /**
      * Inicializa para criar um novo objeto.
      */

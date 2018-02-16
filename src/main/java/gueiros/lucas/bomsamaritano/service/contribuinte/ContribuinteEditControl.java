@@ -39,7 +39,6 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 public class ContribuinteEditControl implements EditControl<Contribuinte>{
     
     private ContribuinteEditView editView;
-    private Contribuinte model;
     
     private NomeEditControl nomeEditControl;
     private EnderecoEditControl enderecoEditControl;
@@ -97,12 +96,12 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     public ResultadoConstrucao<Contribuinte> getResultadoConstrucao() {
         ResultadoConstrucao<Nome> nome = nomeEditControl.getResultadoConstrucao();
         ResultadoConstrucao<Endereco> endereco = enderecoEditControl.getResultadoConstrucao();
-            ResultadoConstrucao<Telefone> telefone = telefoneEditControl.getResultadoConstrucao();
+        ResultadoConstrucao<Telefone> telefone = telefoneEditControl.getResultadoConstrucao();
         
         return new ContribuinteConstrutor()
-        		.setNome(nome)
-        		.setEndereco(endereco)
-        		.setTelefone(telefone)
+        		.setNomeRC(nome)
+        		.setEnderecoRC(endereco)
+        		.setTelefoneRC(telefone)
         		.construir();
     }
 
@@ -125,7 +124,7 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
         telefone = this.telefoneEditControl.adicionar(telefone);
         
         // Agora recire o seu usando os objetos com ID
-        tipo = new ContribuinteConstrutor()
+        tipo = new Contribuinte.Construtor()
         .setNome(nome)
         .setEndereco(endereco)
         .setTelefone(telefone)

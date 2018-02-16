@@ -17,7 +17,7 @@ public class TelefoneConversor implements Conversor<Telefone> {
 	@Override
 	public Telefone getParaObjeto(ResultSet resultSet) throws SQLException {
 		int i = 0;
-		ResultadoConstrucao<Telefone> resultadoConstrucao = new TelefoneConstrutor()
+		ResultadoConstrucao<Telefone> resultadoConstrucao = new Telefone.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setDdd(resultSet.getInt(++i))
 				.setNumero(resultSet.getString(++i))

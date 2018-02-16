@@ -19,6 +19,8 @@ package gueiros.lucas.bomsamaritano.service.telefone;
 
 import javax.persistence.Entity;
 
+import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
+import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ConjuntoRestricaoBuilder;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
@@ -38,7 +40,7 @@ import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.Numero
  * @author lucasgueiros
  */
 @Entity
-public class Telefone implements Identificavel {
+public class Telefone implements Identificavel<Telefone> {
     /**
 	 * 
 	 */
@@ -56,34 +58,19 @@ public class Telefone implements Identificavel {
 
     /**
      *
-     * Construtor que interpreta a ausência de código de área como sendo DDD 87.
-     * 
-     * @param numero
-     * @throws ForaDeRestricaoException 
-     */
-    public Telefone(String numero) throws ForaDeRestricaoException {
-        this(87,numero);
-    }
-    
-    /**
-     *
      * Cria um novo telefone a partir do código de área e do número.
      * 
      * @param ddd código de área
      * @param numero o número mesmo
      * @throws ForaDeRestricaoException 
      */
-    public Telefone(int ddd, String numero) throws ForaDeRestricaoException {
+    public Telefone(Long id, int ddd, String numero) throws ForaDeRestricaoException {
     	if((!restricaoNumero.isVerificado(numero)) || (!restricaoDdd.isVerificado(ddd))) 
-    		throw new ForaDeRestricaoException();
+    		throw new IllegalArgumentException();
     	this.ddd = ddd;
     	this.numero = numero;
+    	this.id = id;
     }
-    
-    public Telefone(long id2, int ddd2, String numero2) {
-    	this(ddd2,numero2);
-    	this.id = id2;
-	}
 
 	/**
      * Get the value of ddd
@@ -123,6 +110,7 @@ public class Telefone implements Identificavel {
     
     public static final Restricao<Integer> restricaoDdd;
     public static final Restricao<String> restricaoNumero;
+    public static final int defaultDdd = 87;
     
     static {
     	restricaoDdd = new ConjuntoRestricaoBuilder<Integer>()
@@ -134,5 +122,81 @@ public class Telefone implements Identificavel {
     			.add(new LengthRangeInclusiveRestricao(5, 9))
     			.build(); 
     }
+
+    public static class Construtor implements ConstrutorInterno<Telefone> {
+
+    	private int ddd = defaultDdd;
+        private String numero;
+        private Long id = -1L;
+		private Telefone modificado;
+        
+        public Construtor() {}
+    	
+		public Construtor setDdd(int ddd) {
+			this.ddd = ddd;
+			return this;
+		}
+
+		public Construtor setNumero(String numero) {
+			this.numero = numero;
+			return this;
+		}
+
+		@Override
+		public Construtor setId(Long id) {
+			this.id = id;
+			return this;
+		}
+
+		public int getDdd() {
+			return ddd;
+		}
+
+		public String getNumero() {
+			return numero;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public Telefone getModificado() {
+			return modificado;
+		}
+
+		@Override
+		public ConstrutorInterno<Telefone> modificar(Telefone tipo) {
+			this.modificado = tipo;
+			return this;
+		}
+
+		@Override
+		public ResultadoConstrucao<Telefone> construir() {
+			Telefone model = null;
+			Boolean verificado = true;
+			ResultadoConstrucao.Construtor<Telefone> resultadoConstrucao = new ResultadoConstrucao.Construtor<Telefone>();
+			
+			// faça as verificações e coloque os resultados
+			resultadoConstrucao.addVerificacao("ddd", Telefone.restricaoDdd.verificar(this.ddd));
+			resultadoConstrucao.addVerificacao("numero", Telefone.restricaoNumero.verificar(this.numero));
+			// se tudo estiver ok, gere o objeto, sem catch
+			resultadoConstrucao.autoSetVerificado();
+
+			if(verificado) {
+				model = new Telefone(id, ddd, numero);
+			}
+			resultadoConstrucao.setClasse(Telefone.class);
+			resultadoConstrucao.setModel(model); 
+			resultadoConstrucao.setModificado(modificado);
+			resultadoConstrucao.setVerificado(verificado);
+			return resultadoConstrucao.construir();
+		}
+    	
+    }
+    
+	@Override
+	public ConstrutorInterno<Telefone> getConstrutor() {
+		return new Construtor();
+	}
 
 }

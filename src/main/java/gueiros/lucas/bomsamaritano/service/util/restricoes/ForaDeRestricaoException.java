@@ -2,22 +2,43 @@ package gueiros.lucas.bomsamaritano.service.util.restricoes;
 
 public class ForaDeRestricaoException extends IllegalArgumentException {
 
-	private Class theClass;
+	private Class<?> theClass;
 	private String field;
-	private ResultadoVerificacao<?> restulado;
+	private Restricao<?> restricao;
+	private ResultadoVerificacao<?> resultado;
 	
-	public ForaDeRestricaoException() {
-		super();
-	}
 	
-	public ForaDeRestricaoException(Class theClass, String field, Restricao<?> restricao, ResultadoVerificacao<?> resultado) {
+	public ForaDeRestricaoException(Class<?> theClass, String field, Restricao<?> restricao,
+			ResultadoVerificacao<?> resultado) {
 		this(resultado.getMensagem());
 		this.theClass = theClass;
 		this.field = field;
+		this.restricao = restricao;
+		this.resultado = resultado;
 	}
 	
 	public ForaDeRestricaoException(String mensagem) {
 		super(mensagem);
+	}
+
+	public Class<?> getTheClass() {
+		return theClass;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public Restricao<?> getRestricao() {
+		return restricao;
+	}
+
+	public ResultadoVerificacao<?> getResultado() {
+		return resultado;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	/**

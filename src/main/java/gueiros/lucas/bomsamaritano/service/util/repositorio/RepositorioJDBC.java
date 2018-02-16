@@ -8,7 +8,7 @@ import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.jdbc.Conexao;
 
-public class RepositorioJDBC<T extends Identificavel> implements Repositorio<T> {
+public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<T> {
 
 	private Conexao conexao;
 	private final String tabela;
