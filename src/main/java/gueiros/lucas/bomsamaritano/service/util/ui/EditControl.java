@@ -20,8 +20,8 @@ package gueiros.lucas.bomsamaritano.service.util.ui;
 import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 /**
  * Esta interface descreve o objeto responsável por controlar um EditView e realizar as operações necessárias no model.

@@ -20,9 +20,9 @@ package gueiros.lucas.bomsamaritano.service.telefone;
 import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 

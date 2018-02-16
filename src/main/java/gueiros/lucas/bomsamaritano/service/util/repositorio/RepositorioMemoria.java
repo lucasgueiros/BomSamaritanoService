@@ -17,9 +17,13 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 /**
  * Repositório usado para guardar objetos apenas na memória.
@@ -78,5 +82,15 @@ public class RepositorioMemoria<Tipo extends Identificavel<Tipo>> implements Rep
     private Long gerarId() {
         return nextid++;
     }
+
+	@Override
+	public void beginTransaction() throws SQLException {
+		// TODO fazer as transações funcionarem no memória também.
+	}
+
+	@Override
+	public void commitTransaction() throws SQLException {
+		// TODO fazer as transações funcionarem no memória também.		
+	}
 
 }

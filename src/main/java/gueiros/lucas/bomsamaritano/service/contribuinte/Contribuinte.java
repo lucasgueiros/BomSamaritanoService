@@ -22,7 +22,7 @@ import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 /**
  *
  * @author lucasgueiros

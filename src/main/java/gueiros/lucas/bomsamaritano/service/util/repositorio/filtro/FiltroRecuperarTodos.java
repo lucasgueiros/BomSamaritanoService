@@ -15,33 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package gueiros.lucas.bomsamaritano.service.util.repositorio;
+package gueiros.lucas.bomsamaritano.service.util.repositorio.filtro;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Esta classe serve para realizar consultas.
- * 
- * 
+ * Este filtro serve para recuperar todos os elementos de uma entidade.
+ * Nenhum elemento é deixado de fora.
  * @author lucasgueiros
- * @param <Tipo>
+ * @param <Tipo> tipo da entidade.
  */
-public interface Filtro<Tipo> {
+public class FiltroRecuperarTodos<Tipo> implements Filtro<Tipo> {
 
-    /**
-     * Indica se o parametro deve ser incluido no resultado da consulta.
-     * Este método retorna TRUE ou FALSE para um dado parâmetro.
-     * @param t o objeto que será o ou não incluso.
-     * @return true se deve ser incluido.
-     */
-    public boolean filtrar(Tipo t);
-    
-    /**
-     * Retorna um código SQL  que filtra os objetos. É um clásula WHEN.
-     * @return
-     */
-    public String getCondicao();
+    @Override
+	public boolean filtrar(Tipo t) {
+		return true;
+	}
 
-	public int set(int i, PreparedStatement preparedStatement) throws SQLException;
+	@Override
+	public String getCondicao() {
+		return "" ; // nada na clásula WHEN
+	}
+
+	@Override
+	public int set(int i, PreparedStatement preparedStatement) throws SQLException {
+		return i;
+	} 
+	
 }

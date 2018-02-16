@@ -19,7 +19,7 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.util.events.LancadorEventos;
 import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 
 import java.awt.event.ActionEvent;

@@ -21,6 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
+
 public interface Conversor<T extends Identificavel<T>> {
 
 	public String getTabela();

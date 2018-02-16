@@ -17,7 +17,11 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 /**
  * Descreve um objeto responsável por armazenar objetos.
@@ -52,5 +56,9 @@ public interface Repositorio <Tipo extends Identificavel<Tipo>> {
      * @return
      */
     public List<Tipo> recuperar(Filtro<Tipo> filtro);
+
+	public void beginTransaction() throws Exception;
+
+	public void commitTransaction() throws Exception;
 	
 }

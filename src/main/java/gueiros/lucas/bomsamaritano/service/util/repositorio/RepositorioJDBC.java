@@ -24,6 +24,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.jdbc.Conexao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.FiltroId;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<T> {
 
@@ -142,4 +145,15 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		return ts;
 	}
 
+	@Override
+	public void commitTransaction() throws SQLException {
+		conexao.getConnection().commit();
+		conexao.getConnection().setAutoCommit(true);
+	}
+	
+	@Override
+	public void beginTransaction() throws SQLException {
+		conexao.getConnection().setAutoCommit(false);
+	}
+	
 }

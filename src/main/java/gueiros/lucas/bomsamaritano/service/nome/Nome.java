@@ -21,7 +21,7 @@ import javax.persistence.Entity;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ForaDeRestricaoException;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.Restricao;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.implementacoes.NotEmptyRestricao;

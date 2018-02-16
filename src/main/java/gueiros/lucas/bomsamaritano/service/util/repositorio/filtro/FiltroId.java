@@ -1,4 +1,4 @@
-/*
+/*******************************************************************************
  * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
@@ -14,25 +14,34 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-package gueiros.lucas.bomsamaritano.service.util.repositorio;
+ *******************************************************************************/
+package gueiros.lucas.bomsamaritano.service.util.repositorio.filtro;
 
-import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-import gueiros.lucas.bomsamaritano.service.util.construtores.ConstrutorInterno;
+public class FiltroId<T extends Identificavel<T>> implements Filtro<T> {
 
-/**
- * Descreve qualquer identidade que possa ser identificada por um número único, id.
- * @author lucasgueiros
- */
-public interface Identificavel<T extends Identificavel<T>> extends Serializable {
-    
-    /**
-     * Retorna um número único que identifica esse objeto.
-     * @return
-     */
-    public Long getId();
-    
-    public ConstrutorInterno<T> getConstrutor();
-    
+	private final Long id;
+	
+	public FiltroId(long id) {
+		this.id = id;
+	}
+	
+	@Override
+	public boolean filtrar(T t) {
+		return t.getId() == id;
+	}
+
+	@Override
+	public String getCondicao() {
+		return "where id=?";
+	}
+
+	@Override
+	public int set(int i, PreparedStatement preparedStatement) throws SQLException {
+		preparedStatement.setLong(++i, id);
+		return i;
+	}
+
 }

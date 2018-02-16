@@ -17,7 +17,7 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.construtores;
 
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 public abstract class Construtor<T extends Identificavel<T>> implements ConstrutorInterno<T> {// implements ConstrutorInterno<T> {
 

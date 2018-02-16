@@ -26,7 +26,7 @@ import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Conversor;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.FiltroId;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.FiltroId;
 
 public class ContribuinteConversor implements Conversor<Contribuinte>{
 

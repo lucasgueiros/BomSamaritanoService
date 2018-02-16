@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import gueiros.lucas.bomsamaritano.service.util.outros.StringStructure;
-import gueiros.lucas.bomsamaritano.service.util.repositorio.Identificavel;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.ResultadoVerificacao;
 
 public class ResultadoConstrucao<T extends Identificavel<T>> {// TODO essa classe, apesar de ter parametro de tipo, fica passando como se fosse outra classe em contribuinte!
