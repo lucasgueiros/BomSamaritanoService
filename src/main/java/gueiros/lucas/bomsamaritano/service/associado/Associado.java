@@ -1,4 +1,4 @@
-/* 
+/*******************************************************************************
  * Copyright 2018 Lucas Gueiros 
  *
  * This file is part of BomSamaritanoService.
@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ *******************************************************************************/
 package gueiros.lucas.bomsamaritano.service.associado;
 
 import gueiros.lucas.bomsamaritano.service.contribuinte.Contribuinte;
