@@ -22,6 +22,7 @@ import java.util.List;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
@@ -33,13 +34,19 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 public class NomeEditControl implements EditControl<Nome> {
 
     private NomeEditView editView;
-    private Repositorio<Nome> repositorio;
+	private Repositorio<Nome> repositorio = new RepositorioJDBC<>(new NomeConversor());
     
+	public NomeEditControl() {
+		this(new NomeEditView());
+	}
+	
     /**
      * Construtor padrão.
+     * @param repositorio2 
+     * @param editView2 
      */
-    public NomeEditControl() {
-        this(new NomeEditView(),new RepositorioJDBC<>(new NomeConversor()));
+    public NomeEditControl(NomeEditView editView) {
+        this(editView,new RepositorioJDBC<>(new NomeConversor()));
     }
     
     /**
@@ -47,7 +54,7 @@ public class NomeEditControl implements EditControl<Nome> {
      * @param editView
      * @param repositorio
      */
-    public NomeEditControl(NomeEditView editView,Repositorio<Nome> repositorio) {
+    public NomeEditControl(NomeEditView editView, Repositorio<Nome> repositorio) {
         this.editView = editView;
         this.repositorio = repositorio;
     }
@@ -85,14 +92,18 @@ public class NomeEditControl implements EditControl<Nome> {
     }
     
     @Override
-    public Nome adicionar(Nome tipo) {
-        return repositorio.adicionar(tipo);
+    public Nome adicionar(Transacao transacao, Nome tipo) {
+        return repositorio .adicionar(transacao, tipo);
     }
 
 	@Override
-	public List<Nome> recuperar(Filtro<Nome> filtro) {
-		return repositorio.recuperar(filtro);
+	public List<Nome> recuperar(Transacao transacao, Filtro<Nome> filtro) {
+		return repositorio.recuperar(transacao, filtro);
 	}
 
+	
+	public Repositorio<Nome> getRepositorio() {
+		return repositorio;
+	}
 
 }

@@ -23,6 +23,7 @@ import java.sql.SQLException;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Conversor;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 
 public class NomeConversor implements Conversor<Nome> {
 
@@ -32,8 +33,9 @@ public class NomeConversor implements Conversor<Nome> {
 	}
 
 	@Override
-	public Nome getParaObjeto(ResultSet resultSet) throws SQLException {
+	public Nome getParaObjeto(Transacao transacao, ResultSet resultSet) throws SQLException {
 		int i = 0;
+		transacao.done();
 		ResultadoConstrucao<Nome> resultadoConstrucao = new Nome.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setSufixo(resultSet.getString(++i))

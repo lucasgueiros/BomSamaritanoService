@@ -20,32 +20,41 @@ package gueiros.lucas.bomsamaritano.service.contribuinte;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.function.BiFunction;
 
 import gueiros.lucas.bomsamaritano.service.endereco.Endereco;
 import gueiros.lucas.bomsamaritano.service.nome.Nome;
 import gueiros.lucas.bomsamaritano.service.telefone.Telefone;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Conversor;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.FiltroId;
 
 public class ContribuinteConversor implements Conversor<Contribuinte>{
 
-	private ContribuinteEditControl editControl; // TODO separar isso do editcotrol, deve ser outro controlador.
-	
-	public ContribuinteConversor(ContribuinteEditControl editControl) {
-		this.editControl = editControl;
+	private BiFunction<Transacao, Filtro<Nome>, Nome> recuperarNome;
+	private BiFunction<Transacao, Filtro<Endereco>, Endereco> recuperarEndereco;
+	private BiFunction<Transacao, Filtro<Telefone>, Telefone> recuperarTelefone;
+
+	public ContribuinteConversor(BiFunction<Transacao, Filtro<Nome>, Nome> recuperarNome2,
+			BiFunction<Transacao, Filtro<Endereco>, Endereco> recuperarEndereco2,
+			BiFunction<Transacao, Filtro<Telefone>, Telefone> recuperarTelefone2) {
+		this.recuperarNome = recuperarNome2;
+		this.recuperarEndereco = recuperarEndereco2;
+		this.recuperarTelefone = recuperarTelefone2;
 	}
-	
+
 	@Override
 	public String getTabela() {
 		return "contribuinte";
 	}
 
 	@Override
-	public Contribuinte getParaObjeto(ResultSet resultSet) throws SQLException {
-		Nome nome = editControl.recuperarNome(new FiltroId<>(resultSet.getLong(2))).get(0);
-		Endereco endereco = editControl.recuperarEndereco(new FiltroId<>(resultSet.getLong(3))).get(0);
-		Telefone telefone = editControl.recuperarTelefone(new FiltroId<>(resultSet.getLong(4))).get(0);
+	public Contribuinte getParaObjeto(Transacao transacao, ResultSet resultSet) throws SQLException {
+		Nome nome = recuperarNome.apply(transacao, new FiltroId<>(resultSet.getLong(2)));
+		Endereco endereco = recuperarEndereco.apply(transacao, new FiltroId<>(resultSet.getLong(3)));
+		Telefone telefone = recuperarTelefone.apply(transacao, new FiltroId<>(resultSet.getLong(4)));
 		
 		ResultadoConstrucao<Contribuinte> resultadoConstrucao = new Contribuinte.Construtor()
 				.setId(resultSet.getLong(1))

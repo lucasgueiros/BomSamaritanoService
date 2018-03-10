@@ -27,7 +27,7 @@ public interface Conversor<T extends Identificavel<T>> {
 
 	public String getTabela();
 
-	public T getParaObjeto(ResultSet resultSet) throws SQLException;
+	public T getParaObjeto(Transacao transacao, ResultSet resultSet) throws SQLException;
 
 	public String getColunas();
 

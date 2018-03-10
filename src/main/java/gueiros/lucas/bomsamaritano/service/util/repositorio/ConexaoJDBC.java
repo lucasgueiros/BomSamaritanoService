@@ -15,12 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package gueiros.lucas.bomsamaritano.service.util.jdbc;
+package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Conexao {
+public class ConexaoJDBC implements Conexao {
 
 	// Aos alunos http://www.guj.com.br/articles/7
 
@@ -29,9 +29,13 @@ public class Conexao {
 	private String usuario = "postgres"; // TODO propriedade
 	private String senha = "postgres"; // TODO propriedade
 
-	public Conexao() {
+	public ConexaoJDBC() {
 	}
 
+	/* (non-Javadoc)
+	 * @see gueiros.lucas.bomsamaritano.service.util.repositorio.Conexao#conecta()
+	 */
+	@Override
 	public boolean conecta() {
 		try {
 			// Class.forName("org.postgresql.Driver");
@@ -43,6 +47,10 @@ public class Conexao {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see gueiros.lucas.bomsamaritano.service.util.repositorio.Conexao#desconecta()
+	 */
+	@Override
 	public boolean desconecta() {
 		try {
 			con.close();

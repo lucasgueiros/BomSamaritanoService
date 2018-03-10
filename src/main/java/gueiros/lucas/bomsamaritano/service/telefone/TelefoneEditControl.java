@@ -22,6 +22,7 @@ import java.util.List;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
@@ -35,13 +36,13 @@ import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
 public class TelefoneEditControl implements EditControl<Telefone> {
 
 	private TelefoneEditView editView;
-	private Repositorio<Telefone> repositorio;
+	private Repositorio<Telefone> repositorio = new RepositorioJDBC<>(new TelefoneConversor());
 
 	/**
 	 * Construtor padrão.
 	 */
 	public TelefoneEditControl() {
-		this(new TelefoneEditView(), new RepositorioJDBC<>(new TelefoneConversor()));
+		this(new TelefoneEditView(),new RepositorioJDBC<>(new TelefoneConversor()));
 	}
 
 	/**
@@ -77,13 +78,18 @@ public class TelefoneEditControl implements EditControl<Telefone> {
 	}
 
 	@Override
-	public Telefone adicionar(Telefone tipo) {
-		return repositorio.adicionar(tipo);
+	public Telefone adicionar(Transacao transacao, Telefone tipo) {
+		return repositorio.adicionar(transacao, tipo);
 	}
 
 	@Override
-	public List<Telefone> recuperar(Filtro<Telefone> filtro) {
-		return this.repositorio.recuperar(filtro);
+	public List<Telefone> recuperar(Transacao transacao, Filtro<Telefone> filtro) {
+		return this.repositorio.recuperar(transacao, filtro);
+	}
+
+	@Override
+	public Repositorio<Telefone> getRepositorio() {
+		return repositorio;
 	}
 
 }

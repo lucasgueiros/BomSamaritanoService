@@ -23,6 +23,7 @@ import java.sql.SQLException;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Conversor;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 
 public class EnderecoConversor implements Conversor<Endereco>{
 
@@ -32,8 +33,9 @@ public class EnderecoConversor implements Conversor<Endereco>{
 	}
 
 	@Override
-	public Endereco getParaObjeto(ResultSet resultSet) throws SQLException {
+	public Endereco getParaObjeto(Transacao transacao, ResultSet resultSet) throws SQLException {
 		int i = 0;
+		transacao.done();
 		ResultadoConstrucao<Endereco> resultadoConstrucao = new Endereco.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setLogradouro(resultSet.getString(++i))

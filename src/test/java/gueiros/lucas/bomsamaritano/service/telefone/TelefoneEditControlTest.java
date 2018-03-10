@@ -40,7 +40,7 @@ public class TelefoneEditControlTest {
     public void setandoMocks(){
         editView = mock(TelefoneEditView.class);
         repositorio = mock(Repositorio.class);
-        editControl = new TelefoneEditControl(editView,repositorio);
+        editControl = new TelefoneEditControl(editView, repositorio);
     }
     
     /**

@@ -20,6 +20,8 @@ package gueiros.lucas.bomsamaritano.service.util.ui;
 import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
@@ -50,7 +52,7 @@ public interface EditControl<Tipo extends Identificavel<Tipo>> {
      * Adiciona um objeto ao repositório (persist)
      * @param tipo
      */
-    public Tipo adicionar(Tipo tipo);
+    public Tipo adicionar(Transacao transacao, Tipo tipo);
 
     /**
      * Qual o nome (String) dessa entidade
@@ -62,5 +64,7 @@ public interface EditControl<Tipo extends Identificavel<Tipo>> {
     /**
      * 
      */
-    public List<Tipo> recuperar(Filtro<Tipo> filtro);
+    public List<Tipo> recuperar(Transacao transacao, Filtro<Tipo> filtro);
+    
+    public Repositorio<Tipo> getRepositorio();
 }

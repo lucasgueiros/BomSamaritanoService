@@ -23,26 +23,22 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import gueiros.lucas.bomsamaritano.service.util.jdbc.Conexao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.FiltroId;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 
 public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<T> {
 
-	private Conexao conexao;
 	private final String tabela;
 	private Conversor<T> conversor;
 
 	public RepositorioJDBC(Conversor<T> conversor) {
-		this.conexao = new Conexao();
-		conexao.conecta();
 		this.tabela = conversor.getTabela();
 		this.conversor = conversor;
 	}
 
 	@Override
-	public T adicionar(T tipo) {
+	public T adicionar(Transacao transacao, T tipo) {
 		String sql = "insert into " + tabela + " (";
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -55,13 +51,13 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		sql += ") RETURNING id;";
 
 		try {
-			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
+			preparedStatement = transacao.getPreparedStatement(sql);
 			conversor.adicionarValores(0,preparedStatement,tipo);
 			resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
 				Long id = resultSet.getLong(1);
-				return this.recuperar(new FiltroId<>(id)).get(0);
+				return this.recuperar(transacao, new FiltroId<>(id)).get(0);
 			} else {
 				throw new SQLException("resultSet.next()==false");
 			}
@@ -75,7 +71,7 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 	}
 
 	@Override
-	public void alterar(Alteracao<T> alteracao, Filtro<T> filtro) {
+	public void alterar(Transacao transacao, Alteracao<T> alteracao, Filtro<T> filtro) {
 		String sql = "update " + tabela;
 		PreparedStatement preparedStatement = null;
 
@@ -84,7 +80,7 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		sql = sql + filtro.getCondicao() + " ;"; // RETURNING id;
 
 		try {
-			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
+			preparedStatement = transacao.getPreparedStatement(sql);
 			int i = 0;
 			i = alteracao.setValores(i, preparedStatement);
 			filtro.set(i, preparedStatement);
@@ -98,7 +94,7 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 	}
 
 	@Override
-	public void remover(Filtro<T> filtro) { // TODO isso deveria retornar detalhes caso tenha dado errado ou os objetos apagados etc.
+	public void remover(Transacao transacao, Filtro<T> filtro) { // TODO isso deveria retornar detalhes caso tenha dado errado ou os objetos apagados etc.
 		String sql = "delete from " + tabela + " ";
 		PreparedStatement preparedStatement = null;
 
@@ -106,7 +102,7 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		sql = sql + filtro.getCondicao() + ";";
 
 		try {
-			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
+			preparedStatement = transacao.getPreparedStatement(sql);
 			filtro.set(0, preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -117,7 +113,7 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 	}
 
 	@Override
-	public List<T> recuperar(Filtro<T> filtro) {
+	public List<T> recuperar(Transacao transacao, Filtro<T> filtro) {
 		String sql = "select id,";
 		sql += conversor.getColunas();
 		sql += " from " + tabela + " ";
@@ -129,12 +125,12 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		sql = sql + filtro.getCondicao() + ";";
 
 		try {
-			preparedStatement = this.conexao.getConnection().prepareStatement(sql);
+			preparedStatement = transacao.getPreparedStatement(sql);
 			filtro.set(0, preparedStatement);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				ts.add(conversor.getParaObjeto(resultSet));
+				ts.add(conversor.getParaObjeto(transacao, resultSet));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -146,14 +142,10 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 	}
 
 	@Override
-	public void commitTransaction() throws SQLException {
-		conexao.getConnection().commit();
-		conexao.getConnection().setAutoCommit(true);
+	public T recuperarPrimeiro(Transacao transacao, Filtro<T> filtro) {
+		return this.recuperar(transacao, filtro).get(0);
 	}
+
 	
-	@Override
-	public void beginTransaction() throws SQLException {
-		conexao.getConnection().setAutoCommit(false);
-	}
 	
 }

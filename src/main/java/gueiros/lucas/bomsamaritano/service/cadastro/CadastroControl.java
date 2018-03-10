@@ -19,10 +19,12 @@ package gueiros.lucas.bomsamaritano.service.cadastro;
 
 import gueiros.lucas.bomsamaritano.service.util.events.LancadorEventos;
 import gueiros.lucas.bomsamaritano.service.util.events.ListenerEventos;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.TransacaoFactory;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Identificavel;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -63,7 +65,12 @@ public class CadastroControl<Tipo extends Identificavel<Tipo>> {
     		// TODO tome outras providências
     	} else {
     		Tipo model = editControl.getResultadoConstrucao().getModel();
-    		editControl.adicionar(model);
+    		try {
+				editControl.adicionar(TransacaoFactory.getInstance().getTransacao(), model);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		lancador.enviarEvento(new CadastroEvento("Objeto Cadastrado"));
     		JOptionPane.showMessageDialog(view, "Deu certo");
     	}

@@ -23,6 +23,7 @@ import java.sql.SQLException;
 
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Conversor;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 
 public class TelefoneConversor implements Conversor<Telefone> {
 
@@ -32,15 +33,16 @@ public class TelefoneConversor implements Conversor<Telefone> {
 	}
 
 	@Override
-	public Telefone getParaObjeto(ResultSet resultSet) throws SQLException {
+	public Telefone getParaObjeto(Transacao transacao, ResultSet resultSet) throws SQLException {
 		int i = 0;
-		ResultadoConstrucao<Telefone> resultadoConstrucao = new Telefone.Construtor()
+		transacao.done();
+		return new Telefone.Construtor()
 				.setId(resultSet.getLong(++i))
 				.setDdd(resultSet.getInt(++i))
 				.setNumero(resultSet.getString(++i))
-				.construir();
-		// TODO faca alguma construcao
-		return resultadoConstrucao.getModel();
+				.construir()
+				.getModel();
+		// TODO faca alguma verificacao
 	}
 
 	@Override

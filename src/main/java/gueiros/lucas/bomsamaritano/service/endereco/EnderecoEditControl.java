@@ -19,9 +19,11 @@ package gueiros.lucas.bomsamaritano.service.endereco;
 
 import java.util.List;
 
+import gueiros.lucas.bomsamaritano.service.telefone.TelefoneConversor;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.restricoes.IntegerToStringAdapterRestricao;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
@@ -86,12 +88,17 @@ public class EnderecoEditControl implements EditControl<Endereco> {
 	}
 
 	@Override
-	public Endereco adicionar(Endereco tipo) {
-		return repositorio.adicionar(tipo);
+	public Endereco adicionar(Transacao transacao, Endereco tipo) {
+		return repositorio.adicionar(transacao, tipo);
 	}
 
 	@Override
-	public List<Endereco> recuperar(Filtro<Endereco> filtro) {
-		return this.repositorio.recuperar(filtro);
+	public List<Endereco> recuperar(Transacao transacao, Filtro<Endereco> filtro) {
+		return this.repositorio.recuperar(transacao, filtro);
+	}
+
+	@Override
+	public Repositorio<Endereco> getRepositorio() {
+		return repositorio;
 	}
 }

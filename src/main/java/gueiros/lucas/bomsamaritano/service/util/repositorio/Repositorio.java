@@ -17,7 +17,6 @@
  */
 package gueiros.lucas.bomsamaritano.service.util.repositorio;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
@@ -35,30 +34,33 @@ public interface Repositorio <Tipo extends Identificavel<Tipo>> {
      * Armazena um novo objeto.
      * @param tipo
      */
-    public Tipo adicionar(Tipo tipo);
+    public Tipo adicionar(Transacao transacao, Tipo tipo);
 
     /**
      * Atualiza os estados dos objetos já armazenado que passarem no filtro.
      * @param alteracao
      * @param filtro
      */
-    public void alterar(Alteracao<Tipo> alteracao,Filtro<Tipo> filtro);
+    public void alterar(Transacao transacao, Alteracao<Tipo> alteracao,Filtro<Tipo> filtro);
 
     /**
      * Remove os objeto armazeados que couberem no filtrp.
      * @param filtro
      */
-    public void remover(Filtro<Tipo> filtro);
+    public void remover(Transacao transacao, Filtro<Tipo> filtro);
 
     /**
      * Retorna objetos armazenados que passam no filtro.
      * @param filtro
      * @return
      */
-    public List<Tipo> recuperar(Filtro<Tipo> filtro);
-
-	public void beginTransaction() throws Exception;
-
-	public void commitTransaction() throws Exception;
-	
+    public List<Tipo> recuperar(Transacao transacao, Filtro<Tipo> filtro);
+    
+    /**
+     * Retorna o primeiro objeto armazenado que passar no filtro.
+     * @param filtro
+     * @return
+     */
+    public Tipo recuperarPrimeiro(Transacao transacao, Filtro<Tipo> filtro);
+    
 }

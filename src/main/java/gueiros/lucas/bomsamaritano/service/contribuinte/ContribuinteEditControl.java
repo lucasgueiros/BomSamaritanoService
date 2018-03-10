@@ -28,6 +28,7 @@ import gueiros.lucas.bomsamaritano.service.telefone.TelefoneEditControl;
 import gueiros.lucas.bomsamaritano.service.util.construtores.ResultadoConstrucao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.Repositorio;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.RepositorioJDBC;
+import gueiros.lucas.bomsamaritano.service.util.repositorio.Transacao;
 import gueiros.lucas.bomsamaritano.service.util.repositorio.filtro.Filtro;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditControl;
 import gueiros.lucas.bomsamaritano.service.util.ui.EditView;
@@ -45,31 +46,31 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     private TelefoneEditControl telefoneEditControl;
     private Repositorio<Contribuinte> repositorio;
 
-    public ContribuinteEditControl(ContribuinteEditView editView, 
-            NomeEditControl nomeEditControl, 
-            EnderecoEditControl enderecoEditControl, 
-            TelefoneEditControl telefoneEditControl, 
-            Repositorio<Contribuinte> repositorio) {
-        this(editView,nomeEditControl,enderecoEditControl,telefoneEditControl);
-        this.repositorio = repositorio;
-    }
+    public ContribuinteEditControl() {
+		this(new ContribuinteEditView(),new NomeEditControl(),new EnderecoEditControl(),new TelefoneEditControl());
+	}
 
-    private ContribuinteEditControl(ContribuinteEditView editView, 
+    public ContribuinteEditControl(ContribuinteEditView editView, NomeEditControl nomeEditControl,
+			EnderecoEditControl enderecoEditControl, TelefoneEditControl telefoneEditControl,
+			Repositorio<Contribuinte> repositorio) {
+		super();
+		this.editView = editView;
+		this.nomeEditControl = nomeEditControl;
+		this.enderecoEditControl = enderecoEditControl;
+		this.telefoneEditControl = telefoneEditControl;
+		this.repositorio = repositorio;
+	}
+
+	public ContribuinteEditControl(ContribuinteEditView editView, 
             NomeEditControl nomeEditControl, 
             EnderecoEditControl enderecoEditControl, 
             TelefoneEditControl telefoneEditControl) {
-        this.editView = editView;
-        this.nomeEditControl = nomeEditControl;
-        this.enderecoEditControl = enderecoEditControl;
-        this.telefoneEditControl = telefoneEditControl;
-    }
-    
-    public ContribuinteEditControl() {
-        this(new ContribuinteEditView(),
-                new NomeEditControl(),
-                new EnderecoEditControl(),
-                new TelefoneEditControl());
-        this.repositorio = new RepositorioJDBC<Contribuinte>(new ContribuinteConversor(this));
+    	this(editView,nomeEditControl,enderecoEditControl,telefoneEditControl, 
+    			new RepositorioJDBC<Contribuinte>(new ContribuinteConversor(
+    					nomeEditControl.getRepositorio()::recuperarPrimeiro,
+    					enderecoEditControl.getRepositorio()::recuperarPrimeiro,
+    					telefoneEditControl.getRepositorio()::recuperarPrimeiro
+    					))); 
     }
 
     @Override
@@ -111,7 +112,7 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
     }
     
     @Override
-    public Contribuinte adicionar(Contribuinte tipo) {
+    public Contribuinte adicionar(Transacao transacao, Contribuinte tipo) {
         // desmebre
         Nome nome = tipo.getNome();
         Telefone telefone = tipo.getTelefone();
@@ -119,11 +120,11 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
         
         // mande cada qual ao seu respectivo editcontrol
         // e receba de volta o objeto com ID
-        nome = this.nomeEditControl.adicionar(nome);
-        endereco = this.enderecoEditControl.adicionar(endereco);
-        telefone = this.telefoneEditControl.adicionar(telefone);
+        nome = this.nomeEditControl.adicionar(transacao, nome);
+        endereco = this.enderecoEditControl.adicionar(transacao, endereco);
+        telefone = this.telefoneEditControl.adicionar(transacao, telefone);
         
-        // Agora recire o seu usando os objetos com ID
+        // Agora recrie o seu usando os objetos com ID
         tipo = new Contribuinte.Construtor()
         .setNome(nome)
         .setEndereco(endereco)
@@ -132,24 +133,17 @@ public class ContribuinteEditControl implements EditControl<Contribuinte>{
         .getModel();
         
         // agora adicione o seu.
-        return repositorio.adicionar(tipo);
+        return repositorio.adicionar(transacao, tipo);
     }
 
 	@Override
-	public List<Contribuinte> recuperar(Filtro<Contribuinte> filtro) {
-		return this.repositorio.recuperar(filtro);
+	public List<Contribuinte> recuperar(Transacao transacao, Filtro<Contribuinte> filtro) {
+		return this.repositorio.recuperar(transacao, filtro);
 	}
-    
-    List<Nome> recuperarNome(Filtro<Nome> filtro) {
-    	return this.nomeEditControl.recuperar(filtro);
-    }
-    
-    List<Endereco> recuperarEndereco(Filtro<Endereco> filtro) {
-    	return this.enderecoEditControl.recuperar(filtro);
-    }
-    
-    List<Telefone> recuperarTelefone(Filtro<Telefone> filtro) {
-    	return this.telefoneEditControl.recuperar(filtro);
-    }
+
+	@Override
+	public Repositorio<Contribuinte> getRepositorio() {
+		return repositorio;
+	}
     
 }
