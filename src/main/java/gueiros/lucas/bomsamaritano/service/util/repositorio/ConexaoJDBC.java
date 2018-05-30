@@ -25,9 +25,10 @@ public class ConexaoJDBC implements Conexao {
 	// Aos alunos http://www.guj.com.br/articles/7
 
 	private Connection con;
-	private String url = "jdbc:postgresql://localhost:5432/bomsamaritanobd"; // TODO propriedade
-	private String usuario = "postgres"; // TODO propriedade
-	private String senha = "postgres"; // TODO propriedade
+	private String driver = "org.h2.Driver"; // TODO propriedade
+	private String url = "jdbc:h2:~/bomsamaritano"; // TODO propriedade
+	private String usuario = ""; // TODO propriedade
+	private String senha = ""; // TODO propriedade
 
 	public ConexaoJDBC() {
 	}
@@ -38,7 +39,7 @@ public class ConexaoJDBC implements Conexao {
 	@Override
 	public boolean conecta() {
 		try {
-			// Class.forName("org.postgresql.Driver");
+			Class.forName(driver);
 			con = DriverManager.getConnection(url, usuario, senha);
 			return true;
 		} catch (Exception e) {
