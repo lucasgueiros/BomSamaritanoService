@@ -20,6 +20,7 @@ package gueiros.lucas.bomsamaritano.service.util.repositorio;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,15 +49,16 @@ public class RepositorioJDBC<T extends Identificavel<T>> implements Repositorio<
 		for (int i = 1; i < conversor.getNumeroColunas(); i++) {
 			sql += ",?";
 		}
-		sql += ") RETURNING id;";
+		sql += ");";// RETURNING id;";
 
 		try {
-			preparedStatement = transacao.getPreparedStatement(sql);
+			preparedStatement = transacao.getPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			conversor.adicionarValores(0,preparedStatement,tipo);
-			resultSet = preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
+			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			
-			if(resultSet.next()) {
-				Long id = resultSet.getLong(1);
+			if(generatedKeys.next()) {
+				Long id = generatedKeys.getLong(1);
 				return this.recuperar(transacao, new FiltroId<>(id)).get(0);
 			} else {
 				throw new SQLException("resultSet.next()==false");
